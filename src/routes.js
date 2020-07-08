@@ -8,7 +8,7 @@ import Login from './components/Login'
 /**
  * COMPONENT
  */
-export default class Routes extends Component {
+export class Routes extends Component {
   constructor() {
     super()
     this.state = {
@@ -71,6 +71,7 @@ export default class Routes extends Component {
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 // export default withRouter(connect(mapState, mapDispatch)(Routes))
+export default withRouter(Routes)
 
 /**
  * PROP TYPES

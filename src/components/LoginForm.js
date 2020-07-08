@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Alert from '@material-ui/lab/Alert';
 
 function Copyright() {
   return (
@@ -49,7 +50,9 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn(props) {
   const classes = useStyles();
   const {onChange, onSubmit} = props
-  const {email, password} = props.state
+  const {email, password, error} = props.state
+
+  console.log(error)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -62,6 +65,7 @@ export default function SignIn(props) {
           Sign in
         </Typography>
         <form className={classes.form} noValidate onSubmit={(evt) => onSubmit(evt)}>
+          {error ? <Alert severity="error">{error}</Alert> : null}
           <TextField
             variant="outlined"
             margin="normal"
@@ -74,6 +78,7 @@ export default function SignIn(props) {
             autoFocus
             onChange={(evt) => onChange(evt)}
             value={email}
+            type="email"
           />
           <TextField
             variant="outlined"
