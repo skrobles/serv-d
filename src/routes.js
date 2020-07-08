@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 // import {connect} from 'react-redux'
-import {withRouter, Route, Switch, BrowserRouter as Router} from 'react-router-dom'
-import PropTypes from 'prop-types'
+import {
+  withRouter,
+  Route,
+  Switch,
+  BrowserRouter as Router,
+} from "react-router-dom";
+import PropTypes from "prop-types";
 // import {me} from './store'
 import Login from "./components/Login";
 import Home from "./components/home";
@@ -15,10 +20,10 @@ export class Routes extends Component {
   constructor() {
     super();
     this.state = {
-      user : {},
-      savedRecipes : []
-    }
-    this.setUser = this.setUser.bind(this)
+      user: {},
+      savedRecipes: [],
+    };
+    this.setUser = this.setUser.bind(this);
   }
   componentDidMount() {
     // this.props.loadInitialData()
@@ -27,7 +32,7 @@ export class Routes extends Component {
   }
 
   setUser(user) {
-    this.setState({user})
+    this.setState({ user });
   }
 
   render() {
@@ -76,7 +81,7 @@ export class Routes extends Component {
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 // export default withRouter(connect(mapState, mapDispatch)(Routes))
-export default withRouter(Routes)
+export default withRouter(Routes);
 
 /**
  * PROP TYPES

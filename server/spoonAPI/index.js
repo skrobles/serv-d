@@ -1,10 +1,10 @@
-//const {spoonApiKey} = require('../../secrets')
-//const axios = require("axios");
+const { spoonApiKey } = require("../../secrets");
+const axios = require("axios");
 const testData = require("../../scripts/example.json");
 
 const getRecipes = async (ingredientQuery) => {
-  //const ingredientList = ingredientQuery.ingredients.split(", ");
-  //const escapedIngredients = ingredientList.join("%2C ");
+  const ingredientList = ingredientQuery.ingredients.split(", ");
+  const escapedIngredients = ingredientList.join("%2C ");
   // const {data} = await axios({
   //   "method":"GET",
   //   "url":"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch",
