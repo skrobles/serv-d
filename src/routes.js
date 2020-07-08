@@ -30,7 +30,6 @@ export default class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
-        <Route path="/myAccount" component={ViewAccountForm} />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
