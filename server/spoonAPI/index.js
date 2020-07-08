@@ -2,7 +2,7 @@ const { spoonApiKey } = require("../../secrets");
 const axios = require("axios");
 const testData = require("../../scripts/example.json");
 
-const getRecipes = async ingredientQuery => {
+const getRecipes = async (ingredientQuery) => {
   const ingredientList = ingredientQuery.ingredients.split(", ");
   const escapedIngredients = ingredientList.join("%2C ");
   // const {data} = await axios({
@@ -22,11 +22,11 @@ const getRecipes = async ingredientQuery => {
   //   })
   const data = testData;
   let ingredients;
-  const recipes = data.results.map(result => {
+  const recipes = data.results.map((result) => {
     //get list of ingredients without duplicates
     ingredients = [];
-    result.analyzedInstructions[0].steps.map(step =>
-      step.ingredients.forEach(ingredient => {
+    result.analyzedInstructions[0].steps.map((step) =>
+      step.ingredients.forEach((ingredient) => {
         if (!ingredients.includes(ingredient.name)) {
           ingredients.push(ingredient.name);
         }
@@ -34,7 +34,7 @@ const getRecipes = async ingredientQuery => {
     );
 
     //get steps for recipe
-    let steps = result.analyzedInstructions[0].steps.map(step => step.step);
+    let steps = result.analyzedInstructions[0].steps.map((step) => step.step);
 
     //formulate our recipe object
     let recipe = {
@@ -44,7 +44,7 @@ const getRecipes = async ingredientQuery => {
       steps,
       sourceUrl: result.sourceUrl,
       servings: result.servings,
-      time: result.readyInMinutes
+      time: result.readyInMinutes,
     };
     return recipe;
   });
@@ -61,5 +61,5 @@ const getRecipes = async ingredientQuery => {
 //excludeIngredients
 
 module.exports = {
-  getRecipes
+  getRecipes,
 };

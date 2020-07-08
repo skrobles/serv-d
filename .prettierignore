@@ -4,3 +4,4 @@ package-lock.json
 package.json
 firestoreCred.json
 secrets.js
+build

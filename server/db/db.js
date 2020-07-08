@@ -4,7 +4,7 @@ const serviceAccount = require("../../firestoreCred.json");
 //   credential: admin.credential.applicationDefault()
 // })
 admin.initializeApp({
-  credential: admin.credentials.cert(serviceAccount)
+  credential: admin.credentials.cert(serviceAccount),
 });
 const db = admin.firestore();
 
@@ -13,11 +13,11 @@ db.collection("cities")
   .set({
     name: "Los Angeles",
     state: "CA",
-    country: "USA"
+    country: "USA",
   })
-  .then(function() {
+  .then(function () {
     console.log("Document successfully written!");
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.error("Error writing document: ", error);
   });

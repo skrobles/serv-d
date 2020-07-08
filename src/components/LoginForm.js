@@ -27,24 +27,24 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 export default function SignIn(props) {
@@ -65,7 +65,7 @@ export default function SignIn(props) {
         <form
           className={classes.form}
           noValidate
-          onSubmit={evt => onSubmit(evt)}
+          onSubmit={(evt) => onSubmit(evt)}
         >
           {error ? <Alert severity="error">{error}</Alert> : null}
           <TextField
@@ -78,7 +78,7 @@ export default function SignIn(props) {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={evt => onChange(evt)}
+            onChange={(evt) => onChange(evt)}
             value={email}
             type="email"
             pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
@@ -93,7 +93,7 @@ export default function SignIn(props) {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={evt => onChange(evt)}
+            onChange={(evt) => onChange(evt)}
             value={password}
           />
           <FormControlLabel
@@ -117,7 +117,7 @@ export default function SignIn(props) {
             </Grid>
             <Grid item>
               <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+                Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>

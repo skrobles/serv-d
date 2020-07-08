@@ -4,7 +4,7 @@ import {
   withRouter,
   Route,
   Switch,
-  BrowserRouter as Router
+  BrowserRouter as Router,
 } from "react-router-dom";
 import PropTypes from "prop-types";
 // import {me} from './store'
@@ -18,7 +18,7 @@ export class Routes extends Component {
     super();
     this.state = {
       user: {},
-      savedRecipes: []
+      savedRecipes: [],
     };
     this.setUser = this.setUser.bind(this);
   }
@@ -41,7 +41,7 @@ export class Routes extends Component {
         {/* <Route path="/login" component={Login} setUser={this.setUser}/> */}
         <Route
           path="/login"
-          render={setUser => <Login setUser={this.setUser} />}
+          render={(setUser) => <Login setUser={this.setUser} />}
         />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (

@@ -13,7 +13,7 @@ export class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
-      error: null
+      error: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
