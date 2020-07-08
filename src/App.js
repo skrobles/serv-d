@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Routes from './routes'
 
-function App() {
+export default function App() {
   return (
     // <div className="App">
     //   <header className="App-header">
@@ -27,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+
