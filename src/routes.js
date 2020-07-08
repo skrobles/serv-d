@@ -15,11 +15,16 @@ export default class Routes extends Component {
       user : {},
       savedRecipes : []
     }
+    this.setUser = this.setUser.bind(this)
   }
   componentDidMount() {
     // this.props.loadInitialData()
     //NOTE: getUser if logged in
     //NOTE: getSavedRecipes if logged in
+  }
+
+  setUser(user) {
+    this.setState({user})
   }
 
   render() {
@@ -28,7 +33,8 @@ export default class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
+        {/* <Route path="/login" component={Login} setUser={this.setUser}/> */}
+        <Route path="/login" render={(setUser) => <Login setUser={this.setUser}/>} />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>

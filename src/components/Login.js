@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from './LoginForm'
 import axios from 'axios'
 
+const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ export default class Login extends React.Component {
 
   async handleSubmit(evt) {
     evt.preventDefault()
-
+    const {data} = await axios.post(serverUrl, this.state)
+    this.props.setUser(data)
   }
 
   render() {
