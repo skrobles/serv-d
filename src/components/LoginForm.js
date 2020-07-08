@@ -12,13 +12,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Alert from '@material-ui/lab/Alert';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Serv'd
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn(props) {
   const classes = useStyles();
   const {onChange, onSubmit} = props
-  const {email, password} = props.state
+  const {email, password, error} = props.state
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,9 +60,10 @@ export default function SignIn(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign in to your Serv'd account
         </Typography>
         <form className={classes.form} noValidate onSubmit={(evt) => onSubmit(evt)}>
+          {error ? <Alert severity="error">{error}</Alert> : null}
           <TextField
             variant="outlined"
             margin="normal"
@@ -74,6 +76,8 @@ export default function SignIn(props) {
             autoFocus
             onChange={(evt) => onChange(evt)}
             value={email}
+            type="email"
+            pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
           />
           <TextField
             variant="outlined"
