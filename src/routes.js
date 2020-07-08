@@ -9,6 +9,9 @@ import {
 import PropTypes from "prop-types";
 // import {me} from './store'
 import Login from "./components/Login";
+import Home from "./components/home";
+import AllRecipes from "./components/allRecipes"
+import SingleRecipe from "./components/singleRecipe";
 
 /**
  * COMPONENT
@@ -38,11 +41,9 @@ export class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        {/* <Route path="/login" component={Login} setUser={this.setUser}/> */}
-        <Route
-          path="/login"
-          render={(setUser) => <Login setUser={this.setUser} />}
-        />
+        <Route path="/recipes" component={AllRecipes} />
+        <Route path="/single-recipe" component={SingleRecipe} />
+        <Route path="/login" render={(setUser) => <Login setUser={this.setUser}/>} />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
@@ -51,7 +52,8 @@ export class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Home} />
+
       </Switch>
     );
   }
