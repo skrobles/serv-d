@@ -25,9 +25,7 @@ export default class AllRecipesView extends React.Component {
 
     render() {
         return (
-    
-                    <Album onChange={this.handleChange} onSubmit={this.handleSubmit} state={this.state} />
-
+            <Album onChange={this.handleChange} onSubmit={this.handleSubmit} state={this.state} />
         )
     }
 }
