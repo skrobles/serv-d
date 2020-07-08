@@ -3,7 +3,9 @@ import LoginForm from './LoginForm'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
-const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
+// const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
+const serverUrl = 'https://servdapi.herokuapp.com/api/auth/signin'
+// const serverUrl = 'http://localhost:8080/api/auth/signin'
 
 export class Login extends React.Component {
   constructor(props) {
@@ -25,7 +27,9 @@ export class Login extends React.Component {
     evt.preventDefault()
     try {
     const {data} = await axios.post(serverUrl, this.state)
+    console.log(data)
     if (data.id) {
+      console.log("in if statement", data)
       this.props.setUser(data)
       this.props.history.push('/')
     } else {
@@ -33,11 +37,11 @@ export class Login extends React.Component {
     }
   } catch(err) {
     this.setState({error: "Invalid username and/or password"})
+    console.log(err)
   }
   }
 
   render() {
-    console.log("login props", this.props)
     return (
       <LoginForm
         onChange={this.handleChange}
