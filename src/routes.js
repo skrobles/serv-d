@@ -1,21 +1,26 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
 // import {connect} from 'react-redux'
-import {withRouter, Route, Switch, BrowserRouter as Router} from 'react-router-dom'
-import PropTypes from 'prop-types'
+import {
+  withRouter,
+  Route,
+  Switch,
+  BrowserRouter as Router
+} from "react-router-dom";
+import PropTypes from "prop-types";
 // import {me} from './store'
-import Login from './components/Login'
+import Login from "./components/Login";
 
 /**
  * COMPONENT
  */
 export class Routes extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      user : {},
-      savedRecipes : []
-    }
-    this.setUser = this.setUser.bind(this)
+      user: {},
+      savedRecipes: []
+    };
+    this.setUser = this.setUser.bind(this);
   }
   componentDidMount() {
     // this.props.loadInitialData()
@@ -24,17 +29,20 @@ export class Routes extends Component {
   }
 
   setUser(user) {
-    this.setState({user})
+    this.setState({ user });
   }
 
   render() {
-    const {isLoggedIn} = !!this.state.user.id
+    const { isLoggedIn } = !!this.state.user.id;
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         {/* <Route path="/login" component={Login} setUser={this.setUser}/> */}
-        <Route path="/login" render={(setUser) => <Login setUser={this.setUser}/>} />
+        <Route
+          path="/login"
+          render={setUser => <Login setUser={this.setUser} />}
+        />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
@@ -45,7 +53,7 @@ export class Routes extends Component {
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
-    )
+    );
   }
 }
 
@@ -54,8 +62,8 @@ export class Routes extends Component {
  */
 // const mapState = state => {
 //   return {
-    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
+// Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
+// Otherwise, state.user will be an empty object, and state.user.id will be falsey
 //     isLoggedIn: !!state.user.id
 //   }
 // }
@@ -71,7 +79,7 @@ export class Routes extends Component {
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 // export default withRouter(connect(mapState, mapDispatch)(Routes))
-export default withRouter(Routes)
+export default withRouter(Routes);
 
 /**
  * PROP TYPES
