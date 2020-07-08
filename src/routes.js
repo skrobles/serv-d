@@ -4,6 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import {me} from './store'
 import Login from './components/Login'
+import ViewAccountForm from './components/ViewAccountForm'
 
 /**
  * COMPONENT
@@ -29,6 +30,7 @@ export default class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
+        <Route path="/myAccount" component={ViewAccountForm} />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
