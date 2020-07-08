@@ -18,7 +18,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Serv'd
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -59,7 +59,7 @@ export default function SignIn(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign in to your Serv'd account
         </Typography>
         <form className={classes.form} noValidate onSubmit={(evt) => onSubmit(evt)}>
           <TextField

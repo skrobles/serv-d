@@ -20,7 +20,6 @@ export default class Login extends React.Component {
 
   async handleSubmit(evt) {
     evt.preventDefault()
-
   }
 
   render() {
