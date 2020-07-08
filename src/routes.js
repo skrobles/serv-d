@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {withRouter, Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import {me} from './store'
-import Login from './components/LoginForm'
+import Login from './components/Login'
 
 /**
  * COMPONENT

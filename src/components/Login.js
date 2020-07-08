@@ -37,6 +37,7 @@ export class Login extends React.Component {
   }
 
   render() {
+    console.log("login props", this.props)
     return (
       <LoginForm
         onChange={this.handleChange}
