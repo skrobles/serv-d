@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 // import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import {me} from './store'
 import Login from './components/Login'

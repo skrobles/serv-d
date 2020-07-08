@@ -23,20 +23,20 @@ export class Login extends React.Component {
 
   async handleSubmit(evt) {
     evt.preventDefault()
+    try {
     const {data} = await axios.post(serverUrl, this.state)
-    console.log("user data", data)
     if (data.id) {
       this.props.setUser(data)
       this.props.history.push('/')
     } else {
-      console.log('ERROR')
       this.setState({error: "Invalid username and/or password"})
     }
+  } catch(err) {
+    this.setState({error: "Invalid username and/or password"})
+  }
   }
 
   render() {
-    console.log(this.props)
-
     return (
       <LoginForm
         onChange={this.handleChange}

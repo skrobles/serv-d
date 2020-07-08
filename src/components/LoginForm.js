@@ -52,8 +52,6 @@ export default function SignIn(props) {
   const {onChange, onSubmit} = props
   const {email, password, error} = props.state
 
-  console.log(error)
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -79,6 +77,7 @@ export default function SignIn(props) {
             onChange={(evt) => onChange(evt)}
             value={email}
             type="email"
+            pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
           />
           <TextField
             variant="outlined"
