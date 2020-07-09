@@ -3,11 +3,17 @@ import React, { Component } from "react";
 import {withRouter, Route, Switch, BrowserRouter as Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import {me} from './store'
+import axios from 'axios'
 import Login from "./components/Login";
 import Home from "./components/home";
 import AllRecipes from "./components/allRecipes"
 import SingleRecipe from "./components/singleRecipe";
 import ViewAccountForm from "./components/ViewAccountForm"
+
+// const serverUrl = 'https://servdapi.herokuapp.com/api/auth'
+const serverUrl = 'http://localhost:8080/api/auth'
+axios.defaults.withCredentials = true
+axios.defaults.crossDomain = true
 
 /**
  * COMPONENT
@@ -19,11 +25,16 @@ export class Routes extends Component {
       user : {},
       savedRecipes : []
     }
+    console.log('THIS IS CONSTRUCTOR', this.state)
     this.setUser = this.setUser.bind(this)
   }
-  componentDidMount() {
+
+  async componentDidMount() {
     // this.props.loadInitialData()
     //NOTE: getUser if logged in
+    const { data } = await axios.get(serverUrl, {headers: { 'Access-Control-Allow-Credentials': true }})
+    this.setUser(data)
+    console.log('AFTER GET', this.state)
     //NOTE: getSavedRecipes if logged in
   }
 
@@ -33,17 +44,17 @@ export class Routes extends Component {
 
   render() {
     const { isLoggedIn } = !!this.state.user.id;
-
+    console.log(this.state)
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/recipes" component={AllRecipes} />
         <Route path="/single-recipe" component={SingleRecipe} />
         <Route path="/login" render={(setUser) => <Login setUser={this.setUser}/>} />
-        <Route path="/myAccount" />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
+            <Route exact path="/myAccount" render={(setUser) => <ViewAccountForm setUser={this.setUser} user={this.state.user}/> } />
             {/* Routes placed here are only available after logging in */}
             {/* <Route path="/home" component={UserHome} /> */}
           </Switch>

@@ -1,18 +1,17 @@
 import React from 'react';
 import ViewAccountForm from './ViewAccountForm'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
+
+const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth'
 
 
-export default class Account extends React.Component {
+export class Account extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstName: '',
-      lastName: '',
+      name: '',
       email: '',
-      phone: '',
-      state: '',
-      country: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,7 +23,14 @@ export default class Account extends React.Component {
 
   async handleSubmit(evt) {
     evt.preventDefault()
-
+    try {
+      console.log('handle submit state', this.state)
+      console.log('handle submit props', this.props)
+      const {data} = await axios.get(serverUrl, this.state)
+      console.log('this is data', data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -37,3 +43,5 @@ export default class Account extends React.Component {
     )
   }
 }
+
+export default withRouter(Account)

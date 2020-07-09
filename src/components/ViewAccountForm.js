@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
@@ -14,22 +13,22 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  }
 }));
 
 export default function ViewAccount(props) {
   const classes = useStyles();
   const { className, ...rest } = props;
-  const {onChange, onSubmit} = props
-  console.log(props)
+  // const {onChange, onSubmit} = props
+  console.log('this is viewaccount props!!>>>>', props)
 
   const [values, setValues] = useState({
-    firstName: 'Shen',
-    lastName: 'Zhi',
+    name: 'Shen Zhi',
     email: 'shen.zhi@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
   });
 
   const handleChange = event => {
@@ -38,21 +37,6 @@ export default function ViewAccount(props) {
       [event.target.name]: event.target.value
     });
   };
-
-  const states = [
-    {
-      value: 'alabama',
-      label: 'Alabama'
-    },
-    {
-      value: 'new-york',
-      label: 'New York'
-    },
-    {
-      value: 'san-francisco',
-      label: 'San Francisco'
-    }
-  ];
 
   return (
     <Card
@@ -80,29 +64,13 @@ export default function ViewAccount(props) {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
-                label="First name"
+                helperText="Please specify your name"
+                label="Name"
                 margin="dense"
-                name="firstName"
+                name="name"
                 onChange={handleChange}
                 required
-                value={values.firstName}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Last name"
-                margin="dense"
-                name="lastName"
-                onChange={handleChange}
-                required
-                value={values.lastName}
+                value={values.name}
                 variant="outlined"
               />
             </Grid>
@@ -122,66 +90,21 @@ export default function ViewAccount(props) {
                 variant="outlined"
               />
             </Grid>
-            <Grid
+            {/* <Grid
               item
               md={6}
               xs={12}
             >
               <TextField
                 fullWidth
-                label="Phone Number"
+                label="photo"
                 margin="dense"
                 name="phone"
                 onChange={handleChange}
-                type="number"
-                value={values.phone}
+                value={values.photo}
                 variant="outlined"
               />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Select State"
-                margin="dense"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                // eslint-disable-next-line react/jsx-sort-props
-                SelectProps={{ native: true }}
-                value={values.state}
-                variant="outlined"
-              >
-                {states.map(option => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Country"
-                margin="dense"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="outlined"
-              />
-            </Grid>
+            </Grid> */}
           </Grid>
         </CardContent>
         <Divider />
@@ -196,9 +119,4 @@ export default function ViewAccount(props) {
       </form>
     </Card>
   );
-};
-
-ViewAccount.propTypes = {
-  className: PropTypes.string
-};
-
+}

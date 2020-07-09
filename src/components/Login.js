@@ -3,7 +3,8 @@ import LoginForm from './LoginForm'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
-const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
+// const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
+const serverUrl = 'https://servdapi.herokuapp.com/api/auth/signin'
 
 export class Login extends React.Component {
   constructor(props) {
