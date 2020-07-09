@@ -44,7 +44,7 @@ const getRecipes = async (ingredientQuery) => {
       steps,
       sourceUrl: result.sourceUrl,
       servings: result.servings,
-      time: result.readyInMinutes
+      time: result.readyInMinutes,
     };
     return recipe;
   });
@@ -61,5 +61,5 @@ const getRecipes = async (ingredientQuery) => {
 //excludeIngredients
 
 module.exports = {
-  getRecipes
+  getRecipes,
 };
