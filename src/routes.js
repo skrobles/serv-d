@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 // import {connect} from 'react-redux'
-import {withRouter, Route, Switch, BrowserRouter as Router} from 'react-router-dom'
+import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import {me} from './store'
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 
 /**
  * COMPONENT
@@ -30,11 +31,14 @@ export class Routes extends Component {
   render() {
     const {isLoggedIn} = !!this.state.user.id
 
+    console.log(this.state)
+
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         {/* <Route path="/login" component={Login} setUser={this.setUser}/> */}
         <Route path="/login" render={(setUser) => <Login setUser={this.setUser}/>} />
+        <Route path="/signup" render={(setUser) => <SignUp setUser={this.setUser}/>} />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
