@@ -4,6 +4,7 @@ import MenuAppBar from "./appBar";
 import Box from "@material-ui/core/Box";
 import Search from "./search";
 import plate from "../foodplate.jpg";
+import { Redirect, withRouter } from "react-router";
 
 const styles = {
   paperContainer: {
@@ -15,32 +16,60 @@ const styles = {
   },
 
   formContainer: {
-    alignContent: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignContent: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     height: 378,
-    // alignSelf: 'center',
-    // justifySelf: 'center',
-  }
+  },
 };
 
-
-export default class Home extends React.Component {
+export class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      ingredient: "",
+      isSubmitted: false,
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({ isSubmitted: true });
+  }
   render() {
-
-
-
-    return (
-      <div style={styles.paperContainer}>
-        <Box mx="auto">
-          <MenuAppBar />
+    if (this.state.isSubmitted) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/recipes",
+            state: this.state,
+          }}
+        />
+      );
+    } else
+      return (
+        <div style={styles.paperContainer}>
+          <Box mx="auto">
+            <MenuAppBar />
             <Box mx="auto" style={styles.formContainer}>
-              <Search />
+              <Search
+                ingredient={this.state.ingredient}
+                onChange={this.handleChange}
+                onSubmit={this.handleSubmit}
+              />
             </Box>
-          <BottomAppBar />
-        </Box>
-      </div>
-    );
+            <BottomAppBar />
+          </Box>
+        </div>
+      );
   }
 }
+
+export default withRouter(Home);
