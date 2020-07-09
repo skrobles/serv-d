@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 // import {connect} from 'react-redux'
-import {
-  withRouter,
-  Route,
-  Switch,
-  BrowserRouter as Router,
-} from "react-router-dom";
-import PropTypes from "prop-types";
+import { withRouter, Route, Switch } from "react-router-dom";
 // import {me} from './store'
 import Login from "./components/Login";
 import Home from "./components/home";
-import AllRecipes from "./components/allRecipes";
+import AllRecipesView from "./components/allRecipesView";
 import SingleRecipe from "./components/singleRecipe";
 
 /**
@@ -41,12 +35,14 @@ export class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/recipes" component={AllRecipes} />
-        <Route path="/single-recipe" component={SingleRecipe} />
+        <Route exact path="/recipes" component={AllRecipesView} />
+        <Route exact path="/single-recipe" component={SingleRecipe} />
         <Route
+          exact
           path="/login"
           render={(setUser) => <Login setUser={this.setUser} />}
         />
+        <Route exact path="/" component={Home} />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
@@ -55,7 +51,6 @@ export class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Home} />
       </Switch>
     );
   }

@@ -1,4 +1,4 @@
-import { FormControl, Input, FormHelperText } from "@material-ui/core";
+import { FormControl, Input, FormHelperText, Button } from "@material-ui/core";
 import React from "react";
 
 const styles = {
@@ -10,13 +10,24 @@ const styles = {
   },
 };
 
-export default function Search() {
+export default function Search(prop) {
   return (
-    <FormControl style={styles.searchContainer}>
-      <FormHelperText id="my-helper-text">
-        Search for a recipe by an ingredient:
-      </FormHelperText>
-      <Input id="my-input" aria-describedby="my-helper-text" />
-    </FormControl>
+    <form onSubmit={(e) => prop.onSubmit(e)}>
+      <FormControl style={styles.searchContainer}>
+        <FormHelperText id="my-helper-text">
+          Search for a recipe by an ingredient:
+        </FormHelperText>
+        <Input
+          id="my-input"
+          name="ingredient"
+          type="string"
+          value={prop.ingredient}
+          onChange={prop.onChange}
+        />
+        <Button type="submit" disabled={!prop.ingredient}>
+          serve!
+        </Button>
+      </FormControl>
+    </form>
   );
 }
