@@ -15,7 +15,6 @@ export class Login extends React.Component {
       password: '',
       error: null
     }
-    this.type = "login"
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
