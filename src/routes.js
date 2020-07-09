@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 // import {connect} from 'react-redux'
-import {
-  withRouter,
-  Route,
-  Switch,
-  BrowserRouter as Router,
-} from "react-router-dom";
+import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from "prop-types";
 // import {me} from './store'
 import Login from "./components/Login";
 import Home from "./components/home";
 import AllRecipes from "./components/allRecipes"
 import SingleRecipe from "./components/singleRecipe";
+import SignUp from './components/SignUp'
 
 /**
  * COMPONENT
@@ -38,12 +34,15 @@ export class Routes extends Component {
   render() {
     const { isLoggedIn } = !!this.state.user.id;
 
+    console.log(this.state)
+
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/recipes" component={AllRecipes} />
         <Route path="/single-recipe" component={SingleRecipe} />
         <Route path="/login" render={(setUser) => <Login setUser={this.setUser}/>} />
+        <Route path="/signup" render={(setUser) => <SignUp setUser={this.setUser}/>} />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
