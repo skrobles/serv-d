@@ -11,10 +11,10 @@ import SingleRecipe from "./components/singleRecipe";
 import SignUp from "./components/SignUp";
 import ViewAccountForm from "./components/ViewAccountForm";
 
-// const serverUrl = 'https://servdapi.herokuapp.com/api/auth'
-const serverUrl = "http://localhost:8080/api/auth";
+const serverUrl = "https://servdapi.herokuapp.com/api/auth";
+// const serverUrl = "http://localhost:8080/api/auth";
 axios.defaults.withCredentials = true;
-axios.defaults.crossDomain = true;
+// axios.defaults.crossDomain = true;
 
 /**
  * COMPONENT
@@ -33,9 +33,9 @@ export class Routes extends Component {
   async componentDidMount() {
     // this.props.loadInitialData()
     //NOTE: getUser if logged in
-    const { data } = await axios.get(serverUrl, {
-      headers: { "Access-Control-Allow-Credentials": true },
-    });
+    const { data } = await axios.get(serverUrl);
+    //{
+    // headers: { "Access-Control-Allow-Credentials": true }
     this.setUser(data);
     console.log("AFTER GET", this.state);
     //NOTE: getSavedRecipes if logged in
@@ -46,9 +46,7 @@ export class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn } = !!this.state.user.id;
-
-    console.log(this.state);
+    const isLoggedIn = !!this.state.user.id;
 
     return (
       <Switch>
