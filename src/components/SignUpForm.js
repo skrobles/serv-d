@@ -19,7 +19,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Serv'd
+        Your Website
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn(props) {
+export default function SignUpForm(props) {
   const classes = useStyles();
   const { onChange, onSubmit } = props;
   const { email, password, error } = props.state;
@@ -60,7 +60,7 @@ export default function SignIn(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in to your Serv'd account
+          Sign Up
         </Typography>
         <form
           className={classes.form}
@@ -96,10 +96,6 @@ export default function SignIn(props) {
             onChange={(evt) => onChange(evt)}
             value={password}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -107,17 +103,13 @@ export default function SignIn(props) {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Sign Up
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
+            <Grid item xs />
             <Grid item>
               <Link href="#" variant="body2">
-                Don't have an account? Sign Up
+                Already have an account? Log in
               </Link>
             </Grid>
           </Grid>

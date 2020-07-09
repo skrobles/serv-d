@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 // import {connect} from 'react-redux'
-import {withRouter, Route, Switch, BrowserRouter as Router} from 'react-router-dom'
-import PropTypes from 'prop-types'
+
+import { withRouter, Route, Switch } from "react-router-dom";
 // import {me} from './store'
 import axios from 'axios'
 import Login from "./components/Login";
 import Home from "./components/home";
-import AllRecipes from "./components/allRecipes"
+import AllRecipesView from "./components/allRecipesView";
 import SingleRecipe from "./components/singleRecipe";
-import ViewAccountForm from "./components/ViewAccountForm"
-
-// const serverUrl = 'https://servdapi.herokuapp.com/api/auth'
-const serverUrl = 'http://localhost:8080/api/auth'
-axios.defaults.withCredentials = true
-axios.defaults.crossDomain = true
+import SignUp from "./components/SignUp";
+import ViewAccountForm from './components/ViewAccountForm'
 
 /**
  * COMPONENT
@@ -22,11 +18,10 @@ export class Routes extends Component {
   constructor() {
     super();
     this.state = {
-      user : {},
-      savedRecipes : []
-    }
-    console.log('THIS IS CONSTRUCTOR', this.state)
-    this.setUser = this.setUser.bind(this)
+      user: {},
+      savedRecipes: [],
+    };
+    this.setUser = this.setUser.bind(this);
   }
 
   async componentDidMount() {
@@ -39,18 +34,28 @@ export class Routes extends Component {
   }
 
   setUser(user) {
-    this.setState({user})
+    this.setState({ user });
   }
 
   render() {
     const { isLoggedIn } = !!this.state.user.id;
-    console.log(this.state)
+
+    console.log(this.state);
+
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/recipes" component={AllRecipes} />
-        <Route path="/single-recipe" component={SingleRecipe} />
-        <Route path="/login" render={(setUser) => <Login setUser={this.setUser}/>} />
+        <Route exact path="/recipes" component={AllRecipesView} />
+        <Route exact path="/single-recipe" component={SingleRecipe} />
+        <Route
+          path="/login"
+          render={(setUser) => <Login setUser={this.setUser} />}
+        />
+        <Route
+          path="/signup"
+          render={(setUser) => <SignUp setUser={this.setUser} />}
+        />
+        <Route exact path="/" component={Home} />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
@@ -61,7 +66,6 @@ export class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
         <Route component={Home} />
-
       </Switch>
     );
   }
@@ -89,7 +93,7 @@ export class Routes extends Component {
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 // export default withRouter(connect(mapState, mapDispatch)(Routes))
-export default withRouter(Routes)
+export default withRouter(Routes);
 
 /**
  * PROP TYPES

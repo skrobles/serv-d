@@ -1,14 +1,13 @@
 import React from "react";
-import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 // const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
+// const serverUrl = 'https://servdapi.herokuapp.com/api/auth/signup'
+const serverUrl = "http://localhost:8080/api/auth/signup";
 
-const serverUrl = "https://servdapi.herokuapp.com/api/auth/signin";
-// const serverUrl = 'http://localhost:8080/api/auth/signin'
-
-export class Login extends React.Component {
+export class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,23 +27,20 @@ export class Login extends React.Component {
     evt.preventDefault();
     try {
       const { data } = await axios.post(serverUrl, this.state);
-      console.log(data);
       if (data.id) {
-        console.log("in if statement", data);
         this.props.setUser(data);
         this.props.history.push("/");
       } else {
         this.setState({ error: "Invalid username and/or password" });
       }
     } catch (err) {
-      this.setState({ error: "Invalid username and/or password" });
-      console.log(err);
+      this.setState({ error: err.response.data });
     }
   }
 
   render() {
     return (
-      <LoginForm
+      <SignUpForm
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
         state={this.state}
@@ -53,4 +49,4 @@ export class Login extends React.Component {
   }
 }
 
-export default withRouter(Login);
+export default withRouter(SignUp);
