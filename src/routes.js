@@ -3,13 +3,18 @@ import React, { Component } from "react";
 
 import { withRouter, Route, Switch } from "react-router-dom";
 // import {me} from './store'
-import axios from 'axios'
+import axios from "axios";
 import Login from "./components/Login";
 import Home from "./components/home";
 import AllRecipesView from "./components/allRecipesView";
 import SingleRecipe from "./components/singleRecipe";
 import SignUp from "./components/SignUp";
-import ViewAccountForm from './components/ViewAccountForm'
+import ViewAccountForm from "./components/ViewAccountForm";
+
+const serverUrl = "https://servdapi.herokuapp.com/api/auth";
+// const serverUrl = "http://localhost:8080/api/auth";
+axios.defaults.withCredentials = true;
+// axios.defaults.crossDomain = true;
 
 /**
  * COMPONENT
@@ -21,15 +26,18 @@ export class Routes extends Component {
       user: {},
       savedRecipes: [],
     };
+    console.log("THIS IS CONSTRUCTOR", this.state);
     this.setUser = this.setUser.bind(this);
   }
 
   async componentDidMount() {
     // this.props.loadInitialData()
     //NOTE: getUser if logged in
-    const { data } = await axios.get(serverUrl, {headers: { 'Access-Control-Allow-Credentials': true }})
-    this.setUser(data)
-    console.log('AFTER GET', this.state)
+    const { data } = await axios.get(serverUrl);
+    //{
+    // headers: { "Access-Control-Allow-Credentials": true }
+    this.setUser(data);
+    console.log("AFTER GET", this.state);
     //NOTE: getSavedRecipes if logged in
   }
 
@@ -38,10 +46,15 @@ export class Routes extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     const { isLoggedIn } = !!this.state.user.id;
 
     console.log(this.state);
 
+=======
+    const isLoggedIn = !!this.state.user.id;
+
+>>>>>>> 1d4042d04d7a7e2e64b7f3e2f86aed901591a8dc
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -59,7 +72,16 @@ export class Routes extends Component {
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
-            <Route exact path="/myAccount" render={(setUser) => <ViewAccountForm setUser={this.setUser} user={this.state.user}/> } />
+            <Route
+              exact
+              path="/myAccount"
+              render={(setUser) => (
+                <ViewAccountForm
+                  setUser={this.setUser}
+                  user={this.state.user}
+                />
+              )}
+            />
             {/* Routes placed here are only available after logging in */}
             {/* <Route path="/home" component={UserHome} /> */}
           </Switch>

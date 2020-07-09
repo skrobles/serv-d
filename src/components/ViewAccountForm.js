@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import React, { useState } from "react";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/styles";
 import {
   Card,
   CardHeader,
@@ -9,59 +9,43 @@ import {
   Divider,
   Grid,
   Button,
-  TextField
-} from '@material-ui/core';
+  TextField,
+} from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  }
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
 }));
 
 export default function ViewAccount(props) {
   const classes = useStyles();
   const { className, ...rest } = props;
   // const {onChange, onSubmit} = props
-  console.log('this is viewaccount props!!>>>>', props)
+  console.log("this is viewaccount props!!>>>>", props);
 
   const [values, setValues] = useState({
-    name: 'Shen Zhi',
-    email: 'shen.zhi@devias.io',
+    name: "Shen Zhi",
+    email: "shen.zhi@devias.io",
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValues({
       ...values,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
-      <form
-        autoComplete="off"
-        noValidate
-      >
-        <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
-        />
+    <Card {...rest} className={clsx(classes.root, className)}>
+      <form autoComplete="off" noValidate>
+        <CardHeader subheader="The information can be edited" title="Profile" />
         <Divider />
         <CardContent>
-          <Grid
-            container
-            spacing={3}
-          >
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
+          <Grid container spacing={3}>
+            <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 helperText="Please specify your name"
@@ -74,11 +58,7 @@ export default function ViewAccount(props) {
                 variant="outlined"
               />
             </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
+            <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 label="Email Address"
@@ -109,10 +89,7 @@ export default function ViewAccount(props) {
         </CardContent>
         <Divider />
         <CardActions>
-          <Button
-            color="primary"
-            variant="contained"
-          >
+          <Button color="primary" variant="contained">
             Save details
           </Button>
         </CardActions>
