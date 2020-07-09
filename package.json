@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -33,10 +34,29 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-sw": "http-server ./build",
-    "start-server": "nodemon server"
+    "start-server": "nodemon server",
+    "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
+    "lint": "eslint ./ --ignore-path .gitignore",
+    "lint-fix": "npm run lint -- --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "npm run lint-fix",
+      "git add"
+    ],
+    "*.{css,scss,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "browserslist": {
     "production": [
@@ -51,6 +71,14 @@
     ]
   },
   "devDependencies": {
-    "http-server": "^0.12.3"
+    "eslint": "^7.4.0",
+    "eslint-config-fullstack": "^6.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-react": "^7.20.3",
+    "http-server": "^0.12.3",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "yaml": "^1.10.0"
   }
 }

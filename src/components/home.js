@@ -10,8 +10,19 @@ const styles = {
     height: 756,
     backgroundImage: `url(${plate})`,
     backgroundSize: "cover",
-    backgroundPosition: "right"
-  }
+    backgroundPosition: "right",
+    zIndex: -1,
+  },
+
+  formContainer: {
+    alignContent: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 378,
+    // alignSelf: 'center',
+    // justifySelf: 'center',
+  },
 };
 
 export default class Home extends React.Component {
@@ -20,11 +31,9 @@ export default class Home extends React.Component {
       <div style={styles.paperContainer}>
         <Box mx="auto">
           <MenuAppBar />
-          <div>
-            <Box mx="auto" p={1}>
-              <Search />
-            </Box>
-          </div>
+          <Box mx="auto" style={styles.formContainer}>
+            <Search />
+          </Box>
           <BottomAppBar />
         </Box>
       </div>

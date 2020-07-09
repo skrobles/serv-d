@@ -1,27 +1,38 @@
 import React, { Component } from "react";
 // import {connect} from 'react-redux'
-import { Route, Switch } from "react-router-dom";
-//import { withRouter } from "react-router-dom";
-//import PropTypes from "prop-types";
+import {
+  withRouter,
+  Route,
+  Switch,
+  BrowserRouter as Router,
+} from "react-router-dom";
+import PropTypes from "prop-types";
 // import {me} from './store'
 import Login from "./components/Login";
 import Home from "./components/home";
+import AllRecipes from "./components/allRecipes";
+import SingleRecipe from "./components/singleRecipe";
 
 /**
  * COMPONENT
  */
-export default class Routes extends Component {
+export class Routes extends Component {
   constructor() {
     super();
     this.state = {
       user: {},
-      savedRecipes: []
+      savedRecipes: [],
     };
+    this.setUser = this.setUser.bind(this);
   }
   componentDidMount() {
     // this.props.loadInitialData()
     //NOTE: getUser if logged in
     //NOTE: getSavedRecipes if logged in
+  }
+
+  setUser(user) {
+    this.setState({ user });
   }
 
   render() {
@@ -30,7 +41,12 @@ export default class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
+        <Route path="/recipes" component={AllRecipes} />
+        <Route path="/single-recipe" component={SingleRecipe} />
+        <Route
+          path="/login"
+          render={(setUser) => <Login setUser={this.setUser} />}
+        />
         {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
@@ -67,6 +83,7 @@ export default class Routes extends Component {
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 // export default withRouter(connect(mapState, mapDispatch)(Routes))
+export default withRouter(Routes);
 
 /**
  * PROP TYPES
