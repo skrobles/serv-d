@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
+import { withRouter } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 function Copyright() {
   return (
@@ -51,10 +53,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SingleRecipe(props) {
+export function SingleRecipe(props) {
   const classes = useStyles();
   const recipe = props.location.state;
-  console.log(recipe);
+
+  //check if user is logged in and if recipe is already saved
+  const isLoggedIn = !!props.appState.user.id;
+  const saved =
+    props.appState.savedRecipes.filter((saved) => saved.title === recipe.title)
+      .length > 0;
 
   return (
     <div className={classes.root}>
@@ -68,11 +75,34 @@ export default function SingleRecipe(props) {
           <img src={recipe.imgUrl} width="50%" />
         </Container>
         <Grid className={classes.highlights} container spacing={1}>
-          <Grid container item xs={12}>
+          {isLoggedIn && !saved ? (
+            <Grid container item xs={12}>
+              <Button
+                variant="contained"
+                onClick={() => props.saveRecipe(recipe)}
+                color="primary"
+              >
+                Save Recipe
+              </Button>
+            </Grid>
+          ) : null}
+          {isLoggedIn && saved ? (
+            <Grid container item xs={12}>
+              <Button
+                variant="contained"
+                onClick={() => props.removeRecipe(recipe)}
+                color="primary"
+              >
+                Remove Recipe
+              </Button>
+            </Grid>
+          ) : null}
+          <Grid container item xs={6}>
             <Typography variant="h6" component="h2" gutterBottom>
               <strong>Yield:</strong> {recipe.servings}
             </Typography>
           </Grid>
+
           <Grid container spacing={1}>
             <Grid container item xs={12}>
               <Typography variant="h6" component="h2" gutterBottom>
@@ -121,3 +151,5 @@ export default function SingleRecipe(props) {
     </div>
   );
 }
+
+export default withRouter(SingleRecipe);
