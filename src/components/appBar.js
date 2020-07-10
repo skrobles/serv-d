@@ -12,6 +12,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuAppBar(props) {
+export function MenuAppBar(props) {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -71,6 +72,7 @@ export default function MenuAppBar(props) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={() => props.history.push("/")}
           >
             <MenuIcon />
           </IconButton>
@@ -104,7 +106,14 @@ export default function MenuAppBar(props) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Saved Recipes</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    props.history.push("/saved");
+                  }}
+                >
+                  Saved Recipes
+                </MenuItem>
                 <MenuItem
                   onClick={() => {
                     handleClose();
@@ -130,3 +139,5 @@ export default function MenuAppBar(props) {
     </div>
   );
 }
+
+export default withRouter(MenuAppBar);

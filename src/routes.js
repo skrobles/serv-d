@@ -5,6 +5,7 @@ import Home from "./components/home";
 import AllRecipesView from "./components/allRecipesView";
 import SingleRecipe from "./components/singleRecipe";
 import SignUp from "./components/SignUp";
+import SavedRecipes from "./components/SavedRecipes";
 
 /**
  * COMPONENT
@@ -26,9 +27,20 @@ export class Routes extends Component {
           path="/signup"
           render={(setUser) => <SignUp setUser={this.props.setUser} />}
         />
+        <Route
+          path="/saved"
+          render={() => (
+            <SavedRecipes recipes={this.props.appState.savedRecipes} />
+          )}
+        />
+
         <Route exact path="/" component={Home} />
         {isLoggedIn && (
           <Switch>
+            {/* <Route
+              path="/saved"
+              render={() => <Login recipes={this.props.appState.savedRecipes} />}
+            /> */}
             {/* Routes placed here are only available after logging in */}
             {/* <Route path="/home" component={UserHome} /> */}
           </Switch>
