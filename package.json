@@ -13,6 +13,7 @@
     "firebase": "^7.15.5",
     "firebase-admin": "^8.13.0",
     "history": "^5.0.0",
+    "http-server": "^0.12.3",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
     "koa-morgan": "^1.0.1",
@@ -30,11 +31,11 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-sw": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-sw": "http-server ./build",
+    "start": "http-server ./build",
     "start-server": "nodemon server",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "lint": "eslint ./ --ignore-path .gitignore",
@@ -48,7 +49,7 @@
       "pre-commit": "lint-staged"
     }
   },
-   "lint-staged": {
+  "lint-staged": {
     "*.{js,jsx}": [
       "prettier --write",
       "npm run lint-fix",
@@ -75,7 +76,6 @@
     "eslint-config-fullstack": "^6.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-react": "^7.20.3",
-    "http-server": "^0.12.3",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
