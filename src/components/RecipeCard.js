@@ -75,8 +75,6 @@ export function RecipeCard(props) {
   const saved = props.saved || null;
   const user = props.user || {};
 
-  console.log(props);
-
   return (
     <React.Fragment>
       <CssBaseline />
