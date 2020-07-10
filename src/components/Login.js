@@ -27,9 +27,7 @@ export class Login extends React.Component {
     evt.preventDefault();
     try {
       const { data } = await axios.post(serverUrl, this.state);
-      console.log(data);
       if (data.id) {
-        console.log("in if statement", data);
         this.props.setUser(data);
         this.props.history.push("/");
       } else {
