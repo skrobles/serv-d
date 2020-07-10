@@ -1,6 +1,6 @@
 import React from "react";
-import BottomAppBar from "./bottom";
-import MenuAppBar from "./appBar";
+// import BottomAppBar from "./bottom";
+// import MenuAppBar from "./appBar";
 import Box from "@material-ui/core/Box";
 import Search from "./search";
 import plate from "../foodplate.jpg";

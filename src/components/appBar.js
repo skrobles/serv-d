@@ -11,24 +11,32 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 // import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
+  button: {
+    backgroundColor: "white",
+  },
 }));
 
-export default function MenuAppBar() {
+export default function MenuAppBar(props) {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const { user } = props.appState;
+  const { logout } = props;
+
+  console.log(props);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -69,7 +77,7 @@ export default function MenuAppBar() {
           <Typography variant="h6" className={classes.title}>
             serv'd
           </Typography>
-          {auth && (
+          {user.id ? (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -85,20 +93,37 @@ export default function MenuAppBar() {
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: "top",
-                  horizontal: "right"
+                  horizontal: "right",
                 }}
                 keepMounted
                 transformOrigin={{
                   vertical: "top",
-                  horizontal: "right"
+                  horizontal: "right",
                 }}
                 open={open}
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Saved Recipes</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    logout();
+                  }}
+                >
+                  Logout
+                </MenuItem>
               </Menu>
             </div>
+          ) : (
+            <Button
+              variant="outlined"
+              size="small"
+              href="/login"
+              className={classes.button}
+            >
+              Sign In
+            </Button>
           )}
         </Toolbar>
       </AppBar>

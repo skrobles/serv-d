@@ -5,7 +5,6 @@ import Home from "./components/home";
 import AllRecipesView from "./components/allRecipesView";
 import SingleRecipe from "./components/singleRecipe";
 import SignUp from "./components/SignUp";
-import axios from "axios";
 
 /**
  * COMPONENT
