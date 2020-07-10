@@ -14,6 +14,7 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 // import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Redirect, withRouter } from "react-router-dom";
 // import Link from "@material-ui/core/Link";
 
 // function Copyright() {
@@ -59,11 +60,20 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  button: {
+    justifyContent: "space-between",
+  },
+  save: {
+    alignSelf: "flex-end",
+    justifySelf: "flex-end",
+  },
 }));
 
-export default function RecipeCard(props) {
+export function RecipeCard(props) {
   const classes = useStyles();
   const recipes = props.recipes;
+  const saved = props.saved || null;
+  const user = props.user || {};
 
   return (
     <React.Fragment>
@@ -94,16 +104,29 @@ export default function RecipeCard(props) {
                       {card.title}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
+                  <CardActions className={classes.button}>
+                    <Button
+                      size="small"
+                      color="primary"
+                      className={classes.view}
+                      onClick={() =>
+                        props.history.push({
+                          pathname: "/single-recipe",
+                          state: card,
+                        })
+                      }
+                    >
                       View
                     </Button>
                     {/* <Button size="small" color="primary">
-                                            Favorite
-                                        </Button> */}
-                    <Button>
+                        Save
+                    </Button> */}
+                    {/* {user.id && !saved ?
+                    <Button className={classes.save}>
                       <StarBorderIcon />
                     </Button>
+                    :
+                    null } */}
                   </CardActions>
                 </Card>
               </Grid>
@@ -114,3 +137,5 @@ export default function RecipeCard(props) {
     </React.Fragment>
   );
 }
+
+export default withRouter(RecipeCard);

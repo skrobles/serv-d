@@ -41,6 +41,8 @@ export class App extends React.Component {
     };
     this.setUser = this.setUser.bind(this);
     this.logout = this.logout.bind(this);
+    this.saveRecipe = this.saveRecipe.bind(this);
+    this.removeRecipe = this.removeRecipe.bind(this);
   }
 
   async componentDidMount() {
@@ -50,13 +52,22 @@ export class App extends React.Component {
       //{
       // headers: { "Access-Control{-Allow-Credentials": true }
       this.setUser(data);
+      //getSavedRecipes
       const response = await axios.get(`${serverUrl}/recipes/saved`);
       this.setState({ savedRecipes: response.data });
-      console.log("AFTER GET", this.state);
-      //NOTE: getSavedRecipes if logged in
     } catch (err) {
       console.error(err);
     }
+  }
+
+  saveRecipe(recipe) {
+    //save recipe
+    console.log("saving recipe", recipe);
+  }
+
+  removeRecipe(recipe) {
+    //remove recipe from saved recipes
+    console.log("removing recipe", recipe);
   }
 
   setUser(user) {
@@ -77,7 +88,12 @@ export class App extends React.Component {
       <div style={styles.paperContainer}>
         <Box mx="auto">
           <MenuAppBar appState={this.state} logout={this.logout} />
-          <Routes setUser={this.setUser} appState={this.state} />
+          <Routes
+            setUser={this.setUser}
+            saveRecipe={this.saveRecipe}
+            removeRecipe={this.removeRecipe}
+            appState={this.state}
+          />
           <BottomAppBar />
         </Box>
       </div>

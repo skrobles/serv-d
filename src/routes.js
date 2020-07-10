@@ -17,8 +17,22 @@ export class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/recipes?ingredients=*" component={AllRecipesView} />
-        <Route exact path="/single-recipe" component={SingleRecipe} />
+        {/* <Route path="/recipes?ingredients=*" component={AllRecipesView} />*/}
+        <Route
+          path="/recipes?ingredients=*"
+          render={() => <AllRecipesView user={this.props.appState.user} />}
+        />
+        {/* <Route exact path="/single-recipe" component={SingleRecipe} /> */}
+        <Route
+          path="/single-recipe"
+          render={() => (
+            <SingleRecipe
+              appState={this.props.appState}
+              saveRecipe={this.props.saveRecipe}
+              removeRecipe={this.props.removeRecipe}
+            />
+          )}
+        />
         <Route
           path="/login"
           render={(setUser) => <Login setUser={this.props.setUser} />}

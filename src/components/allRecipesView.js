@@ -1,8 +1,9 @@
 import axios from "axios";
 import React from "react";
 import RecipeCard from "./RecipeCard";
+import { withRouter } from "react-router-dom";
 
-export default class AllRecipesView extends React.Component {
+export class AllRecipesView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +27,8 @@ export default class AllRecipesView extends React.Component {
   }
 
   render() {
-    return <RecipeCard recipes={this.state.recipes} />;
+    return <RecipeCard recipes={this.state.recipes} user={this.props.user} />;
   }
 }
+
+export default withRouter(AllRecipesView);
