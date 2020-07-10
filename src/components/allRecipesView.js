@@ -14,7 +14,7 @@ export default class AllRecipesView extends React.Component {
   async componentDidMount() {
     const ingredient = this.state.ingredient;
     const { data } = await axios.get(
-      "http://servdapi.herokuapp.com/api/recipes",
+      "https://servdapi.herokuapp.com/api/recipes",
       {
         params: {
           ingredients: ingredient,
