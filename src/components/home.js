@@ -48,7 +48,7 @@ export class Home extends React.Component {
       return (
         <Redirect
           to={{
-            pathname: "/recipes",
+            pathname: `/recipes?ingredients=${this.state.ingredient}`,
             state: this.state,
           }}
         />

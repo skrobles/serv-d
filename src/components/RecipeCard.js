@@ -61,10 +61,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-export default function RecipeCard() {
+export default function RecipeCard(props) {
   const classes = useStyles();
+  const recipes = props.recipes;
 
   return (
     <React.Fragment>
@@ -82,20 +81,26 @@ export default function RecipeCard() {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {recipes.map((card) => (
+              <Grid item key={card.sourceUrl} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
                     image="https://source.unsplash.com/random"
-                    title="Image title"
+                    title={card.title}
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Recipe Name
+                      {card.title}
                     </Typography>
                     <Typography>
-                      Here are the directions and ingredients for this recipe.
+                      Servings: {card.servings} &nbsp; Time: {card.time}
+                      <br />
+                      Ingredients: &nbsp;
+                      {card.ingredients
+                        .slice(0, 2)
+                        .join(", ")
+                        .concat(", etc...")}
                     </Typography>
                   </CardContent>
                   <CardActions>

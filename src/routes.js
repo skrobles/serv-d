@@ -16,7 +16,7 @@ export class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/recipes" component={AllRecipesView} />
+        <Route path="/recipes?ingredients=*" component={AllRecipesView} />
         <Route exact path="/single-recipe" component={SingleRecipe} />
         <Route
           path="/login"
