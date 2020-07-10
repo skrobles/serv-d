@@ -30,11 +30,11 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-sw": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-sw": "http-server ./build",
+    "start": "http-server ./build",
     "start-server": "nodemon server",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "lint": "eslint ./ --ignore-path .gitignore",
