@@ -37,8 +37,6 @@ export function MenuAppBar(props) {
   const { user } = props.appState;
   const { logout } = props;
 
-  console.log(props);
-
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };

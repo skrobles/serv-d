@@ -50,10 +50,9 @@ export class App extends React.Component {
       //{
       // headers: { "Access-Control{-Allow-Credentials": true }
       this.setUser(data);
+      //getSavedRecipes
       const response = await axios.get(`${serverUrl}/recipes/saved`);
       this.setState({ savedRecipes: response.data });
-      console.log("AFTER GET", this.state);
-      //NOTE: getSavedRecipes if logged in
     } catch (err) {
       console.error(err);
     }

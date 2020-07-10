@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
+    backgroundColor: "white",
+    borderRadius: "10px",
   },
   footer: {
     padding: theme.spacing(3, 2),
@@ -38,8 +40,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function StickyFooter() {
+export default function SingleRecipe(props) {
   const classes = useStyles();
+
+  console.log(props);
 
   return (
     <div className={classes.root}>
