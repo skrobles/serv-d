@@ -8,6 +8,12 @@ import Box from "@material-ui/core/Box";
 import Search from "./components/search";
 import plate from "./foodplate.jpg";
 import { Redirect, withRouter } from "react-router";
+import axios from "axios";
+
+const serverUrl = "https://servdapi.herokuapp.com/api/auth";
+// const serverUrl = "http://localhost:8080/api/auth";
+axios.defaults.withCredentials = true;
+// axios.defaults.crossDomain = true;
 
 const styles = {
   paperContainer: {
@@ -31,41 +37,36 @@ export class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      ingredient: "",
-      isSubmitted: false,
+      user: {},
+      savedRecipes: [],
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+
+  async componentDidMount() {
+    //getUser if logged in
+    const { data } = await axios.get(serverUrl);
+    //{
+    // headers: { "Access-Control-Allow-Credentials": true }
+    this.setUser(data);
+    console.log("AFTER GET", this.state);
+    //NOTE: getSavedRecipes if logged in
   }
-  handleSubmit(event) {
-    event.preventDefault();
-    this.setState({ isSubmitted: true });
+
+  setUser(user) {
+    this.setState({ user });
   }
+
   render() {
-    if (this.state.isSubmitted) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/recipes",
-            state: this.state,
-          }}
-        />
-      );
-    } else
-      return (
-        <div style={styles.paperContainer}>
-          <Box mx="auto">
-            <MenuAppBar />
-            <Routes />
-            <BottomAppBar />
-          </Box>
-        </div>
-      );
+    return (
+      <div style={styles.paperContainer}>
+        <Box mx="auto">
+          <MenuAppBar appState={this.state} />
+          <Routes setUser={this.setUser} appState={this.state} />
+          <BottomAppBar />
+        </Box>
+      </div>
+    );
   }
 }
 
