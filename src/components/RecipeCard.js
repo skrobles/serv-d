@@ -86,21 +86,12 @@ export default function RecipeCard(props) {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
+                    image={card.imgUrl}
                     title={card.title}
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
                       {card.title}
-                    </Typography>
-                    <Typography>
-                      Servings: {card.servings} &nbsp; Time: {card.time}
-                      <br />
-                      Ingredients: &nbsp;
-                      {card.ingredients
-                        .slice(0, 2)
-                        .join(", ")
-                        .concat(", etc...")}
                     </Typography>
                   </CardContent>
                   <CardActions>
