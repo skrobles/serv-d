@@ -10,8 +10,8 @@ import plate from "./foodplate.jpg";
 import { Redirect, withRouter } from "react-router";
 import axios from "axios";
 
-const serverUrl = "https://servdapi.herokuapp.com/api/auth";
-// const serverUrl = "http://localhost:8080/api/auth";
+const serverUrl = "https://servdapi.herokuapp.com/api";
+// const serverUrl = "http://localhost:8080/api";
 axios.defaults.withCredentials = true;
 // axios.defaults.crossDomain = true;
 
@@ -41,11 +41,12 @@ export class App extends React.Component {
       savedRecipes: [],
     };
     this.setUser = this.setUser.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   async componentDidMount() {
     //getUser if logged in
-    const { data } = await axios.get(serverUrl);
+    const { data } = await axios.get(`${serverUrl}/auth`);
     //{
     // headers: { "Access-Control-Allow-Credentials": true }
     this.setUser(data);
@@ -57,11 +58,20 @@ export class App extends React.Component {
     this.setState({ user });
   }
 
+  async logout() {
+    try {
+      await axios.post(`${serverUrl}/auth/signout`);
+      this.setUser({});
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   render() {
     return (
       <div style={styles.paperContainer}>
         <Box mx="auto">
-          <MenuAppBar appState={this.state} />
+          <MenuAppBar appState={this.state} logout={this.logout} />
           <Routes setUser={this.setUser} appState={this.state} />
           <BottomAppBar />
         </Box>

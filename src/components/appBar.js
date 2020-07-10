@@ -34,6 +34,7 @@ export default function MenuAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const { user } = props.appState;
+  const { logout } = props;
 
   console.log(props);
 
@@ -104,7 +105,14 @@ export default function MenuAppBar(props) {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>Saved Recipes</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    logout();
+                  }}
+                >
+                  Logout
+                </MenuItem>
               </Menu>
             </div>
           ) : (
