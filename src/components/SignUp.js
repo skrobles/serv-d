@@ -34,7 +34,7 @@ export class SignUp extends React.Component {
         this.setState({ error: "Invalid username and/or password" });
       }
     } catch (err) {
-      this.setState({ error: "Invalid username and/or password" });
+      this.setState({ error: err.response.data });
       console.log(err);
     }
   }
