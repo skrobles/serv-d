@@ -52,12 +52,12 @@
     "*.{js,jsx}": [
       "prettier --write",
       "npm run lint-fix",
-      "git add"
+      "git add",
       "npm run lint-fix"
     ],
     "*.{css,scss,json,md}": [
       "prettier --write",
-      "git add"
+      "git add",
       "prettier --write"
     ]
   },
