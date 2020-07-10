@@ -28,44 +28,16 @@ const styles = {
 };
 
 export class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      ingredient: "",
-      isSubmitted: false,
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-  handleSubmit(event) {
-    event.preventDefault();
-    this.setState({ isSubmitted: true });
-  }
   render() {
-    if (this.state.isSubmitted) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/recipes",
-            state: this.state,
-          }}
-        />
-      );
-    } else
-      return (
-        <div style={styles.paperContainer}>
-          <Box mx="auto">
-            <MenuAppBar />
-            <Routes />
-            <BottomAppBar />
-          </Box>
-        </div>
-      );
+    return (
+      <div style={styles.paperContainer}>
+        <Box mx="auto">
+          <MenuAppBar />
+          <Routes />
+          <BottomAppBar />
+        </Box>
+      </div>
+    );
   }
 }
 
