@@ -45,12 +45,18 @@ export class App extends React.Component {
 
   async componentDidMount() {
     //getUser if logged in
-    const { data } = await axios.get(`${serverUrl}/auth`);
-    //{
-    // headers: { "Access-Control-Allow-Credentials": true }
-    this.setUser(data);
-    console.log("AFTER GET", this.state);
-    //NOTE: getSavedRecipes if logged in
+    try {
+      const { data } = await axios.get(`${serverUrl}/auth`);
+      //{
+      // headers: { "Access-Control{-Allow-Credentials": true }
+      this.setUser(data);
+      const response = await axios.get(`${serverUrl}/recipes/saved`);
+      this.setState({ savedRecipes: response.data });
+      console.log("AFTER GET", this.state);
+      //NOTE: getSavedRecipes if logged in
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   setUser(user) {
