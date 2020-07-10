@@ -10,10 +10,6 @@ import SignUp from "./components/SignUp";
  * COMPONENT
  */
 export class Routes extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { isLoggedIn } = !!this.props.appState.user.id;
 

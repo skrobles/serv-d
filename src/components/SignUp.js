@@ -4,8 +4,8 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 // const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
-// const serverUrl = 'https://servdapi.herokuapp.com/api/auth/signup'
-const serverUrl = "http://localhost:8080/api/auth/signup";
+const serverUrl = "https://servdapi.herokuapp.com/api/auth/signup";
+// const serverUrl = "http://localhost:8080/api/auth/signup";
 
 export class SignUp extends React.Component {
   constructor(props) {
@@ -34,7 +34,8 @@ export class SignUp extends React.Component {
         this.setState({ error: "Invalid username and/or password" });
       }
     } catch (err) {
-      this.setState({ error: err.response.data });
+      this.setState({ error: "Invalid username and/or password" });
+      console.log(err);
     }
   }
 
