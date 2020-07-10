@@ -48,7 +48,7 @@
       "pre-commit": "lint-staged"
     }
   },
-   "lint-staged": {
+  "lint-staged": {
     "*.{js,jsx}": [
       "prettier --write",
       "npm run lint-fix",
