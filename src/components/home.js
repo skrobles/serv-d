@@ -55,19 +55,13 @@ export class Home extends React.Component {
       );
     } else
       return (
-        <div style={styles.paperContainer}>
-          <Box mx="auto">
-            <MenuAppBar />
-            <Box mx="auto" style={styles.formContainer}>
-              <Search
-                ingredient={this.state.ingredient}
-                onChange={this.handleChange}
-                onSubmit={this.handleSubmit}
-              />
-            </Box>
-            <BottomAppBar />
-          </Box>
-        </div>
+        <Box mx="auto" style={styles.formContainer}>
+          <Search
+            ingredient={this.state.ingredient}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+          />
+        </Box>
       );
   }
 }

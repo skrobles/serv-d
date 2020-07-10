@@ -8,6 +8,12 @@ import Home from "./components/home";
 import AllRecipesView from "./components/allRecipesView";
 import SingleRecipe from "./components/singleRecipe";
 import SignUp from "./components/SignUp";
+import axios from "axios";
+
+const serverUrl = "https://servdapi.herokuapp.com/api/auth";
+// const serverUrl = "http://localhost:8080/api/auth";
+axios.defaults.withCredentials = true;
+// axios.defaults.crossDomain = true;
 
 /**
  * COMPONENT
@@ -21,9 +27,15 @@ export class Routes extends Component {
     };
     this.setUser = this.setUser.bind(this);
   }
-  componentDidMount() {
+
+  async componentDidMount() {
     // this.props.loadInitialData()
-    //NOTE: getUser if logged in
+    //getUser if logged in
+    const { data } = await axios.get(serverUrl);
+    //{
+    // headers: { "Access-Control-Allow-Credentials": true }
+    this.setUser(data);
+    console.log("AFTER GET", this.state);
     //NOTE: getSavedRecipes if logged in
   }
 
@@ -33,8 +45,6 @@ export class Routes extends Component {
 
   render() {
     const { isLoggedIn } = !!this.state.user.id;
-
-    console.log(this.state);
 
     return (
       <Switch>
@@ -50,7 +60,6 @@ export class Routes extends Component {
           render={(setUser) => <SignUp setUser={this.setUser} />}
         />
         <Route exact path="/" component={Home} />
-        {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
