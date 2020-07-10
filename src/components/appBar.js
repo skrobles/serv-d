@@ -72,6 +72,7 @@ export function MenuAppBar(props) {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={() => props.history.push("/")}
           >
             <MenuIcon />
           </IconButton>
