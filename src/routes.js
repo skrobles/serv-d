@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-// import {connect} from 'react-redux'
-
 import { withRouter, Route, Switch } from "react-router-dom";
-// import {me} from './store'
 import Login from "./components/Login";
 import Home from "./components/home";
 import AllRecipesView from "./components/allRecipesView";

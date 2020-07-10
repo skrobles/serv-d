@@ -61,7 +61,7 @@ export class App extends React.Component {
     return (
       <div style={styles.paperContainer}>
         <Box mx="auto">
-          <MenuAppBar />
+          <MenuAppBar appState={this.state} />
           <Routes setUser={this.setUser} appState={this.state} />
           <BottomAppBar />
         </Box>
