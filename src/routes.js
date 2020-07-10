@@ -19,32 +19,12 @@ axios.defaults.withCredentials = true;
  * COMPONENT
  */
 export class Routes extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: {},
-      savedRecipes: [],
-    };
-    this.setUser = this.setUser.bind(this);
-  }
-
-  async componentDidMount() {
-    // this.props.loadInitialData()
-    //getUser if logged in
-    const { data } = await axios.get(serverUrl);
-    //{
-    // headers: { "Access-Control-Allow-Credentials": true }
-    this.setUser(data);
-    console.log("AFTER GET", this.state);
-    //NOTE: getSavedRecipes if logged in
-  }
-
-  setUser(user) {
-    this.setState({ user });
+  constructor(props) {
+    super(props);
   }
 
   render() {
-    const { isLoggedIn } = !!this.state.user.id;
+    const { isLoggedIn } = !!this.props.appState.user.id;
 
     return (
       <Switch>
@@ -53,11 +33,11 @@ export class Routes extends Component {
         <Route exact path="/single-recipe" component={SingleRecipe} />
         <Route
           path="/login"
-          render={(setUser) => <Login setUser={this.setUser} />}
+          render={(setUser) => <Login setUser={this.props.setUser} />}
         />
         <Route
           path="/signup"
-          render={(setUser) => <SignUp setUser={this.setUser} />}
+          render={(setUser) => <SignUp setUser={this.props.setUser} />}
         />
         <Route exact path="/" component={Home} />
         {isLoggedIn && (
@@ -72,25 +52,6 @@ export class Routes extends Component {
     );
   }
 }
-
-/**
- * CONTAINER
- */
-// const mapState = state => {
-//   return {
-// Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-// Otherwise, state.user will be an empty object, and state.user.id will be falsey
-//     isLoggedIn: !!state.user.id
-//   }
-// }
-
-// const mapDispatch = dispatch => {
-//   return {
-//     loadInitialData() {
-//       dispatch(me())
-//     }
-//   }
-// }
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes

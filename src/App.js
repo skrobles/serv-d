@@ -8,6 +8,12 @@ import Box from "@material-ui/core/Box";
 import Search from "./components/search";
 import plate from "./foodplate.jpg";
 import { Redirect, withRouter } from "react-router";
+import axios from "axios";
+
+const serverUrl = "https://servdapi.herokuapp.com/api/auth";
+// const serverUrl = "http://localhost:8080/api/auth";
+axios.defaults.withCredentials = true;
+// axios.defaults.crossDomain = true;
 
 const styles = {
   paperContainer: {
@@ -28,12 +34,35 @@ const styles = {
 };
 
 export class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      user: {},
+      savedRecipes: [],
+    };
+    this.setUser = this.setUser.bind(this);
+  }
+
+  async componentDidMount() {
+    //getUser if logged in
+    const { data } = await axios.get(serverUrl);
+    //{
+    // headers: { "Access-Control-Allow-Credentials": true }
+    this.setUser(data);
+    console.log("AFTER GET", this.state);
+    //NOTE: getSavedRecipes if logged in
+  }
+
+  setUser(user) {
+    this.setState({ user });
+  }
+
   render() {
     return (
       <div style={styles.paperContainer}>
         <Box mx="auto">
           <MenuAppBar />
-          <Routes />
+          <Routes setUser={this.setUser} appState={this.state} />
           <BottomAppBar />
         </Box>
       </div>
