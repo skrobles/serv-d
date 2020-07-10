@@ -10,11 +10,6 @@ import SingleRecipe from "./components/singleRecipe";
 import SignUp from "./components/SignUp";
 import axios from "axios";
 
-const serverUrl = "https://servdapi.herokuapp.com/api/auth";
-// const serverUrl = "http://localhost:8080/api/auth";
-axios.defaults.withCredentials = true;
-// axios.defaults.crossDomain = true;
-
 /**
  * COMPONENT
  */
