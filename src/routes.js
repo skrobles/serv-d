@@ -10,17 +10,13 @@ import SignUp from "./components/SignUp";
  * COMPONENT
  */
 export class Routes extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { isLoggedIn } = !!this.props.appState.user.id;
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/recipes" component={AllRecipesView} />
+        <Route path="/recipes?ingredients=*" component={AllRecipesView} />
         <Route exact path="/single-recipe" component={SingleRecipe} />
         <Route
           path="/login"
