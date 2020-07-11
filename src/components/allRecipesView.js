@@ -29,7 +29,6 @@ export class AllRecipesView extends React.Component {
 
   render() {
     return (
-      // <RecipeCard recipes={this.state.recipes} user={this.props.user}/>
       <AllRecipesRender
         recipes={this.state.recipes}
         user={this.props.user}
