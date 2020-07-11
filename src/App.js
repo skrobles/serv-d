@@ -60,9 +60,15 @@ export class App extends React.Component {
     }
   }
 
-  saveRecipe(recipe) {
+  async saveRecipe(recipe) {
     //save recipe
     console.log("saving recipe", recipe);
+    try {
+      await axios.post(`${serverUrl}/recipes`, recipe);
+      this.setState({ savedRecipes: [...this.state.savedRecipes, recipe] });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   removeRecipe(recipe) {
