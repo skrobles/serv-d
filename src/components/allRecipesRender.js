@@ -98,7 +98,7 @@ export function AllRecipeRender(props) {
                   .length > 0;
               return (
                 <RecipeCard
-                  card={card}
+                  recipe={card}
                   key={card.title}
                   isSaved={isSaved}
                   user={user}

@@ -59,10 +59,9 @@ const useStyles = makeStyles((theme) => ({
 
 export function RecipeCard(props) {
   const classes = useStyles();
-  const recipes = props.recipes;
   const isSaved = props.isSaved || false;
   const user = props.user || {};
-  const card = props.card;
+  const card = props.recipe;
 
   console.log(props);
 
