@@ -63,6 +63,8 @@ export function SingleRecipe(props) {
     props.appState.savedRecipes.filter((saved) => saved.title === recipe.title)
       .length > 0;
 
+  recipe.steps = recipe.steps || [];
+
   return (
     <div className={classes.root}>
       <CssBaseline />
