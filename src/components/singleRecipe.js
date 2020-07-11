@@ -59,9 +59,11 @@ export function SingleRecipe(props) {
 
   //check if user is logged in and if recipe is already saved
   const isLoggedIn = !!props.appState.user.id;
-  const saved =
+  const isSaved =
     props.appState.savedRecipes.filter((saved) => saved.title === recipe.title)
       .length > 0;
+
+  recipe.steps = recipe.steps || [];
 
   return (
     <div className={classes.root}>
@@ -75,7 +77,7 @@ export function SingleRecipe(props) {
           <img src={recipe.imgUrl} width="50%" />
         </Container>
         <Grid className={classes.highlights} container spacing={1}>
-          {isLoggedIn && !saved ? (
+          {isLoggedIn && !isSaved ? (
             <Grid container item xs={12}>
               <Button
                 variant="contained"
@@ -86,7 +88,7 @@ export function SingleRecipe(props) {
               </Button>
             </Grid>
           ) : null}
-          {isLoggedIn && saved ? (
+          {isLoggedIn && isSaved ? (
             <Grid container item xs={12}>
               <Button
                 variant="contained"
