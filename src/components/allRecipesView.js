@@ -33,6 +33,8 @@ export class AllRecipesView extends React.Component {
         recipes={this.state.recipes}
         user={this.props.user}
         savedRecipes={this.props.savedRecipes}
+        saveRecipe={this.props.saveRecipe}
+        removeRecipe={this.props.removeRecipe}
       />
     );
   }
