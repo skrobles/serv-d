@@ -71,11 +71,17 @@ export function RecipeCard(props) {
                 Save
             </Button> */}
             {user.id && isSaved ? (
-              <Button className={classes.save}>
+              <Button
+                className={classes.save}
+                onClick={() => props.removeRecipe(card)}
+              >
                 <StarIcon />
               </Button>
             ) : user.id ? (
-              <Button className={classes.save}>
+              <Button
+                className={classes.save}
+                onClick={() => props.saveRecipe(card)}
+              >
                 <StarBorderIcon />
               </Button>
             ) : null}

@@ -12,7 +12,8 @@ import SavedRecipes from "./components/SavedRecipes";
  */
 export class Routes extends Component {
   render() {
-    const { isLoggedIn } = !!this.props.appState.user.id;
+    const { appState, setUser, saveRecipe, removeRecipe } = this.props;
+    const isLoggedIn = !!this.props.appState.user.id;
 
     return (
       <Switch>
@@ -22,8 +23,10 @@ export class Routes extends Component {
           path="/recipes?ingredients=*"
           render={() => (
             <AllRecipesView
-              user={this.props.appState.user}
-              savedRecipes={this.props.appState.savedRecipes}
+              user={appState.user}
+              savedRecipes={appState.savedRecipes}
+              saveRecipe={saveRecipe}
+              removeRecipe={removeRecipe}
             />
           )}
         />
@@ -32,9 +35,9 @@ export class Routes extends Component {
           path="/single-recipe"
           render={() => (
             <SingleRecipe
-              appState={this.props.appState}
-              saveRecipe={this.props.saveRecipe}
-              removeRecipe={this.props.removeRecipe}
+              appState={appState}
+              saveRecipe={saveRecipe}
+              removeRecipe={removeRecipe}
             />
           )}
         />
@@ -48,9 +51,7 @@ export class Routes extends Component {
         />
         <Route
           path="/saved"
-          render={() => (
-            <SavedRecipes recipes={this.props.appState.savedRecipes} />
-          )}
+          render={() => <SavedRecipes recipes={appState.savedRecipes} />}
         />
 
         <Route exact path="/" component={Home} />

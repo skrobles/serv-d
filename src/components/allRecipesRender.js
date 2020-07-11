@@ -17,11 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function AllRecipeRender(props) {
+export function AllRecipesRender(props) {
   const classes = useStyles();
-  const recipes = props.recipes;
+  const { recipes, savedRecipes, saveRecipe, removeRecipe } = props;
   const user = props.user || {};
-  const savedRecipes = props.savedRecipes;
 
   return (
     <React.Fragment>
@@ -47,6 +46,8 @@ export function AllRecipeRender(props) {
                   key={card.title}
                   isSaved={isSaved}
                   user={user}
+                  saveRecipe={saveRecipe}
+                  removeRecipe={removeRecipe}
                 />
               );
             })}
@@ -57,4 +58,4 @@ export function AllRecipeRender(props) {
   );
 }
 
-export default withRouter(AllRecipeRender);
+export default withRouter(AllRecipesRender);
