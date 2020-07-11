@@ -56,24 +56,29 @@ export class App extends React.Component {
       const response = await axios.get(`${serverUrl}/recipes/saved`);
       this.setState({ savedRecipes: response.data });
     } catch (err) {
-      console.error(err);
+      console.error(err.response.data);
     }
   }
 
   async saveRecipe(recipe) {
-    //save recipe
-    console.log("saving recipe", recipe);
     try {
       await axios.post(`${serverUrl}/recipes`, recipe);
       this.setState({ savedRecipes: [...this.state.savedRecipes, recipe] });
     } catch (err) {
-      console.error(err);
+      console.error(err.response.data);
     }
   }
 
-  removeRecipe(recipe) {
-    //remove recipe from saved recipes
-    console.log("removing recipe", recipe);
+  async removeRecipe(recipe) {
+    try {
+      await axios.delete(`${serverUrl}/recipes/${recipe.title}`);
+      const updatedRecipes = this.state.savedRecipes.filter(
+        ({ title }) => title !== recipe.title
+      );
+      this.setState({ savedRecipes: updatedRecipes });
+    } catch (err) {
+      console.error(err.response.data);
+    }
   }
 
   setUser(user) {
@@ -85,7 +90,7 @@ export class App extends React.Component {
       await axios.post(`${serverUrl}/auth/signout`);
       this.setUser({});
     } catch (err) {
-      console.error(err);
+      console.error(err.response.data);
     }
   }
 
