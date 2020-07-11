@@ -15,8 +15,21 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Redirect, withRouter } from "react-router-dom";
-import StarIcon from "@material-ui/icons/Star";
+import RecipeCard from "./RecipeCard";
 // import Link from "@material-ui/core/Link";
+
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {"Copyright © "}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Serv'd
+//       </Link>{" "}
+//       {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -57,61 +70,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function RecipeCard(props) {
+export function AllRecipeRender(props) {
   const classes = useStyles();
   const recipes = props.recipes;
-  const isSaved = props.isSaved || false;
   const user = props.user || {};
-  const card = props.card;
+  const savedRecipes = props.savedRecipes;
 
-  console.log(props);
+  // console.log("render", props)
 
   return (
     <React.Fragment>
-      <Grid item key={card.sourceUrl} xs={12} sm={6} md={4}>
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.cardMedia}
-            image={card.imgUrl}
-            title={card.title}
-          />
-          <CardContent className={classes.cardContent}>
-            <Typography gutterBottom variant="h5" component="h2">
-              {card.title}
-            </Typography>
-          </CardContent>
-          <CardActions className={classes.button}>
-            <Button
-              size="small"
-              color="primary"
-              className={classes.view}
-              onClick={() =>
-                props.history.push({
-                  pathname: "/single-recipe",
-                  state: card,
-                })
-              }
-            >
-              View
-            </Button>
-            {/* <Button size="small" color="primary">
-                Save
-            </Button> */}
-            {user.id && isSaved ? (
-              <Button className={classes.save}>
-                <StarIcon />
-              </Button>
-            ) : user.id ? (
-              <Button className={classes.save}>
-                <StarBorderIcon />
-              </Button>
-            ) : null}
-          </CardActions>
-        </Card>
-      </Grid>
-      ))
+      <CssBaseline />
+      <AppBar position="relative">
+        <Toolbar>
+          <CreateIcon className={classes.icon} />
+          <Typography variant="h6" color="inherit" noWrap>
+            Recipes found based on your search
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <main>
+        <Container className={classes.cardGrid} maxWidth="md">
+          <Grid container spacing={4}>
+            {recipes.map((card) => {
+              const isSaved =
+                savedRecipes.filter(({ title }) => title === card.title)
+                  .length > 0;
+              return (
+                <RecipeCard
+                  card={card}
+                  key={card.title}
+                  isSaved={isSaved}
+                  user={user}
+                />
+              );
+            })}
+          </Grid>
+        </Container>
+      </main>
     </React.Fragment>
   );
 }
 
-export default withRouter(RecipeCard);
+export default withRouter(AllRecipeRender);

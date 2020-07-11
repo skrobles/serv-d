@@ -20,7 +20,12 @@ export class Routes extends Component {
         {/* <Route path="/recipes?ingredients=*" component={AllRecipesView} />*/}
         <Route
           path="/recipes?ingredients=*"
-          render={() => <AllRecipesView user={this.props.appState.user} />}
+          render={() => (
+            <AllRecipesView
+              user={this.props.appState.user}
+              savedRecipes={this.props.appState.savedRecipes}
+            />
+          )}
         />
         {/* <Route exact path="/single-recipe" component={SingleRecipe} /> */}
         <Route
