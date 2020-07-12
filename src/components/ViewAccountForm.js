@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/styles";
 import {
@@ -20,28 +20,28 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ViewAccount(props) {
+export default function ViewAccountForm(props) {
   const classes = useStyles();
+  console.log('account form', props)
   const { className, ...rest } = props;
-  // const {onChange, onSubmit} = props
-  console.log("this is viewaccount props!!>>>>", props);
+  const {onChange, onSubmit} = props
+  const { name, email } = props.user
 
-  const [values, setValues] = useState({
-    name: "Shen Zhi",
-    email: "shen.zhi@devias.io",
-  });
-
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
-  };
+  // if(props.user.name) {
+  //   const { name } = props.user
+  // } else {
+  //   const name = ""
+  // }
+  // console.log("this is viewaccount props!!>>>>", props);
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
-      <form autoComplete="off" noValidate>
-        <CardHeader subheader="The information can be edited" title="Profile" />
+      <form
+        autoComplete="off"
+        noValidate
+        onSubmit={(evt) => onSubmit(evt)}
+        >
+        <CardHeader subheader="The information can be edited" title="My Account" />
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
@@ -52,9 +52,9 @@ export default function ViewAccount(props) {
                 label="Name"
                 margin="dense"
                 name="name"
-                onChange={handleChange}
+                onChange={(evt) => onChange(evt)}
                 required
-                value={values.name}
+                value={name ? name : ''}
                 variant="outlined"
               />
             </Grid>
@@ -64,27 +64,12 @@ export default function ViewAccount(props) {
                 label="Email Address"
                 margin="dense"
                 name="email"
-                onChange={handleChange}
+                onChange={(evt) => onChange(evt)}
                 required
-                value={values.email}
+                value={email}
                 variant="outlined"
               />
             </Grid>
-            {/* <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="photo"
-                margin="dense"
-                name="phone"
-                onChange={handleChange}
-                value={values.photo}
-                variant="outlined"
-              />
-            </Grid> */}
           </Grid>
         </CardContent>
         <Divider />

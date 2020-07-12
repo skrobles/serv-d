@@ -10,6 +10,7 @@ import AllRecipesView from "./components/allRecipesView";
 import SingleRecipe from "./components/singleRecipe";
 import SignUp from "./components/SignUp";
 import ViewAccountForm from "./components/ViewAccountForm";
+import Account from "./components/Account"
 
 const serverUrl = "https://servdapi.herokuapp.com/api/auth";
 // const serverUrl = "http://localhost:8080/api/auth";
@@ -26,7 +27,6 @@ export class Routes extends Component {
       user: {},
       savedRecipes: [],
     };
-    console.log("THIS IS CONSTRUCTOR", this.state);
     this.setUser = this.setUser.bind(this);
   }
 
@@ -37,7 +37,7 @@ export class Routes extends Component {
     //{
     // headers: { "Access-Control-Allow-Credentials": true }
     this.setUser(data);
-    console.log("AFTER GET", this.state);
+    console.log("comp did mountAFTER GET", this.state);
     //NOTE: getSavedRecipes if logged in
   }
 
@@ -46,15 +46,8 @@ export class Routes extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    const { isLoggedIn } = !!this.state.user.id;
-
-    console.log(this.state);
-
-=======
     const isLoggedIn = !!this.state.user.id;
-
->>>>>>> 1d4042d04d7a7e2e64b7f3e2f86aed901591a8dc
+    console.log('route render >>>>>>', this.setUser)
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -73,14 +66,13 @@ export class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             <Route
-              exact
               path="/myAccount"
-              render={(setUser) => (
-                <ViewAccountForm
-                  setUser={this.setUser}
+              render={(setUser) =>
+                <Account
                   user={this.state.user}
+                  setUser={this.setUser}
                 />
-              )}
+              }
             />
             {/* Routes placed here are only available after logging in */}
             {/* <Route path="/home" component={UserHome} /> */}
