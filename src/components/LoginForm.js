@@ -121,8 +121,10 @@ export default function SignIn(props) {
               <GoogleLogin
                 clientId={oauthKey}
                 buttonText="Login"
-                onSuccess={props.responseGoogle}
-                onFailure={props.responseGoogle}
+                // uxMode="redirect"
+                // redirectUri='http://localhost:3000/'
+                onSuccess={props.loginWithGoogle}
+                onFailure={props.loginWithGoogle}
                 cookiePolicy="single_host_origin"
                 SameSite="None"
               />
