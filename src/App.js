@@ -103,8 +103,10 @@ export class App extends React.Component {
     try {
       await axios.post(`${serverUrl}/auth/signout`);
       this.setUser({});
+      this.setState({ savedRecipes: [] });
+      this.props.history.push("/");
     } catch (err) {
-      console.error(err.response.data);
+      console.error(err);
     }
   }
 
