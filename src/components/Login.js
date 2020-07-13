@@ -39,12 +39,18 @@ export class Login extends React.Component {
     }
   }
 
+  responseGoogle = (response) => {
+    console.log(response);
+    console.log(response.profileObj);
+  };
+
   render() {
     return (
       <LoginForm
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
         state={this.state}
+        responseGoogle={this.responseGoogle}
       />
     );
   }
