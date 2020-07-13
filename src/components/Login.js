@@ -4,8 +4,8 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 // const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
-const serverUrl = "https://servdapi.herokuapp.com/api/auth/signin";
-// const serverUrl = 'http://localhost:8080/api/auth/signin'
+const serverUrl = "https://servdapi.herokuapp.com/api/auth";
+// const serverUrl = 'http://localhost:8080/api/auth'
 
 export class Login extends React.Component {
   constructor(props) {
@@ -17,6 +17,7 @@ export class Login extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.loginWithGoogle = this.loginWithGoogle.bind(this);
   }
 
   handleChange(evt) {
@@ -26,7 +27,7 @@ export class Login extends React.Component {
   async handleSubmit(evt) {
     evt.preventDefault();
     try {
-      const { data } = await axios.post(serverUrl, this.state);
+      const { data } = await axios.post(`${serverUrl}/signin`, this.state);
       if (data.id) {
         this.props.setUser(data);
         this.props.history.push("/");
@@ -39,10 +40,18 @@ export class Login extends React.Component {
     }
   }
 
-  responseGoogle = (response) => {
-    console.log(response);
-    console.log(response.profileObj);
-  };
+  async loginWithGoogle(response) {
+    const id_token = response.getAuthResponse().id_token;
+    try {
+      const { data } = await axios.post(`${serverUrl}/google`, {
+        token: id_token,
+      });
+      this.props.setUser(data);
+      this.props.history.push("/");
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   render() {
     return (
@@ -50,7 +59,7 @@ export class Login extends React.Component {
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
         state={this.state}
-        responseGoogle={this.responseGoogle}
+        loginWithGoogle={this.loginWithGoogle}
       />
     );
   }
