@@ -49,7 +49,12 @@ export function RecipeCard(props) {
             title={card.title}
           />
           <CardContent className={classes.cardContent}>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h2"
+              style={{ "font-family": "Renner, serif", "text-align": "center" }}
+            >
               {card.title}
             </Typography>
           </CardContent>
@@ -88,7 +93,6 @@ export function RecipeCard(props) {
           </CardActions>
         </Card>
       </Grid>
-      ))
     </React.Fragment>
   );
 }

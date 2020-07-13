@@ -1,6 +1,7 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CreateIcon from "@material-ui/icons/Create";
+import Box from "@material-ui/core/Box";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -15,6 +16,14 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
   },
+  results: {
+    alignContent: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+    opacity: "60%",
+  },
 }));
 
 export function AllRecipesRender(props) {
@@ -25,16 +34,19 @@ export function AllRecipesRender(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <CreateIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Recipes found based on your search
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <AppBar position="relative" />
       <main>
         <Container className={classes.cardGrid} maxWidth="md">
+          <Box className={classes.results}>
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              style={{ "font-family": "Renner, serif" }}
+            >
+              Recipes found based on your search:
+            </Typography>
+          </Box>
           <Grid container spacing={4}>
             {recipes.map((card) => {
               const isSaved =
