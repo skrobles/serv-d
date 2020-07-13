@@ -6,6 +6,7 @@ import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
 import Box from "@material-ui/core/Box";
 import plate from "./foodplate.jpg";
+import arrowWood from "./arrowwoodback.jpg";
 import { withRouter } from "react-router";
 import axios from "axios";
 
@@ -16,10 +17,11 @@ axios.defaults.withCredentials = true;
 
 const styles = {
   paperContainer: {
-    height: 756,
-    backgroundImage: `url(${plate})`,
+    height: 950,
+    backgroundImage: `url(${arrowWood})`,
     backgroundSize: "cover",
     backgroundPosition: "right",
+    backgroundRepeat: "repeat",
     zIndex: -1,
   },
 
@@ -28,7 +30,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: 378,
+    height: 450,
   },
 };
 
