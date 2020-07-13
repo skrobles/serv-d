@@ -5,6 +5,7 @@ import Routes from "./routes";
 import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
 import Box from "@material-ui/core/Box";
+import Hidden from "@material-ui/core/Hidden";
 import plate from "./foodplate.jpg";
 import { withRouter } from "react-router";
 import axios from "axios";
@@ -98,14 +99,18 @@ export class App extends React.Component {
     return (
       <div style={styles.paperContainer}>
         <Box mx="auto">
-          <MenuAppBar appState={this.state} logout={this.logout} />
+          <Hidden xsDown>
+            <MenuAppBar appState={this.state} logout={this.logout} />
+          </Hidden>
           <Routes
             setUser={this.setUser}
             saveRecipe={this.saveRecipe}
             removeRecipe={this.removeRecipe}
             appState={this.state}
           />
-          <BottomAppBar />
+          <Hidden smUp>
+            <BottomAppBar />
+          </Hidden>
         </Box>
       </div>
     );
