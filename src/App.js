@@ -109,7 +109,6 @@ export class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div style={styles.paperContainer}>
         <Box mx="auto">
