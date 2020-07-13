@@ -43,6 +43,7 @@ export class App extends React.Component {
     this.logout = this.logout.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
     this.removeRecipe = this.removeRecipe.bind(this);
+    this.getRecipes = this.getRecipes.bind(this);
   }
 
   async componentDidMount() {
@@ -53,8 +54,11 @@ export class App extends React.Component {
       // headers: { "Access-Control{-Allow-Credentials": true }
       this.setUser(data);
       //getSavedRecipes
-      const response = await axios.get(`${serverUrl}/recipes/saved`);
-      this.setState({ savedRecipes: response.data });
+      if (this.state.user.id) {
+        // const response = await axios.get(`${serverUrl}/recipes/saved`);
+        // this.setState({ savedRecipes: response.data });
+        this.getRecipes();
+      }
     } catch (err) {
       console.error(err.response.data);
     }
@@ -81,8 +85,18 @@ export class App extends React.Component {
     }
   }
 
-  setUser(user) {
+  async getRecipes() {
+    try {
+      const response = await axios.get(`${serverUrl}/recipes/saved`);
+      this.setState({ savedRecipes: response.data });
+    } catch (err) {
+      console.error(err.response.data);
+    }
+  }
+
+  async setUser(user) {
     this.setState({ user });
+    await this.getRecipes();
   }
 
   async logout() {
@@ -95,6 +109,7 @@ export class App extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div style={styles.paperContainer}>
         <Box mx="auto">
