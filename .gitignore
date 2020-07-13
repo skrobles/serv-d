@@ -11,6 +11,7 @@ scripts/spoon.js
 secrets.js
 firestoreCred.json
 scripts/secrets.js
+src/secrets.js
 
 # production
 /build
