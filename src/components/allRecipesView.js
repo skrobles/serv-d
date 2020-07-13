@@ -1,13 +1,43 @@
-import React from "react";
-import RecipeCard from "./RecipeCard";
+import axios from 'axios';
+import React from 'react';
+import RecipeCard from './RecipeCard';
+import { withRouter } from 'react-router-dom';
+import AllRecipesRender from './allRecipesRender';
 
-export default class AllRecipesView extends React.Component {
+// const serverUrl = "https://servdapi.herokuapp.com/api/recipes"
+const serverUrl = 'http://localhost:8080/api/recipes';
+
+export class AllRecipesView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.location.state;
+    this.state = {
+      ingredient: this.props.location.state.ingredient,
+      recipes: [],
+    };
+  }
+
+  async componentDidMount() {
+    const ingredient = this.state.ingredient;
+    const { data } = await axios.get(serverUrl, {
+      params: {
+        ingredients: ingredient,
+      },
+      withCredentials: false,
+    });
+    this.setState({ recipes: data });
   }
 
   render() {
-    return <RecipeCard />;
+    return (
+      <AllRecipesRender
+        recipes={this.state.recipes}
+        user={this.props.user}
+        savedRecipes={this.props.savedRecipes}
+        saveRecipe={this.props.saveRecipe}
+        removeRecipe={this.props.removeRecipe}
+      />
+    );
   }
 }
+
+export default withRouter(AllRecipesView);

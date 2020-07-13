@@ -1,18 +1,15 @@
-import React, { Component } from "react";
-// import {connect} from 'react-redux'
+import React, { Component } from 'react';
+import { withRouter, Route, Switch } from 'react-router-dom';
+import Login from './components/Login';
+import Home from './components/home';
+import AllRecipesView from './components/allRecipesView';
+import SingleRecipe from './components/singleRecipe';
+import SignUp from './components/SignUp';
+import ViewAccountForm from './components/ViewAccountForm';
+import Account from './components/Account';
+import SavedRecipes from './components/SavedRecipes';
 
-import { withRouter, Route, Switch } from "react-router-dom";
-// import {me} from './store'
-import axios from "axios";
-import Login from "./components/Login";
-import Home from "./components/home";
-import AllRecipesView from "./components/allRecipesView";
-import SingleRecipe from "./components/singleRecipe";
-import SignUp from "./components/SignUp";
-import ViewAccountForm from "./components/ViewAccountForm";
-import Account from "./components/Account"
-
-const serverUrl = "https://servdapi.herokuapp.com/api/auth";
+const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
 // const serverUrl = "http://localhost:8080/api/auth";
 axios.defaults.withCredentials = true;
 // axios.defaults.crossDomain = true;
@@ -21,59 +18,62 @@ axios.defaults.withCredentials = true;
  * COMPONENT
  */
 export class Routes extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: {},
-      savedRecipes: [],
-    };
-    this.setUser = this.setUser.bind(this);
-  }
-
-  async componentDidMount() {
-    // this.props.loadInitialData()
-    //NOTE: getUser if logged in
-    const { data } = await axios.get(serverUrl);
-    //{
-    // headers: { "Access-Control-Allow-Credentials": true }
-    this.setUser(data);
-    console.log("comp did mountAFTER GET", this.state);
-    //NOTE: getSavedRecipes if logged in
-  }
-
-  setUser(user) {
-    this.setState({ user });
-  }
-
   render() {
-    const isLoggedIn = !!this.state.user.id;
-    console.log('route render >>>>>>', this.setUser)
+    const { appState, setUser, saveRecipe, removeRecipe } = this.props;
+    const isLoggedIn = !!this.props.appState.user.id;
+
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/recipes" component={AllRecipesView} />
-        <Route exact path="/single-recipe" component={SingleRecipe} />
+        {/* <Route path="/recipes?ingredients=*" component={AllRecipesView} />*/}
+        <Route
+          path="/recipes?ingredients=*"
+          render={() => (
+            <AllRecipesView
+              user={appState.user}
+              savedRecipes={appState.savedRecipes}
+              saveRecipe={saveRecipe}
+              removeRecipe={removeRecipe}
+            />
+          )}
+        />
+        {/* <Route exact path="/single-recipe" component={SingleRecipe} /> */}
+        <Route
+          path="/single-recipe"
+          render={() => (
+            <SingleRecipe
+              appState={appState}
+              saveRecipe={saveRecipe}
+              removeRecipe={removeRecipe}
+            />
+          )}
+        />
         <Route
           path="/login"
-          render={(setUser) => <Login setUser={this.setUser} />}
+          render={(setUser) => <Login setUser={this.props.setUser} />}
         />
         <Route
           path="/signup"
-          render={(setUser) => <SignUp setUser={this.setUser} />}
+          render={(setUser) => <SignUp setUser={this.props.setUser} />}
         />
+        <Route
+          path="/saved"
+          render={() => <SavedRecipes recipes={appState.savedRecipes} />}
+        />
+
         <Route exact path="/" component={Home} />
-        {/* <Route path="/signup" component={Signup} /> */}
         {isLoggedIn && (
           <Switch>
             <Route
               path="/myAccount"
-              render={(setUser) =>
-                <Account
-                  user={this.state.user}
-                  setUser={this.setUser}
-                />
-              }
+              render={(setUser) => (
+                <Account user={this.state.user} setUser={this.setUser} />
+              )}
             />
+            {/* <Route
+              path="/saved"
+              render={() => <Login recipes={this.props.appState.savedRecipes} />}
+            /> */}
             {/* Routes placed here are only available after logging in */}
             {/* <Route path="/home" component={UserHome} /> */}
           </Switch>
@@ -84,25 +84,6 @@ export class Routes extends Component {
     );
   }
 }
-
-/**
- * CONTAINER
- */
-// const mapState = state => {
-//   return {
-// Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-// Otherwise, state.user will be an empty object, and state.user.id will be falsey
-//     isLoggedIn: !!state.user.id
-//   }
-// }
-
-// const mapDispatch = dispatch => {
-//   return {
-//     loadInitialData() {
-//       dispatch(me())
-//     }
-//   }
-// }
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes

@@ -1,25 +1,25 @@
-import React from "react";
-import BottomAppBar from "./bottom";
-import MenuAppBar from "./appBar";
-import Box from "@material-ui/core/Box";
-import Search from "./search";
-import plate from "../foodplate.jpg";
-import { Redirect, withRouter } from "react-router";
+import React from 'react';
+// import BottomAppBar from "./bottom";
+// import MenuAppBar from "./appBar";
+import Box from '@material-ui/core/Box';
+import Search from './search';
+import plate from '../foodplate.jpg';
+import { Redirect, withRouter } from 'react-router';
 
 const styles = {
   paperContainer: {
     height: 756,
     backgroundImage: `url(${plate})`,
-    backgroundSize: "cover",
-    backgroundPosition: "right",
+    backgroundSize: 'cover',
+    backgroundPosition: 'right',
     zIndex: -1,
   },
 
   formContainer: {
-    alignContent: "center",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    alignContent: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     height: 378,
   },
 };
@@ -28,7 +28,7 @@ export class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      ingredient: "",
+      ingredient: '',
       isSubmitted: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,26 +48,20 @@ export class Home extends React.Component {
       return (
         <Redirect
           to={{
-            pathname: "/recipes",
+            pathname: `/recipes?ingredients=${this.state.ingredient}`,
             state: this.state,
           }}
         />
       );
     } else
       return (
-        <div style={styles.paperContainer}>
-          <Box mx="auto">
-            <MenuAppBar />
-            <Box mx="auto" style={styles.formContainer}>
-              <Search
-                ingredient={this.state.ingredient}
-                onChange={this.handleChange}
-                onSubmit={this.handleSubmit}
-              />
-            </Box>
-            <BottomAppBar />
-          </Box>
-        </div>
+        <Box mx="auto" style={styles.formContainer}>
+          <Search
+            ingredient={this.state.ingredient}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+          />
+        </Box>
       );
   }
 }
