@@ -1,11 +1,9 @@
 import React from "react";
-// import BottomAppBar from "./bottom";
-// import MenuAppBar from "./appBar";
 import Box from "@material-ui/core/Box";
 import Search from "./search";
 import plate from "../foodplate.jpg";
 import arrowWood from "../arrowwoodback.jpg";
-import { Redirect, withRouter } from "react-router";
+import { Redirect, withRouter } from "react-router-dom";
 
 const styles = {
   paperContainer: {
@@ -50,7 +48,7 @@ export class Home extends React.Component {
       return (
         <Redirect
           to={{
-            pathname: `/recipes?ingredients=${this.state.ingredient}`,
+            pathname: `/search`,
             state: this.state,
           }}
         />
