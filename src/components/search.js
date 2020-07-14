@@ -1,6 +1,5 @@
 import React from "react";
 import { FormControl, Input, FormHelperText, Button } from "@material-ui/core";
-import { PinDropSharp } from "@material-ui/icons";
 
 const styles = {
   searchContainer: {
