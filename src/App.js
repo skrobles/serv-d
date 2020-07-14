@@ -1,13 +1,12 @@
 import React from 'react';
-//import logo from "./logo.svg";
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 import './App.css';
+import { Box, Hidden } from '@material-ui/core';
 import Routes from './routes';
 import BottomAppBar from './components/bottom';
 import MenuAppBar from './components/appBar';
-import Box from '@material-ui/core/Box';
 import plate from './foodplate.jpg';
-import { withRouter } from 'react-router';
-import axios from 'axios';
 
 const serverUrl = 'https://servdapi.herokuapp.com/api';
 // const serverUrl = "http://localhost:8080/api";
@@ -38,12 +37,14 @@ export class App extends React.Component {
     this.state = {
       user: {},
       savedRecipes: [],
+      search: [],
     };
     this.setUser = this.setUser.bind(this);
     this.logout = this.logout.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
     this.removeRecipe = this.removeRecipe.bind(this);
     this.getRecipes = this.getRecipes.bind(this);
+    this.setSearchResults = this.setSearchResults.bind(this);
   }
 
   async componentDidMount() {
@@ -96,7 +97,9 @@ export class App extends React.Component {
 
   async setUser(user) {
     this.setState({ user });
-    await this.getRecipes();
+    if (user.id) {
+      await this.getRecipes();
+    }
   }
 
   async logout() {
@@ -110,18 +113,27 @@ export class App extends React.Component {
     }
   }
 
+  setSearchResults(recipes) {
+    this.setState({ search: recipes });
+  }
+
   render() {
     return (
       <div style={styles.paperContainer}>
         <Box mx="auto">
-          <MenuAppBar appState={this.state} logout={this.logout} />
+          <Hidden smDown>
+            <MenuAppBar user={this.state.user} logout={this.logout} />
+          </Hidden>
           <Routes
             setUser={this.setUser}
             saveRecipe={this.saveRecipe}
             removeRecipe={this.removeRecipe}
+            setSearchResults={this.setSearchResults}
             appState={this.state}
           />
-          <BottomAppBar />
+          <Hidden mdUp>
+            <BottomAppBar user={this.state.user} logout={this.logout} />
+          </Hidden>
         </Box>
       </div>
     );

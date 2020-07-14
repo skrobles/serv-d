@@ -1,12 +1,13 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import CreateIcon from '@material-ui/icons/Create';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import {
+  AppBar,
+  Box,
+  CssBaseline,
+  Grid,
+  Typography,
+  Container,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import { withRouter } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 
@@ -14,6 +15,14 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
+  },
+  results: {
+    alignContent: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    opacity: '60%',
   },
 }));
 
@@ -25,16 +34,18 @@ export function AllRecipesRender(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <CreateIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Recipes found based on your search
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <AppBar position="relative" />
       <main>
         <Container className={classes.cardGrid} maxWidth="md">
+          <Box className={classes.results}>
+            <Typography
+              variant="h6"
+              color="inherit"
+              style={{ fontFamily: 'Renner, serif', noWrap: 'true' }}
+            >
+              Recipes found based on your search:
+            </Typography>
+          </Box>
           <Grid container spacing={4}>
             {recipes.map((card) => {
               const isSaved =

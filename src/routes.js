@@ -18,26 +18,31 @@ const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
  */
 export class Routes extends Component {
   render() {
-    const { appState, setUser, saveRecipe, removeRecipe } = this.props;
-    console.log('>>>>>>route', this.props);
+    const {
+      appState,
+      setUser,
+      saveRecipe,
+      removeRecipe,
+      setSearchResults,
+    } = this.props;
     const isLoggedIn = !!this.props.appState.user.id;
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        {/* <Route path="/recipes?ingredients=*" component={AllRecipesView} />*/}
         <Route
-          path="/recipes?ingredients=*"
+          path="/search"
           render={() => (
             <AllRecipesView
               user={appState.user}
               savedRecipes={appState.savedRecipes}
+              search={appState.search}
               saveRecipe={saveRecipe}
               removeRecipe={removeRecipe}
+              setSearchResults={setSearchResults}
             />
           )}
         />
-        {/* <Route exact path="/single-recipe" component={SingleRecipe} /> */}
         <Route
           path="/single-recipe"
           render={() => (
@@ -50,18 +55,19 @@ export class Routes extends Component {
         />
         <Route
           path="/login"
-          render={(setUser) => <Login setUser={this.props.setUser} />}
+          render={() => <Login user={appState.user} setUser={setUser} />}
         />
         <Route
           path="/signup"
-          render={(setUser) => <SignUp setUser={this.props.setUser} />}
+          render={() => <SignUp user={appState.user} setUser={setUser} />}
         />
         <Route
-          path="/saved"
-          render={() => <SavedRecipes recipes={appState.savedRecipes} />}
+          exact
+          path="/"
+          render={() => <Home setSearchResults={setSearchResults} />}
         />
 
-        <Route exact path="/" component={Home} />
+        {/* <Route exact path="/" component={Home} /> */}
         {isLoggedIn && (
           <Switch>
             <Route
@@ -78,10 +84,13 @@ export class Routes extends Component {
               render={() => <Login recipes={this.props.appState.savedRecipes} />}
             /> */}
             {/* Routes placed here are only available after logging in */}
-            {/* <Route path="/home" component={UserHome} /> */}
+            <Route
+              path="/saved"
+              render={() => <SavedRecipes recipes={appState.savedRecipes} />}
+            />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
+        {/* Displays our Home component as a fallback */}
         <Route component={Home} />
       </Switch>
     );
@@ -92,11 +101,3 @@ export class Routes extends Component {
 // when the url changes
 // export default withRouter(connect(mapState, mapDispatch)(Routes))
 export default withRouter(Routes);
-
-/**
- * PROP TYPES
- */
-// Routes.propTypes = {
-//   loadInitialData: PropTypes.func.isRequired,
-//   isLoggedIn: PropTypes.bool.isRequired
-// }

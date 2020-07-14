@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 // const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
 const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
@@ -41,10 +41,10 @@ export class Login extends React.Component {
   }
 
   async loginWithGoogle(response) {
-    const id_token = response.getAuthResponse().id_token;
+    const idToken = response.getAuthResponse().id_token;
     try {
       const { data } = await axios.post(`${serverUrl}/google`, {
-        token: id_token,
+        token: idToken,
       });
       this.props.setUser(data);
       this.props.history.push('/');
@@ -54,7 +54,9 @@ export class Login extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.user.id ? (
+      <Redirect to="/" />
+    ) : (
       <LoginForm
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
