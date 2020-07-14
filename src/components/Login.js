@@ -30,7 +30,8 @@ export class Login extends React.Component {
       const { data } = await axios.post(`${serverUrl}/signin`, this.state);
       if (data.id) {
         this.props.setUser(data);
-        this.props.history.push("/");
+        console.log(this.props.history.location.state);
+        this.props.history.push(this.props.history.location.state);
       } else {
         this.setState({ error: "Invalid username and/or password" });
       }
