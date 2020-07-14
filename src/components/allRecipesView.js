@@ -18,6 +18,7 @@ export class AllRecipesView extends React.Component {
       });
       this.props.setSearchResults(data);
     }
+    this.props.setSingleRecipe({});
   }
 
   render() {
@@ -28,6 +29,7 @@ export class AllRecipesView extends React.Component {
         savedRecipes={this.props.savedRecipes}
         saveRecipe={this.props.saveRecipe}
         removeRecipe={this.props.removeRecipe}
+        setSingleRecipe={this.props.setSingleRecipe}
       />
     );
   }
