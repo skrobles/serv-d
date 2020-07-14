@@ -12,25 +12,31 @@ import SavedRecipes from "./components/SavedRecipes";
  */
 export class Routes extends Component {
   render() {
-    const { appState, setUser, saveRecipe, removeRecipe } = this.props;
+    const {
+      appState,
+      setUser,
+      saveRecipe,
+      removeRecipe,
+      setSearchResults,
+    } = this.props;
     const isLoggedIn = !!this.props.appState.user.id;
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        {/* <Route path="/recipes?ingredients=*" component={AllRecipesView} />*/}
         <Route
-          path="/recipes?ingredients=*"
+          path="/search"
           render={() => (
             <AllRecipesView
               user={appState.user}
               savedRecipes={appState.savedRecipes}
+              search={appState.search}
               saveRecipe={saveRecipe}
               removeRecipe={removeRecipe}
+              setSearchResults={setSearchResults}
             />
           )}
         />
-        {/* <Route exact path="/single-recipe" component={SingleRecipe} /> */}
         <Route
           path="/single-recipe"
           render={() => (
@@ -49,14 +55,18 @@ export class Routes extends Component {
           path="/signup"
           render={(setUser) => <SignUp setUser={this.props.setUser} />}
         />
-        <Route
+        {/* <Route
           path="/saved"
           render={() => <SavedRecipes recipes={appState.savedRecipes} />}
-        />
+        /> */}
 
         <Route exact path="/" component={Home} />
         {isLoggedIn && (
           <Switch>
+            <Route
+              path="/saved"
+              render={() => <SavedRecipes recipes={appState.savedRecipes} />}
+            />
             {/* <Route
               path="/saved"
               render={() => <Login recipes={this.props.appState.savedRecipes} />}

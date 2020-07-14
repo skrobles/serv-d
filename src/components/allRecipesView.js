@@ -10,27 +10,27 @@ const serverUrl = "http://localhost:8080/api/recipes";
 export class AllRecipesView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      ingredient: this.props.location.state.ingredient,
-      recipes: [],
-    };
   }
 
   async componentDidMount() {
-    const ingredient = this.state.ingredient;
+    const ingredient = this.props.location.state.ingredient;
     const { data } = await axios.get(serverUrl, {
       params: {
         ingredients: ingredient,
       },
       withCredentials: false,
     });
-    this.setState({ recipes: data });
+    this.props.setSearchResults(data);
+  }
+
+  componentWillUnmount() {
+    this.props.setSearchResults([]);
   }
 
   render() {
     return (
       <AllRecipesRender
-        recipes={this.state.recipes}
+        recipes={this.props.search}
         user={this.props.user}
         savedRecipes={this.props.savedRecipes}
         saveRecipe={this.props.saveRecipe}
