@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginLeft: "45%",
-    align: "center",
     flexGrow: 1,
     cursor: "pointer",
     fontFamily: "Miriam Libre, sans-serif",
@@ -30,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#ec2d01",
   },
   button: {
-    // backgroundColor: "white",
     color: "#ec2d01",
   },
 }));
