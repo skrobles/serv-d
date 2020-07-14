@@ -1,5 +1,5 @@
 import React from "react";
-import { FormControl, Input, FormHelperText, Button } from "@material-ui/core";
+import { FormControl, Input, FormHelperText } from "@material-ui/core";
 
 const styles = {
   searchContainer: {
@@ -20,8 +20,6 @@ export default function Search(prop) {
     <form onSubmit={(e) => prop.onSubmit(e)}>
       <FormControl style={styles.searchContainer}>
         <Input
-          // id="my-input"
-          // variant ="outlined"
           name="ingredient"
           type="string"
           value={prop.ingredient}
@@ -30,9 +28,6 @@ export default function Search(prop) {
         <FormHelperText id="my-helper-text" style={styles.helperText}>
           Enter your ingredients
         </FormHelperText>
-        {/* <Button type="submit" disabled={!prop.ingredient}>
-          serve!
-        </Button> */}
       </FormControl>
     </form>
   );

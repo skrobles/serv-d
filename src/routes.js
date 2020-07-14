@@ -47,8 +47,14 @@ export class Routes extends Component {
             />
           )}
         />
-        <Route path="/login" render={() => <Login setUser={setUser} />} />
-        <Route path="/signup" render={() => <SignUp setUser={setUser} />} />
+        <Route
+          path="/login"
+          render={() => <Login user={appState.user} setUser={setUser} />}
+        />
+        <Route
+          path="/signup"
+          render={() => <SignUp user={appState.user} setUser={setUser} />}
+        />
         <Route
           exact
           path="/"

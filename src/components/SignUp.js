@@ -1,7 +1,7 @@
 import React from "react";
 import SignUpForm from "./SignUpForm";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 // const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
 const serverUrl = "https://servdapi.herokuapp.com/api/auth/signup";
@@ -40,7 +40,9 @@ export class SignUp extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.user.id ? (
+      <Redirect to="/" />
+    ) : (
       <SignUpForm
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
