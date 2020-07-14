@@ -18,6 +18,7 @@ import PrintIcon from "@material-ui/icons/Print";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 import CheckIcon from "@material-ui/icons/Check";
 import arrowWood from "../arrowwoodback.jpg";
+import logWood from "../woodback.jpg";
 
 function Copyright() {
   return (
@@ -35,7 +36,7 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   paperContainer: {
     height: "fill-screen",
-    backgroundImage: `url(${arrowWood})`,
+    backgroundImage: `url(${logWood})`,
     backgroundRepeat: "repeat",
   },
   root: {
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     minHeight: "100vh",
     fontFamily: "Renner, serif",
+    backgroundImage: `url(${arrowWood})`,
   },
   main: {
     marginTop: theme.spacing(8),
@@ -52,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
     opacity: "94%",
   },
   footer: {
-    padding: theme.spacing(3, 2),
-    marginTop: "auto",
+    padding: "0",
+    marginTop: "0px",
     backgroundColor:
       theme.palette.type === "light"
         ? theme.palette.grey[200]
@@ -169,13 +171,13 @@ export function SingleRecipe(props) {
                 style={{
                   alignContent: "right",
                 }}
-               />
+              />
             ) : null}
             {isLoggedIn && isSaved ? (
               <StarIcon
                 variant="contained"
                 onClick={() => props.removeRecipe(recipe)}
-               />
+              />
             ) : null}
           </div>
         </Grid>
