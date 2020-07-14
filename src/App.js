@@ -99,8 +99,8 @@ export class App extends React.Component {
     return (
       <div style={styles.paperContainer}>
         <Box mx="auto">
-          <Hidden xsDown>
-            <MenuAppBar appState={this.state} logout={this.logout} />
+          <Hidden smDown>
+            <MenuAppBar user={this.state.user} logout={this.logout} />
           </Hidden>
           <Routes
             setUser={this.setUser}
@@ -108,8 +108,8 @@ export class App extends React.Component {
             removeRecipe={this.removeRecipe}
             appState={this.state}
           />
-          <Hidden smUp>
-            <BottomAppBar />
+          <Hidden mdUp>
+            <BottomAppBar user={this.state.user} logout={this.logout} />
           </Hidden>
         </Box>
       </div>
