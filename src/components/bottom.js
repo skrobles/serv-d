@@ -1,14 +1,16 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { AccountCircle } from "@material-ui/icons";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import {
   Typography,
   IconButton,
   Toolbar,
   CssBaseline,
   AppBar,
+  Fab,
+  makeStyles,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
@@ -28,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     top: "auto",
     bottom: 0,
-    background: "#ff0000",
+    background: "#ec2d01",
   },
   grow: {
     flexGrow: 1,
@@ -36,17 +38,18 @@ const useStyles = makeStyles((theme) => ({
   fabButton: {
     position: "absolute",
     zIndex: 1,
-    top: -30,
+    top: -10,
     left: 0,
     right: 0,
     margin: "0 auto",
+    background: "#42603c",
   },
   title: {
-    marginLeft: "35%",
     flexGrow: 1,
     cursor: "pointer",
     fontFamily: "Miriam Libre, sans-serif",
     fontSize: "30px",
+    color: "white",
   },
 }));
 
@@ -66,41 +69,44 @@ function BottomAppBar(props) {
           >
             <ArrowBackIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            className={classes.title}
-            onClick={() => props.history.push("/")}
-          >
-            SERV'D
-          </Typography>
-          <IconButton edge="end" color="inherit">
-            {user.id ? (
-              <div>
-                <IconButton
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  color="inherit"
-                  //onClick -> profile
-                >
-                  <AccountCircle />
-                </IconButton>
-                <IconButton onClick={() => logout()} color="inherit">
-                  <ExitToAppIcon />
-                </IconButton>
-              </div>
-            ) : (
+          {user.id && (
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={() => props.history.push("/saved")}
+            >
+              <FavoriteBorderIcon />
+            </IconButton>
+          )}
+          <Fab className={classes.fabButton}>
+            <Typography
+              variant="h6"
+              className={classes.title}
+              onClick={() => props.history.push("/")}
+            >
+              SERV'D
+            </Typography>
+          </Fab>
+          <div className={classes.grow} />
+          {user.id ? (
+            <div>
               <IconButton
+                edge="end"
                 aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
                 color="inherit"
-                href="/login"
+                //onClick -> profile
               >
                 <AccountCircle />
               </IconButton>
-            )}
-          </IconButton>
+              <IconButton onClick={() => logout()} color="inherit">
+                <ExitToAppIcon />
+              </IconButton>
+            </div>
+          ) : (
+            <IconButton edge="end" color="inherit" href="/login">
+              <AccountCircle />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
     </React.Fragment>

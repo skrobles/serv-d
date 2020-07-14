@@ -1,6 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import {
+  makeStyles,
   AppBar,
   Toolbar,
   Typography,
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    marginLeft: "40%",
+    marginLeft: "43%",
     flexGrow: 1,
     cursor: "pointer",
     fontFamily: "Miriam Libre, sans-serif",
@@ -51,7 +51,7 @@ function MenuAppBar(props) {
       <AppBar
         position="static"
         style={{
-          background: "#ff0000",
+          background: "#ec2d01",
         }}
       >
         <Toolbar>
@@ -113,7 +113,6 @@ function MenuAppBar(props) {
               size="small"
               href="/login"
               className={classes.button}
-              noWrap="true"
             >
               Sign In
             </Button>
