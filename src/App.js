@@ -6,7 +6,7 @@ import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
 import Box from "@material-ui/core/Box";
 import plate from "./foodplate.jpg";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 
 const serverUrl = "https://servdapi.herokuapp.com/api";
