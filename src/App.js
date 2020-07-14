@@ -39,11 +39,14 @@ export class App extends React.Component {
     this.state = {
       user: {},
       savedRecipes: [],
+      search: [],
     };
     this.setUser = this.setUser.bind(this);
     this.logout = this.logout.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
     this.removeRecipe = this.removeRecipe.bind(this);
+    this.getRecipes = this.getRecipes.bind(this);
+    this.setSearchResults = this.setSearchResults.bind(this);
   }
 
   async componentDidMount() {
@@ -54,8 +57,11 @@ export class App extends React.Component {
       // headers: { "Access-Control{-Allow-Credentials": true }
       this.setUser(data);
       //getSavedRecipes
-      const response = await axios.get(`${serverUrl}/recipes/saved`);
-      this.setState({ savedRecipes: response.data });
+      if (this.state.user.id) {
+        // const response = await axios.get(`${serverUrl}/recipes/saved`);
+        // this.setState({ savedRecipes: response.data });
+        this.getRecipes();
+      }
     } catch (err) {
       console.error(err.response.data);
     }
@@ -82,17 +88,35 @@ export class App extends React.Component {
     }
   }
 
-  setUser(user) {
+  async getRecipes() {
+    try {
+      const response = await axios.get(`${serverUrl}/recipes/saved`);
+      this.setState({ savedRecipes: response.data });
+    } catch (err) {
+      console.error(err.response.data);
+    }
+  }
+
+  async setUser(user) {
     this.setState({ user });
+    if (user.id) {
+      await this.getRecipes();
+    }
   }
 
   async logout() {
     try {
       await axios.post(`${serverUrl}/auth/signout`);
       this.setUser({});
+      this.setState({ savedRecipes: [] });
+      this.props.history.push("/");
     } catch (err) {
-      console.error(err.response.data);
+      console.error(err);
     }
+  }
+
+  setSearchResults(recipes) {
+    this.setState({ search: recipes });
   }
 
   render() {
@@ -106,6 +130,7 @@ export class App extends React.Component {
             setUser={this.setUser}
             saveRecipe={this.saveRecipe}
             removeRecipe={this.removeRecipe}
+            setSearchResults={this.setSearchResults}
             appState={this.state}
           />
           <Hidden mdUp>

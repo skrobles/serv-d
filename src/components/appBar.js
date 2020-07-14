@@ -1,13 +1,15 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  MenuItem,
+  Menu,
+  Button,
+} from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,9 +22,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginLeft: "40%",
-    fontFamily: "sans-serif",
     flexGrow: 1,
     cursor: "pointer",
+    fontFamily: "Miriam Libre, sans-serif",
+    fontSize: "50px",
   },
   button: {
     backgroundColor: "white",

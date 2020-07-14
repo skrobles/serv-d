@@ -1,6 +1,4 @@
 import React from "react";
-// import BottomAppBar from "./bottom";
-// import MenuAppBar from "./appBar";
 import Box from "@material-ui/core/Box";
 import Search from "./search";
 import plate from "../foodplate.jpg";
@@ -48,7 +46,7 @@ export class Home extends React.Component {
       return (
         <Redirect
           to={{
-            pathname: `/recipes?ingredients=${this.state.ingredient}`,
+            pathname: `/search`,
             state: this.state,
           }}
         />
