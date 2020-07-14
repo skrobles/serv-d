@@ -18,7 +18,6 @@ import PrintIcon from "@material-ui/icons/Print";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 import CheckIcon from "@material-ui/icons/Check";
 import arrowWood from "../arrowwoodback.jpg";
-import logWood from "../woodback.jpg";
 
 function Copyright() {
   return (
@@ -34,11 +33,6 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  paperContainer: {
-    height: "fill-screen",
-    backgroundImage: `url(${logWood})`,
-    backgroundRepeat: "repeat",
-  },
   root: {
     display: "flex",
     flexDirection: "column",
