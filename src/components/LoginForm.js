@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Alert from "@material-ui/lab/Alert";
-// import { oauthKey } from "../secrets";
+import { oauthKey } from "../secrets";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -102,7 +102,7 @@ export default function SignIn(props) {
           <Grid container>
             <Grid item xs>
               <GoogleLogin
-                // clientId={oauthKey}
+                clientId={oauthKey}
                 buttonText="Login"
                 // uxMode="redirect"
                 // redirectUri='http://localhost:3000/'
