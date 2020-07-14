@@ -128,22 +128,6 @@ export function SingleRecipe(props) {
           </Grid>
         </Grid>
       </Container>
-      {/* <Container>
-          <Typography variant="h5" component="h2" gutterBottom>
-            {"Description of single recipe"}
-            {"Serving sizxe, time takes to make, ingredients, maybe user rating?"}
-          </Typography>
-
-          <Typography variant="h5" component="h2" gutterBottom>
-            1. Recipe instructions
-            <br />
-            2. Recipe instructions
-            <br />
-            3. Recipe instructions
-          </Typography>
-        </Container>
-      </Container> */}
-
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">Serv'd</Typography>

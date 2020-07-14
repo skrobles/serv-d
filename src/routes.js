@@ -55,27 +55,18 @@ export class Routes extends Component {
           path="/signup"
           render={(setUser) => <SignUp setUser={this.props.setUser} />}
         />
-        {/* <Route
-          path="/saved"
-          render={() => <SavedRecipes recipes={appState.savedRecipes} />}
-        /> */}
 
         <Route exact path="/" component={Home} />
         {isLoggedIn && (
           <Switch>
+            {/* Routes placed here are only available after logging in */}
             <Route
               path="/saved"
               render={() => <SavedRecipes recipes={appState.savedRecipes} />}
             />
-            {/* <Route
-              path="/saved"
-              render={() => <Login recipes={this.props.appState.savedRecipes} />}
-            /> */}
-            {/* Routes placed here are only available after logging in */}
-            {/* <Route path="/home" component={UserHome} /> */}
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
+        {/* Displays our Home component as a fallback */}
         <Route component={Home} />
       </Switch>
     );
@@ -86,11 +77,3 @@ export class Routes extends Component {
 // when the url changes
 // export default withRouter(connect(mapState, mapDispatch)(Routes))
 export default withRouter(Routes);
-
-/**
- * PROP TYPES
- */
-// Routes.propTypes = {
-//   loadInitialData: PropTypes.func.isRequired,
-//   isLoggedIn: PropTypes.bool.isRequired
-// }
