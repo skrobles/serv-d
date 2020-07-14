@@ -22,8 +22,8 @@ export class Account extends React.Component {
 
   handleChange(evt) {
     console.log('handle change Account');
-    console.log('SET USER', this.props.setUser());
-    this.props.setUser({ [evt.target.name]: evt.target.value });
+    console.log('HANDLE CHANGEprops', this.props.appState.user);
+    this.setState({ [evt.target.name]: evt.target.value });
   }
 
   async handleSubmit(evt) {

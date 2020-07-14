@@ -66,7 +66,12 @@ export class Routes extends Component {
           <Switch>
             <Route
               path="/myAccount"
-              render={(setUser) => <Account appState={this.props.appState} />}
+              render={(setUser) => (
+                <Account
+                  appState={this.props.appState}
+                  setUser={this.props.setUser}
+                />
+              )}
             />
             {/* <Route
               path="/saved"
