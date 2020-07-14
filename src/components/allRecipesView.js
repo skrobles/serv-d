@@ -22,14 +22,24 @@ export class AllRecipesView extends React.Component {
   }
 
   render() {
+    const { ingredient } = this.props.location.state;
+    const {
+      search,
+      user,
+      savedRecipes,
+      saveRecipe,
+      removeRecipe,
+      setSingleRecipe,
+    } = this.props;
     return (
       <AllRecipesRender
-        recipes={this.props.search}
-        user={this.props.user}
-        savedRecipes={this.props.savedRecipes}
-        saveRecipe={this.props.saveRecipe}
-        removeRecipe={this.props.removeRecipe}
-        setSingleRecipe={this.props.setSingleRecipe}
+        recipes={search}
+        user={user}
+        savedRecipes={savedRecipes}
+        saveRecipe={saveRecipe}
+        removeRecipe={removeRecipe}
+        setSingleRecipe={setSingleRecipe}
+        ingredient={ingredient}
       />
     );
   }

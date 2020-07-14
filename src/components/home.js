@@ -37,8 +37,8 @@ const styles = {
 };
 
 export class Home extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       ingredient: "",
       isSubmitted: false,
