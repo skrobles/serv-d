@@ -15,20 +15,23 @@ import { withRouter } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    opacity: "75%",
+    opacity: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    marginLeft: "43%",
+    marginLeft: "45%",
+    align: "center",
     flexGrow: 1,
     cursor: "pointer",
     fontFamily: "Miriam Libre, sans-serif",
     fontSize: "50px",
+    color: "#ec2d01",
   },
   button: {
-    backgroundColor: "white",
+    // backgroundColor: "white",
+    color: "#ec2d01",
   },
 }));
 
@@ -51,7 +54,7 @@ function MenuAppBar(props) {
       <AppBar
         position="static"
         style={{
-          background: "#ec2d01",
+          background: "white",
         }}
       >
         <Toolbar>
