@@ -1,7 +1,4 @@
 import React from "react";
-import { CssBaseline, Typography, Container, Link, Grid, Button, Card, CardActions, CardContent, Divider } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
@@ -9,6 +6,20 @@ import PrintIcon from "@material-ui/icons/Print";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 import CheckIcon from "@material-ui/icons/Check";
 import arrowWood from "../arrowwoodback.jpg";
+import {
+  CssBaseline,
+  Typography,
+  Button,
+  Grid,
+  Link,
+  Container,
+  Card, 
+  CardActions, 
+  CardContent, 
+  Divider
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
 
 function Copyright() {
   return (

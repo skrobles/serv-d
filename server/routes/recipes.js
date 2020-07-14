@@ -9,10 +9,3 @@ router.get("/", async (ctx, next) => {
   console.log(recipes);
   ctx.body = recipes;
 });
-
-// app.use(async (ctx) => {
-//   console.log(ctx)
-//   const recipes = await getRecipes(['lettuce', 'tomato', 'parmesan cheese'])
-//   // console.log(recipes)
-//   ctx.body = ctx
-// })

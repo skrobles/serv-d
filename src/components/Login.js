@@ -41,10 +41,10 @@ export class Login extends React.Component {
   }
 
   async loginWithGoogle(response) {
-    const id_token = response.getAuthResponse().id_token;
+    const idToken = response.getAuthResponse().id_token;
     try {
       const { data } = await axios.post(`${serverUrl}/google`, {
-        token: id_token,
+        token: idToken,
       });
       this.props.setUser(data);
       this.props.history.push("/");
