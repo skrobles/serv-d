@@ -54,7 +54,9 @@ export class Home extends React.Component {
     });
   }
   handleSubmit(event) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     this.setState({ isSubmitted: true });
   }
   render() {
@@ -84,7 +86,13 @@ export class Home extends React.Component {
             onChange={this.handleChange}
             onSubmit={this.handleSubmit}
           />
-          <Button variant="contained" color="primary" style={styles.button}>
+          <Button
+            variant="contained"
+            color="primary"
+            style={styles.button}
+            onClick={this.handleSubmit}
+            onKeyDown={this.handleSubmit}
+          >
             Serve!
           </Button>
         </Box>

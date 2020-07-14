@@ -1,12 +1,18 @@
 import React from "react";
 import { FormControl, Input, FormHelperText, Button } from "@material-ui/core";
+import { PinDropSharp } from "@material-ui/icons";
 
 const styles = {
   searchContainer: {
     backgroundColor: "white",
-    padding: "0px 80px",
+    padding: "5px 10px",
+    paddingTop: "10px",
     borderRadius: "10px",
     fontStyle: "italic",
+    width: "290px",
+  },
+  helperText: {
+    textAlign: "center",
   },
 };
 
@@ -14,19 +20,20 @@ export default function Search(prop) {
   return (
     <form onSubmit={(e) => prop.onSubmit(e)}>
       <FormControl style={styles.searchContainer}>
-        <FormHelperText id="my-helper-text">
-          Enter your ingredients:
-        </FormHelperText>
         <Input
-          id="my-input"
+          // id="my-input"
+          // variant ="outlined"
           name="ingredient"
           type="string"
           value={prop.ingredient}
           onChange={prop.onChange}
         />
-        <Button type="submit" disabled={!prop.ingredient}>
+        <FormHelperText id="my-helper-text" style={styles.helperText}>
+          Enter your ingredients
+        </FormHelperText>
+        {/* <Button type="submit" disabled={!prop.ingredient}>
           serve!
-        </Button>
+        </Button> */}
       </FormControl>
     </form>
   );
