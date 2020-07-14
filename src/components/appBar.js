@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    marginLeft: "43%",
+    marginLeft: "45%",
     align: "center",
     flexGrow: 1,
     cursor: "pointer",
