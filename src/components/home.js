@@ -94,7 +94,6 @@ export class Home extends React.Component {
             color="primary"
             style={styles.button}
             onClick={this.handleSubmit}
-            onKeyDown={this.handleSubmit}
             disabled={!this.state.ingredient}
           >
             Serve!
