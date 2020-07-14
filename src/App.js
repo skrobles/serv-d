@@ -38,12 +38,14 @@ export class App extends React.Component {
     this.state = {
       user: {},
       savedRecipes: [],
+      search: [],
     };
     this.setUser = this.setUser.bind(this);
     this.logout = this.logout.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
     this.removeRecipe = this.removeRecipe.bind(this);
     this.getRecipes = this.getRecipes.bind(this);
+    this.setSearchResults = this.setSearchResults.bind(this);
   }
 
   async componentDidMount() {
@@ -96,7 +98,9 @@ export class App extends React.Component {
 
   async setUser(user) {
     this.setState({ user });
-    await this.getRecipes();
+    if (user.id) {
+      await this.getRecipes();
+    }
   }
 
   async logout() {
@@ -110,6 +114,10 @@ export class App extends React.Component {
     }
   }
 
+  setSearchResults(recipes) {
+    this.setState({ search: recipes });
+  }
+
   render() {
     return (
       <div style={styles.paperContainer}>
@@ -119,6 +127,7 @@ export class App extends React.Component {
             setUser={this.setUser}
             saveRecipe={this.saveRecipe}
             removeRecipe={this.removeRecipe}
+            setSearchResults={this.setSearchResults}
             appState={this.state}
           />
           <BottomAppBar />
