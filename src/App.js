@@ -8,6 +8,9 @@ import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
 import plate from "./foodplate.jpg";
 import arrowWood from "./arrowwoodback.jpg";
+import seamlessWood from "./seamlessWood.png";
+import seamlessWood2 from "./seamlessWood2.jpg";
+import seamlessWood3 from "./seamlessWood3.jpg";
 
 const serverUrl = "https://servdapi.herokuapp.com/api";
 // const serverUrl = "http://localhost:8080/api";
@@ -17,7 +20,7 @@ axios.defaults.withCredentials = true;
 const styles = {
   paperContainer: {
     height: 950,
-    backgroundImage: `url(${arrowWood})`,
+    backgroundImage: `url(${seamlessWood2})`,
     backgroundSize: "cover",
     backgroundPosition: "right",
     backgroundRepeat: "repeat",

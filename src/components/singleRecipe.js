@@ -8,9 +8,6 @@ import Grid from "@material-ui/core/Grid";
 import { withRouter } from "react-router-dom";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
 import arrowWood from "../arrowwoodback.jpg";
 
@@ -57,10 +54,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     margin: "1.5%",
     display: "flex",
-    fontFamily: "Oswald, serif",
-  },
-  headerInfo: {
-    fontFamily: ", serif",
+    fontFamily: "Plantin, serif",
   },
   recipeImg: {
     objectFit: "cover",
@@ -73,6 +67,26 @@ const useStyles = makeStyles((theme) => ({
     width: "65%",
     height: "auto",
   },
+  headerInfo: {
+    fontFamily: ", serif",
+  },
+  recipeInfoBelowImgContainer: {
+    alignContent: "center",
+    flexDirection: "row",
+    width: "100%",
+    height: "auto",
+    textAlign: "center",
+    display: "flex",
+    marginTop: "0.5%",
+  },
+  recipeInfoBelowImg: {
+    objectFit: "cover",
+    width: "100%",
+    height: "auto",
+    fontFamily: "Renner, serif",
+    fontSize: "24px",
+  },
+
   hightlights: {
     display: "flex",
     flexDirection: "column",
@@ -118,8 +132,6 @@ const useStyles = makeStyles((theme) => ({
 export function SingleRecipe(props) {
   const classes = useStyles();
   const recipe = props.location.state;
-
-  //check if user is logged in and if recipe is already saved
   const isLoggedIn = !!props.appState.user.id;
   const isSaved =
     props.appState.savedRecipes.filter((saved) => saved.title === recipe.title)
@@ -127,12 +139,13 @@ export function SingleRecipe(props) {
 
   recipe.steps = recipe.steps || [];
   console.log(recipe);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Container component="main" className={classes.main} maxWidth="md">
-        {/* Title */}
-        <Grid className={classes.title} spacing={1}>
+        {/* RECIPE TITLE */}
+        <Grid spacing={1}>
           <Typography
             className={classes.header}
             variant="h4"
@@ -140,42 +153,41 @@ export function SingleRecipe(props) {
             gutterBottom
           >
             <strong>{recipe.title}</strong>
-            <Typography
-              className={classes.headerInfo}
-              variant="h6"
-              component="h3"
-              gutterBottom
-            >
-              <em>Servings: {recipe.servings} </em>
-            </Typography>
-            <Typography
-              className={classes.headerInfo}
-              variant="h6"
-              component="h3"
-              gutterBottom
-            >
-              <em>Cook Time: {recipe.time} min. </em>
-            </Typography>
-            <div className={classes.favoriteStar}>
-              {isLoggedIn && !isSaved ? (
-                <StarBorderIcon
-                  variant="contained"
-                  onClick={() => props.saveRecipe(recipe)}
-                  style={{
-                    alignContent: "right",
-                  }}
-                />
-              ) : null}
-              {isLoggedIn && isSaved ? (
-                <StarIcon
-                  variant="contained"
-                  onClick={() => props.removeRecipe(recipe)}
-                />
-              ) : null}
-            </div>
           </Typography>
+        </Grid>
 
-          {/* <div className={classes.favoriteStar}>
+        {/* RECIPE IMAGE */}
+        <Grid>
+          <Container className={classes.recipeImgContainer}>
+            <img className={classes.recipeImg} src={recipe.imgUrl} />
+          </Container>
+        </Grid>
+
+        {/* RECIPE HEADER INFO */}
+        <Grid
+          className={classes.recipeInfoBelowImgContainer}
+          container
+          xs={12}
+          // sm={6}
+        >
+          {/* <Container className={classes.blahblahblah}>
+          <Typography className={classes.recipeInfoBelowImg} variant="h6" component="h1" gutterBottom>
+            <em>Servings: {recipe.servings}</em>
+          </Typography>
+          <Typography className={classes.recipeInfoBelowImg} variant="h6" component="h1" gutterBottom>
+            <em>Cook Time: {recipe.time}</em>
+          </Typography>
+          </Container> */}
+          <Grid item xs={3} />
+          <Grid className={classes.recipeInfoBelowImg} item xs={3}>
+            <em>Servings: {recipe.servings}</em>
+            <br />
+            <em>Cook Time: {recipe.time}</em>
+          </Grid>
+
+          <Grid className={classes.recipeInfoBelowImg} item xs={3}>
+            <em>Save Recipe</em>
+            <br />
             {isLoggedIn && !isSaved ? (
               <StarBorderIcon
                 variant="contained"
@@ -191,24 +203,20 @@ export function SingleRecipe(props) {
                 onClick={() => props.removeRecipe(recipe)}
               />
             ) : null}
-          </div> */}
+          </Grid>
+          <Grid item xs={3} />
         </Grid>
 
-        <Grid className={classes.recipeImg}>
-          <Container className={classes.recipeImgContainer}>
-            <img className={classes.recipeImg} src={recipe.imgUrl} />
-          </Container>
-        </Grid>
+        <Divider />
 
-        <Divider style={{ marginTop: "2.5%" }} />
-
+        {/* RECIPE INGREDIENTS */}
         <Grid container item xs={12}>
           <Container>
             <Typography
-              className={classes.recipeTitle}
               variant="h4"
               component="h2"
               gutterBottom
+              className={classes.directionsHeader}
             >
               <strong>Ingredients</strong>
             </Typography>
@@ -235,8 +243,7 @@ export function SingleRecipe(props) {
           ))}
         </Grid>
 
-        <Divider />
-        {/* recipe main body */}
+        {/* RECIPE DIRECTIONS */}
         <Container className={classes.recipeMainBody}>
           <Container>
             <Typography
