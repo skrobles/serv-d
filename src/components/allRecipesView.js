@@ -3,8 +3,8 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import AllRecipesRender from "./allRecipesRender";
 
-// const serverUrl = "https://servdapi.herokuapp.com/api/recipes";
-const serverUrl = "http://localhost:8080/api/recipes";
+const serverUrl = "https://servdapi.herokuapp.com/api/recipes";
+// const serverUrl = "http://localhost:8080/api/recipes";
 
 export class AllRecipesView extends React.Component {
   async componentDidMount() {
