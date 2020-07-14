@@ -1,10 +1,8 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
+import { Box, Button, Typography } from "@material-ui/core";
 import Search from "./search";
 import plate from "../foodplate.jpg";
 import { Redirect, withRouter } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/button";
 
 const styles = {
   paperContainer: {
@@ -97,6 +95,7 @@ export class Home extends React.Component {
             style={styles.button}
             onClick={this.handleSubmit}
             onKeyDown={this.handleSubmit}
+            disabled={!this.state.ingredient}
           >
             Serve!
           </Button>
