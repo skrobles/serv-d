@@ -18,10 +18,6 @@ export class AllRecipesView extends React.Component {
     this.props.setSearchResults(data);
   }
 
-  componentWillUnmount() {
-    this.props.setSearchResults([]);
-  }
-
   render() {
     return (
       <AllRecipesRender

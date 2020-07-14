@@ -49,8 +49,13 @@ export class Routes extends Component {
         />
         <Route path="/login" render={() => <Login setUser={setUser} />} />
         <Route path="/signup" render={() => <SignUp setUser={setUser} />} />
+        <Route
+          exact
+          path="/"
+          render={() => <Home setSearchResults={setSearchResults} />}
+        />
 
-        <Route exact path="/" component={Home} />
+        {/* <Route exact path="/" component={Home} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
