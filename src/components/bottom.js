@@ -5,13 +5,10 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import {
   Typography,
-  Menu,
-  MenuItem,
   IconButton,
   Toolbar,
   CssBaseline,
   AppBar,
-  Button,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
@@ -46,26 +43,16 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginLeft: "35%",
-    fontFamily: "sans-serif",
     flexGrow: 1,
     cursor: "pointer",
+    fontFamily: "Miriam Libre, sans-serif",
+    fontSize: "30px",
   },
 }));
 
 function BottomAppBar(props) {
   const classes = useStyles();
   const { user, logout } = props;
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <React.Fragment>

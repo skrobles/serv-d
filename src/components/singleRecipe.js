@@ -74,7 +74,7 @@ export function SingleRecipe(props) {
             {recipe.title}
           </Typography>
 
-          <img src={recipe.imgUrl} width="50%" />
+          <img src={recipe.imgUrl} width="50%" alt={`${recipe.title}`} />
         </Container>
         <Grid className={classes.highlights} container spacing={1}>
           {isLoggedIn && !isSaved ? (
