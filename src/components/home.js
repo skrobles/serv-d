@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import Search from "./search";
 import plate from "../foodplate.jpg";
-import { Redirect, withRouter } from "react-router";
+import { Redirect, withRouter } from "react-router-dom";
 
 const styles = {
   paperContainer: {
