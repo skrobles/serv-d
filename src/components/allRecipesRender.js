@@ -1,11 +1,13 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Box from "@material-ui/core/Box";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import {
+  AppBar,
+  Box,
+  CssBaseline,
+  Grid,
+  Typography,
+  Container,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import { withRouter } from "react-router-dom";
 import RecipeCard from "./RecipeCard";
 
@@ -39,8 +41,7 @@ export function AllRecipesRender(props) {
             <Typography
               variant="h6"
               color="inherit"
-              noWrap
-              style={{ "font-family": "Renner, serif" }}
+              style={{ fontFamily: "Renner, serif", noWrap: "true" }}
             >
               Recipes found based on your search:
             </Typography>

@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  makeStyles,
   AppBar,
   Toolbar,
   Typography,
@@ -9,7 +8,8 @@ import {
   Menu,
   Button,
 } from "@material-ui/core";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+import { makeStyles } from "@material-ui/core/styles";
+import { AccountCircle } from "@material-ui/icons";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

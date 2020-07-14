@@ -1,12 +1,14 @@
 import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
+import {
+  CssBaseline,
+  Typography,
+  Button,
+  Grid,
+  Link,
+  Container,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
 import { withRouter } from "react-router-dom";
-import Button from "@material-ui/core/Button";
 
 function Copyright() {
   return (
