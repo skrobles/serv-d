@@ -79,7 +79,7 @@ export class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Home component as a fallback */}
-        <Route component={Home} />
+        <Route render={() => <Home setSearchResults={setSearchResults} />} />
       </Switch>
     );
   }
