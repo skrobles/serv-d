@@ -1,25 +1,29 @@
 import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  MenuItem,
+  Menu,
+  Button,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import Button from "@material-ui/core/Button";
+import { AccountCircle } from "@material-ui/icons";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    opacity: "75%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
+    marginLeft: "43%",
     flexGrow: 1,
+    cursor: "pointer",
     fontFamily: "Miriam Libre, sans-serif",
     fontSize: "50px",
   },
@@ -28,12 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function MenuAppBar(props) {
+function MenuAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const { user } = props.appState;
-  const { logout } = props;
+  const { user, logout } = props;
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -45,18 +48,18 @@ export function MenuAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        style={{
+          background: "#ec2d01",
+        }}
+      >
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
+          <Typography
+            variant="h4"
+            className={classes.title}
             onClick={() => props.history.push("/")}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
             SERV'D
           </Typography>
           {user.id ? (

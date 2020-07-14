@@ -1,13 +1,12 @@
 import React from "react";
-//import logo from "./logo.svg";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 import "./App.css";
+import { Box, Hidden } from "@material-ui/core";
 import Routes from "./routes";
 import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
-import Box from "@material-ui/core/Box";
 import plate from "./foodplate.jpg";
-import { withRouter } from "react-router-dom";
-import axios from "axios";
 
 const serverUrl = "https://servdapi.herokuapp.com/api";
 // const serverUrl = "http://localhost:8080/api";
@@ -122,7 +121,9 @@ export class App extends React.Component {
     return (
       <div style={styles.paperContainer}>
         <Box mx="auto">
-          <MenuAppBar appState={this.state} logout={this.logout} />
+          <Hidden smDown>
+            <MenuAppBar user={this.state.user} logout={this.logout} />
+          </Hidden>
           <Routes
             setUser={this.setUser}
             saveRecipe={this.saveRecipe}
@@ -130,7 +131,9 @@ export class App extends React.Component {
             setSearchResults={this.setSearchResults}
             appState={this.state}
           />
-          <BottomAppBar />
+          <Hidden mdUp>
+            <BottomAppBar user={this.state.user} logout={this.logout} />
+          </Hidden>
         </Box>
       </div>
     );

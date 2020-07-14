@@ -47,14 +47,8 @@ export class Routes extends Component {
             />
           )}
         />
-        <Route
-          path="/login"
-          render={(setUser) => <Login setUser={this.props.setUser} />}
-        />
-        <Route
-          path="/signup"
-          render={(setUser) => <SignUp setUser={this.props.setUser} />}
-        />
+        <Route path="/login" render={() => <Login setUser={setUser} />} />
+        <Route path="/signup" render={() => <SignUp setUser={setUser} />} />
 
         <Route exact path="/" component={Home} />
         {isLoggedIn && (
