@@ -28,7 +28,13 @@ const useStyles = makeStyles((theme) => ({
 
 export function AllRecipesRender(props) {
   const classes = useStyles();
-  const { recipes, savedRecipes, saveRecipe, removeRecipe } = props;
+  const {
+    recipes,
+    savedRecipes,
+    saveRecipe,
+    removeRecipe,
+    setSingleRecipe,
+  } = props;
   const user = props.user || {};
 
   return (
@@ -59,6 +65,7 @@ export function AllRecipesRender(props) {
                   user={user}
                   saveRecipe={saveRecipe}
                   removeRecipe={removeRecipe}
+                  setSingleRecipe={setSingleRecipe}
                 />
               );
             })}

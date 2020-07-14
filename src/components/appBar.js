@@ -114,7 +114,10 @@ function MenuAppBar(props) {
             <Button
               variant="outlined"
               size="small"
-              href="/login"
+              // href="/login"
+              onClick={() =>
+                props.history.push("/login", props.history.location.pathname)
+              }
               className={classes.button}
             >
               Sign In

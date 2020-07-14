@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 export function SingleRecipe(props) {
   const classes = useStyles();
-  const recipe = props.location.state;
+  const recipe = props.appState.singleRecipe;
 
   //check if user is logged in and if recipe is already saved
   const isLoggedIn = !!props.appState.user.id;

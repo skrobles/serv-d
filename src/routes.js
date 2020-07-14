@@ -18,6 +18,7 @@ export class Routes extends Component {
       saveRecipe,
       removeRecipe,
       setSearchResults,
+      setSingleRecipe,
     } = this.props;
     const isLoggedIn = !!this.props.appState.user.id;
 
@@ -34,6 +35,7 @@ export class Routes extends Component {
               saveRecipe={saveRecipe}
               removeRecipe={removeRecipe}
               setSearchResults={setSearchResults}
+              setSingleRecipe={setSingleRecipe}
             />
           )}
         />
