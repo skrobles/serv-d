@@ -1,14 +1,12 @@
 import React from "react";
-//import logo from "./logo.svg";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 import "./App.css";
+import { Box, Hidden } from "@material-ui/core";
 import Routes from "./routes";
 import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
-import Box from "@material-ui/core/Box";
-import Hidden from "@material-ui/core/Hidden";
 import plate from "./foodplate.jpg";
-import { withRouter } from "react-router-dom";
-import axios from "axios";
 
 const serverUrl = "https://servdapi.herokuapp.com/api";
 // const serverUrl = "http://localhost:8080/api";
