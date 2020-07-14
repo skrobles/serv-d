@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontWeight: "70px",
     fontFamily: "Oswald, sans-serif",
-    fontSize: "20px",
     marginBottom: "30px",
   },
 }));
