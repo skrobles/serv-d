@@ -5,13 +5,12 @@ import Home from './components/home';
 import AllRecipesView from './components/allRecipesView';
 import SingleRecipe from './components/singleRecipe';
 import SignUp from './components/SignUp';
-import ViewAccountForm from './components/ViewAccountForm';
 import Account from './components/Account';
 import SavedRecipes from './components/SavedRecipes';
 
 const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
 // const serverUrl = "http://localhost:8080/api/auth";
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 // axios.defaults.crossDomain = true;
 
 /**
@@ -20,6 +19,7 @@ axios.defaults.withCredentials = true;
 export class Routes extends Component {
   render() {
     const { appState, setUser, saveRecipe, removeRecipe } = this.props;
+    console.log('>>>>>>route', this.props);
     const isLoggedIn = !!this.props.appState.user.id;
 
     return (
@@ -66,9 +66,7 @@ export class Routes extends Component {
           <Switch>
             <Route
               path="/myAccount"
-              render={(setUser) => (
-                <Account user={this.state.user} setUser={this.setUser} />
-              )}
+              render={(setUser) => <Account appState={this.props.appState} />}
             />
             {/* <Route
               path="/saved"

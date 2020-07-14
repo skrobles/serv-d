@@ -1,6 +1,6 @@
-import React from "react";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/styles";
+import React from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/styles';
 import {
   Card,
   CardHeader,
@@ -10,38 +10,30 @@ import {
   Grid,
   Button,
   TextField,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 }));
 
 export default function ViewAccountForm(props) {
   const classes = useStyles();
-  console.log('account form', props)
+  console.log('account form', props);
   const { className, ...rest } = props;
-  const {onChange, onSubmit} = props
-  const { name, email } = props.user
-
-  // if(props.user.name) {
-  //   const { name } = props.user
-  // } else {
-  //   const name = ""
-  // }
-  // console.log("this is viewaccount props!!>>>>", props);
+  const { onChange, onSubmit } = props;
+  const { name, email } = props.user;
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
-      <form
-        autoComplete="off"
-        noValidate
-        onSubmit={(evt) => onSubmit(evt)}
-        >
-        <CardHeader subheader="The information can be edited" title="My Account" />
+      <form autoComplete="off" noValidate onSubmit={(evt) => onSubmit(evt)}>
+        <CardHeader
+          subheader="The information can be edited"
+          title="My Account"
+        />
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
