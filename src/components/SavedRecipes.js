@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SavedRecipes = (props) => {
   const classes = useStyles();
-  const { recipes } = props;
+  const { recipes, setSingleRecipe } = props;
 
   return (
     <React.Fragment>
@@ -20,7 +20,11 @@ const SavedRecipes = (props) => {
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
             {recipes.map((recipe) => (
-              <RecipeCard recipe={recipe} key={recipe.title} />
+              <RecipeCard
+                recipe={recipe}
+                key={recipe.title}
+                setSingleRecipe={setSingleRecipe}
+              />
             ))}
           </Grid>
         </Container>
