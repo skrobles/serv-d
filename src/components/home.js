@@ -48,6 +48,11 @@ export class Home extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+  componentDidMount() {
+    this.props.setSearchResults([]);
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
