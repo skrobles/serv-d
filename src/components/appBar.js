@@ -103,7 +103,14 @@ export function MenuAppBar(props) {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    props.history.push('/myAccount');
+                  }}
+                >
+                  Profile
+                </MenuItem>
                 <MenuItem
                   onClick={() => {
                     handleClose();
