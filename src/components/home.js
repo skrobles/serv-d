@@ -3,6 +3,8 @@ import Box from "@material-ui/core/Box";
 import Search from "./search";
 import plate from "../foodplate.jpg";
 import { Redirect, withRouter } from "react-router-dom";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/button";
 
 const styles = {
   paperContainer: {
@@ -19,6 +21,20 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: 378,
+    flexDirection: "column",
+  },
+  title: {
+    color: "white",
+    fontWeight: "70px",
+    fontFamily: "Oswald, sans-serif",
+    fontSize: "50px",
+    paddingBottom: "40px",
+    marginTop: "100px",
+  },
+  button: {
+    marginTop: "30px",
+    backgroundColor: "#ec2d01",
+    borderRadius: "5px",
   },
 };
 
@@ -54,11 +70,23 @@ export class Home extends React.Component {
     } else
       return (
         <Box mx="auto" style={styles.formContainer}>
+          <Typography
+            color="inherit"
+            align="center"
+            variant="h2"
+            marked="center"
+            style={styles.title}
+          >
+            SEARCH FOR RECIPES
+          </Typography>
           <Search
             ingredient={this.state.ingredient}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit}
           />
+          <Button variant="contained" color="primary" style={styles.button}>
+            Serve!
+          </Button>
         </Box>
       );
   }

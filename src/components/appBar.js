@@ -25,12 +25,12 @@ const useStyles = makeStyles((theme) => ({
     align: "center",
     flexGrow: 1,
     cursor: "pointer",
-    fontFamily: "Miriam Libre, sans-serif",
-    fontSize: "50px",
-    color: "#ec2d01",
+    fontFamily: "Oswald, sans-serif",
+    fontSize: "60px",
+    color: "white",
   },
   button: {
-    // backgroundColor: "white",
+    backgroundColor: "white",
     color: "#ec2d01",
   },
 }));
@@ -54,7 +54,7 @@ function MenuAppBar(props) {
       <AppBar
         position="static"
         style={{
-          background: "white",
+          background: "#ec2d01",
         }}
       >
         <Toolbar>

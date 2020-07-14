@@ -4,7 +4,7 @@ import { FormControl, Input, FormHelperText, Button } from "@material-ui/core";
 const styles = {
   searchContainer: {
     backgroundColor: "white",
-    padding: "0 20px",
+    padding: "0px 80px",
     borderRadius: "10px",
     fontStyle: "italic",
   },
@@ -15,7 +15,7 @@ export default function Search(prop) {
     <form onSubmit={(e) => prop.onSubmit(e)}>
       <FormControl style={styles.searchContainer}>
         <FormHelperText id="my-helper-text">
-          Search for a recipe by an ingredient:
+          Enter your ingredients:
         </FormHelperText>
         <Input
           id="my-input"
