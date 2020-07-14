@@ -7,7 +7,7 @@ const mount = require("koa-mount");
 const path = require("path");
 const koaBody = require("koa-body");
 const session = require("koa-session");
-const PORT = process.env.PORT || 9099;
+const PORT = process.env.PORT || 8080;
 const { getRecipes } = require("./spoonAPI");
 const firebase = require("firebase/app");
 require("firebase/auth");
