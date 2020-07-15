@@ -15,7 +15,7 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
-import { oauthKey } from "../secrets";
+const oauthKey = process.env.REACT_APP_OAUTHKEY;
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,6 +43,8 @@ export default function SignIn(props) {
   const classes = useStyles();
   const { onChange, onSubmit } = props;
   const { email, password, error } = props.state;
+
+  console.log(oauthKey);
 
   return (
     <Container component="main" maxWidth="xs">
