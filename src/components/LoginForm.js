@@ -44,8 +44,6 @@ export default function SignIn(props) {
   const { onChange, onSubmit } = props;
   const { email, password, error } = props.state;
 
-  console.log(oauthKey);
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
