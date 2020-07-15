@@ -13,10 +13,10 @@ import {
   Grid,
   Link,
   Container,
-  Card, 
-  CardActions, 
-  CardContent, 
-  Divider
+  Card,
+  CardActions,
+  CardContent,
+  Divider,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-    fontFamily: "Renner, serif",
+    fontFamily: "Oswald, serif",
     backgroundImage: `url(${arrowWood})`,
   },
   main: {
@@ -189,7 +189,7 @@ export function SingleRecipe(props) {
           <Grid className={classes.recipeIngredients} container item xs={6}>
             <Container>
               <Typography
-                variant="h4"
+                variant="h5"
                 component="h2"
                 gutterBottom
                 style={{ fontFamily: "Renner, serif" }}
@@ -220,7 +220,7 @@ export function SingleRecipe(props) {
         <Container className={classes.recipeMainBody}>
           <Container>
             <Typography
-              variant="h4"
+              variant="h5"
               component="h2"
               gutterBottom
               style={{ fontFamily: "Renner, serif" }}
@@ -248,11 +248,7 @@ export function SingleRecipe(props) {
                 }}
               >
                 <em>
-                  <strong>
-                    {recipe.steps.indexOf(step) === 0
-                      ? `Prep Work: `
-                      : `Step ${recipe.steps.indexOf(step)}: `}
-                  </strong>
+                  <strong>{`Step ${recipe.steps.indexOf(step) + 1}: `}</strong>
                 </em>
                 {/* <ol>
                         <li> */}
