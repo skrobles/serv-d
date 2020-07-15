@@ -41,6 +41,7 @@ export class App extends React.Component {
       user: {},
       savedRecipes: [],
       search: [],
+      singleRecipe: {},
     };
     this.setUser = this.setUser.bind(this);
     this.logout = this.logout.bind(this);
@@ -48,19 +49,16 @@ export class App extends React.Component {
     this.removeRecipe = this.removeRecipe.bind(this);
     this.getRecipes = this.getRecipes.bind(this);
     this.setSearchResults = this.setSearchResults.bind(this);
+    this.setSingleRecipe = this.setSingleRecipe.bind(this);
   }
 
   async componentDidMount() {
-    //getUser if logged in
     try {
       const { data } = await axios.get(`${serverUrl}/auth`);
       //{
       // headers: { "Access-Control{-Allow-Credentials": true }
       this.setUser(data);
-      //getSavedRecipes
       if (this.state.user.id) {
-        // const response = await axios.get(`${serverUrl}/recipes/saved`);
-        // this.setState({ savedRecipes: response.data });
         this.getRecipes();
       }
     } catch (err) {
@@ -98,6 +96,10 @@ export class App extends React.Component {
     }
   }
 
+  setSingleRecipe(singleRecipe) {
+    this.setState({ singleRecipe });
+  }
+
   async setUser(user) {
     this.setState({ user });
     if (user.id) {
@@ -132,6 +134,7 @@ export class App extends React.Component {
             saveRecipe={this.saveRecipe}
             removeRecipe={this.removeRecipe}
             setSearchResults={this.setSearchResults}
+            setSingleRecipe={this.setSingleRecipe}
             appState={this.state}
           />
           <Hidden mdUp>

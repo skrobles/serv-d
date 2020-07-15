@@ -15,20 +15,23 @@ import { withRouter } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    opacity: "75%",
+    opacity: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    marginLeft: "43%",
+    marginLeft: "45%",
+    align: "center",
     flexGrow: 1,
     cursor: "pointer",
-    fontFamily: "Miriam Libre, sans-serif",
-    fontSize: "50px",
+    fontFamily: "Oswald, sans-serif",
+    fontSize: "60px",
+    color: "white",
   },
   button: {
     backgroundColor: "white",
+    color: "#ec2d01",
   },
 }));
 
@@ -111,7 +114,10 @@ function MenuAppBar(props) {
             <Button
               variant="outlined"
               size="small"
-              href="/login"
+              // href="/login"
+              onClick={() =>
+                props.history.push("/login", props.history.location.pathname)
+              }
               className={classes.button}
             >
               Sign In

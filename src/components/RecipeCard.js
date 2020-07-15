@@ -64,12 +64,13 @@ export function RecipeCard(props) {
               size="small"
               color="primary"
               className={classes.view}
-              onClick={() =>
+              onClick={() => {
+                props.setSingleRecipe(card);
                 props.history.push({
                   pathname: "/single-recipe",
                   state: card,
-                })
-              }
+                });
+              }}
             >
               View
             </Button>

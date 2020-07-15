@@ -21,14 +21,27 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
-    opacity: "60%",
+  },
+  text: {
+    textAlign: "center",
+    noWrap: "true",
+    color: "white",
+    fontWeight: "70px",
+    fontFamily: "Oswald, sans-serif",
+    marginBottom: "30px",
   },
 }));
 
 export function AllRecipesRender(props) {
   const classes = useStyles();
-  const { recipes, savedRecipes, saveRecipe, removeRecipe } = props;
+  const {
+    recipes,
+    savedRecipes,
+    saveRecipe,
+    removeRecipe,
+    setSingleRecipe,
+    ingredient,
+  } = props;
   const user = props.user || {};
 
   return (
@@ -37,15 +50,19 @@ export function AllRecipesRender(props) {
       <AppBar position="relative" />
       <main>
         <Container className={classes.cardGrid} maxWidth="md">
-          <Box className={classes.results}>
-            <Typography
-              variant="h6"
-              color="inherit"
-              style={{ fontFamily: "Renner, serif", noWrap: "true" }}
-            >
-              Recipes found based on your search:
-            </Typography>
-          </Box>
+          {recipes.length ? (
+            <Box className={classes.results}>
+              <Typography variant="h6" color="inherit" className={classes.text}>
+                Showing results for "{ingredient}"
+              </Typography>
+            </Box>
+          ) : (
+            <Box className={classes.results}>
+              <Typography variant="h6" color="inherit" className={classes.text}>
+                No recipes found for "{ingredient}"
+              </Typography>
+            </Box>
+          )}
           <Grid container spacing={4}>
             {recipes.map((card) => {
               const isSaved =
@@ -59,6 +76,7 @@ export function AllRecipesRender(props) {
                   user={user}
                   saveRecipe={saveRecipe}
                   removeRecipe={removeRecipe}
+                  setSingleRecipe={setSingleRecipe}
                 />
               );
             })}
