@@ -22,10 +22,10 @@ const useStyles = makeStyles(() => ({
 
 export default function ViewAccountForm(props) {
   const classes = useStyles();
-  console.log('account form', props);
+  console.log('account form props', props);
   const { className, ...rest } = props;
   const { onChange, onSubmit } = props;
-  const { name, email } = props.user;
+  const { name, email } = props.state;
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -46,7 +46,7 @@ export default function ViewAccountForm(props) {
                 name="name"
                 onChange={(evt) => onChange(evt)}
                 required
-                value={name ? name : ''}
+                value={name}
                 variant="outlined"
               />
             </Grid>
@@ -66,7 +66,7 @@ export default function ViewAccountForm(props) {
         </CardContent>
         <Divider />
         <CardActions>
-          <Button color="primary" variant="contained">
+          <Button color="primary" variant="contained" type="submit">
             Save details
           </Button>
         </CardActions>

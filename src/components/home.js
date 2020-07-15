@@ -48,6 +48,7 @@ export class Home extends React.Component {
   }
 
   componentDidMount() {
+    console.log('THIS IS HOME COMPDID', this.props);
     this.props.setSearchResults([]);
   }
 

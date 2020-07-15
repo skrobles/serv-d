@@ -8,7 +8,7 @@ import SignUp from './components/SignUp';
 import Account from './components/Account';
 import SavedRecipes from './components/SavedRecipes';
 
-const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
+// const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
 // const serverUrl = "http://localhost:8080/api/auth";
 // axios.defaults.withCredentials = true;
 // axios.defaults.crossDomain = true;
@@ -72,12 +72,7 @@ export class Routes extends Component {
           <Switch>
             <Route
               path="/myAccount"
-              render={(setUser) => (
-                <Account
-                  appState={this.props.appState}
-                  setUser={this.props.setUser}
-                />
-              )}
+              render={() => <Account appState={appState} setUser={setUser} />}
             />
             {/* <Route
               path="/saved"
@@ -91,7 +86,7 @@ export class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Home component as a fallback */}
-        <Route component={Home} />
+        {/* <Route component={Home} /> */}
       </Switch>
     );
   }
