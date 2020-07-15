@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   recipeImgContainer: {
     marginTop: "0",
     display: "flex",
-    width: "65%",
+    width: "100%",
     height: "auto",
   },
   hightlights: {
@@ -93,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "1%",
     paddingBottom: "1%",
     direction: "column",
+    // marginLeft: "3%"
   },
   recipeMainBody: {
     display: "flex",
@@ -188,7 +189,7 @@ export function SingleRecipe(props) {
         </Grid>
 
         <Grid className={classes.recipeIngredientsContainer}>
-          <Grid className={classes.recipeIngredients} container item xs={6}>
+          <Grid className={classes.recipeIngredients} container>
             <Container style={{ paddingLeft: "0px" }}>
               <Typography
                 variant="h5"
@@ -199,26 +200,32 @@ export function SingleRecipe(props) {
                 <strong>Ingredients</strong>
               </Typography>
             </Container>
-            {recipe.ingredients.map((ingredient) => (
-              <Grid
-                container
-                item
-                xs={6}
-                sm={6}
-                key={ingredient}
-                style={{ width: "fit-screen" }}
-                spacing={0}
-              >
-                <Typography
-                  variant="h6"
-                  component="h2"
-                  gutterBottom
-                  style={{ fontFamily: "Lato" }}
+            <Grid
+              container
+              spacing={3}
+              style={{ marginLeft: "1%", paddingTop: "2%" }}
+            >
+              {recipe.ingredients.map((ingredient) => (
+                <Grid
+                  container
+                  // item
+                  xs={6}
+                  sm={6}
+                  key={ingredient}
+                  // style={{ width: "fit-screen" }}
+                  spacing={0}
                 >
-                  {ingredient}
-                </Typography>
-              </Grid>
-            ))}
+                  <Typography
+                    variant="h6"
+                    component="h2"
+                    gutterBottom
+                    style={{ fontFamily: "Lato" }}
+                  >
+                    {ingredient}
+                  </Typography>
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
         </Grid>
 
