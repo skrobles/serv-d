@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "70px",
     fontFamily: "Oswald, sans-serif",
     marginBottom: "30px",
+    marginTop: "10px",
   },
 }));
 
@@ -34,13 +35,13 @@ const SavedRecipes = (props) => {
         <Container className={classes.cardGrid} maxWidth="md">
           {recipes.length ? (
             <Box className={classes.results}>
-              <Typography variant="h5" color="inherit" className={classes.text}>
+              <Typography variant="h3" color="inherit" className={classes.text}>
                 SAVED RECIPES
               </Typography>
             </Box>
           ) : (
             <Box className={classes.results}>
-              <Typography variant="h5" color="inherit" className={classes.text}>
+              <Typography variant="h3" color="inherit" className={classes.text}>
                 NO SAVED RECIPES <br />
               </Typography>
             </Box>

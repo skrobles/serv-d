@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "70px",
     fontFamily: "Oswald, sans-serif",
     marginBottom: "30px",
+    marginTop: "10px",
   },
 }));
 
@@ -52,14 +53,14 @@ export function AllRecipesRender(props) {
         <Container className={classes.cardGrid} maxWidth="md">
           {recipes.length ? (
             <Box className={classes.results}>
-              <Typography variant="h6" color="inherit" className={classes.text}>
-                Showing results for "{ingredient}"
+              <Typography variant="h3" color="inherit" className={classes.text}>
+                RECIPES
               </Typography>
             </Box>
           ) : (
             <Box className={classes.results}>
-              <Typography variant="h6" color="inherit" className={classes.text}>
-                No recipes found for "{ingredient}"
+              <Typography variant="h3" color="inherit" className={classes.text}>
+                NO RECIPES MATCH YOUR SEARCH
               </Typography>
             </Box>
           )}
