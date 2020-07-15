@@ -57,6 +57,8 @@ function BottomAppBar(props) {
   const classes = useStyles();
   const { user, logout } = props;
 
+  console.log(props);
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -103,7 +105,12 @@ function BottomAppBar(props) {
               </IconButton>
             </div>
           ) : (
-            <IconButton edge="end" color="inherit" href="/login">
+            <IconButton
+              edge="end"
+              color="inherit"
+              // href="/login"
+              onClick={() => props.history.push("/login")}
+            >
               <AccountCircle />
             </IconButton>
           )}
