@@ -108,7 +108,6 @@ function BottomAppBar(props) {
             <IconButton
               edge="end"
               color="inherit"
-              // href="/login"
               onClick={() => props.history.push("/login")}
             >
               <AccountCircle />
