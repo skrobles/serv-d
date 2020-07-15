@@ -1,22 +1,13 @@
 import React from "react";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import PrintIcon from "@material-ui/icons/Print";
-import RateReviewIcon from "@material-ui/icons/RateReview";
-import CheckIcon from "@material-ui/icons/Check";
 import arrowWood from "../arrowwoodback.jpg";
 import {
   CssBaseline,
   Typography,
-  Button,
   Grid,
   Link,
   Container,
-  Card,
-  CardActions,
-  CardContent,
-  Divider,
   Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -188,7 +179,11 @@ export function SingleRecipe(props) {
 
         <Grid className={classes.recipeImg}>
           <Container className={classes.recipeImgContainer}>
-            <img className={classes.recipeImg} src={recipe.imgUrl} />
+            <img
+              className={classes.recipeImg}
+              src={recipe.imgUrl}
+              alt={recipe.title}
+            />
           </Container>
         </Grid>
 
