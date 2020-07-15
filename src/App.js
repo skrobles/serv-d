@@ -8,7 +8,6 @@ import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
 import plate from "./foodplate.jpg";
 import arrowWood from "./arrowwoodback.jpg";
-import axios from "axios";
 
 const serverUrl = "https://servdapi.herokuapp.com/api";
 // const serverUrl = "http://localhost:8080/api";
