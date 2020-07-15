@@ -1,4 +1,11 @@
 import React from "react";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import StarIcon from "@material-ui/icons/Star";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import PrintIcon from "@material-ui/icons/Print";
+import RateReviewIcon from "@material-ui/icons/RateReview";
+import CheckIcon from "@material-ui/icons/Check";
+import arrowWood from "../arrowwoodback.jpg";
 import {
   CssBaseline,
   Typography,
@@ -6,6 +13,10 @@ import {
   Grid,
   Link,
   Container,
+  Card, 
+  CardActions, 
+  CardContent, 
+  Divider
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
@@ -28,30 +39,68 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
+    fontFamily: "Renner, serif",
+    backgroundImage: `url(${arrowWood})`,
   },
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
     backgroundColor: "white",
     borderRadius: "10px",
+    opacity: "94%",
   },
   footer: {
-    padding: theme.spacing(3, 2),
-    marginTop: "auto",
+    padding: "0",
+    marginTop: "0px",
     backgroundColor:
       theme.palette.type === "light"
         ? theme.palette.grey[200]
         : theme.palette.grey[800],
   },
   title: {
-    alignSelf: "center",
-    textAlign: "center",
+    margin: "1.5%",
+    display: "flex",
+    flexDirection: "row",
+    width: "fit-screen",
+  },
+  recipeImg: {
+    objectFit: "cover",
+    width: "100%",
+    height: "auto",
+  },
+  recipeImgContainer: {
+    marginTop: "0",
+    display: "flex",
+    width: "65%",
+    height: "auto",
   },
   hightlights: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignContent: "flex-start",
+  },
+  recipeIngredientsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    width: "fit-screen",
+    height: "auto",
+    marginLeft: "3%",
+  },
+  recipeIngredients: {
+    marginTop: "1%",
+    paddingTop: "1%",
+    paddingBottom: "1%",
+    direction: "column",
+  },
+  recipeMainBody: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  favoriteStar: {
+    float: "right",
+    alignContent: "right",
+    // marginTop: "4%",
   },
 }));
 
@@ -66,70 +115,156 @@ export function SingleRecipe(props) {
       .length > 0;
 
   recipe.steps = recipe.steps || [];
-
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Container component="main" className={classes.main} maxWidth="md">
-        <Container className={classes.title}>
-          <Typography variant="h2" component="h1" gutterBottom>
-            {recipe.title}
+        {/* Title */}
+        <Grid className={classes.title} spacing={2}>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            style={{
+              marginLeft: "2%",
+              marginTop: "1.5%",
+              fontFamily: "Renner, Times, serif",
+            }}
+          >
+            <strong>{recipe.title}</strong>
+            <Typography
+              variant="h6"
+              component="h3"
+              gutterBottom
+              style={{
+                fontFamily: "Renner, Times, serif",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <em>Servings: {recipe.servings} </em>
+            </Typography>
+            <Typography
+              variant="h6"
+              component="h3"
+              gutterBottom
+              style={{
+                fontFamily: "Renner, Times, serif",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <em>Cook Time: {recipe.time} min. </em>
+            </Typography>
           </Typography>
 
-          <img src={recipe.imgUrl} width="50%" alt={`${recipe.title}`} />
-        </Container>
-        <Grid className={classes.highlights} container spacing={1}>
-          {isLoggedIn && !isSaved ? (
-            <Grid container item xs={12}>
-              <Button
+          <div className={classes.favoriteStar}>
+            {isLoggedIn && !isSaved ? (
+              <StarBorderIcon
                 variant="contained"
                 onClick={() => props.saveRecipe(recipe)}
-                color="primary"
-              >
-                Save Recipe
-              </Button>
-            </Grid>
-          ) : null}
-          {isLoggedIn && isSaved ? (
-            <Grid container item xs={12}>
-              <Button
+                style={{
+                  alignContent: "right",
+                }}
+              />
+            ) : null}
+            {isLoggedIn && isSaved ? (
+              <StarIcon
                 variant="contained"
                 onClick={() => props.removeRecipe(recipe)}
-                color="primary"
-              >
-                Remove Recipe
-              </Button>
-            </Grid>
-          ) : null}
-          <Grid container item xs={6}>
-            <Typography variant="h6" component="h2" gutterBottom>
-              <strong>Yield:</strong> {recipe.servings}
-            </Typography>
-          </Grid>
+              />
+            ) : null}
+          </div>
+        </Grid>
 
-          <Grid container spacing={1}>
-            <Grid container item xs={12}>
-              <Typography variant="h6" component="h2" gutterBottom>
-                <strong>Ingredients:</strong>
+        <Grid className={classes.recipeImg}>
+          <Container className={classes.recipeImgContainer}>
+            <img className={classes.recipeImg} src={recipe.imgUrl} />
+          </Container>
+        </Grid>
+
+        <Divider style={{ marginTop: "2.5%" }} />
+
+        <Grid className={classes.recipeIngredientsContainer}>
+          <Grid className={classes.recipeIngredients} container item xs={6}>
+            <Container>
+              <Typography
+                variant="h4"
+                component="h2"
+                gutterBottom
+                style={{ fontFamily: "Renner, serif" }}
+              >
+                <strong>Ingredients</strong>
               </Typography>
-              {recipe.ingredients.map((ingredient) => (
-                <Grid container item xs={12} key={ingredient}>
-                  <Typography variant="h6" component="h2" gutterBottom>
-                    {ingredient}
-                  </Typography>
-                </Grid>
-              ))}
-              {recipe.steps.map((step) => (
-                <Grid container item xs={12} key={step}>
-                  <Typography variant="h6" component="h2" gutterBottom>
-                    {step}
-                  </Typography>
-                </Grid>
-              ))}
-            </Grid>
+            </Container>
+            {recipe.ingredients.map((ingredient) => (
+              <Grid
+                container
+                item
+                xs={6}
+                sm={6}
+                key={ingredient}
+                style={{ width: "fit-screen" }}
+                spacing={0}
+              >
+                <Typography variant="h6" component="h2" gutterBottom>
+                  <em> {ingredient}</em>
+                </Typography>
+              </Grid>
+            ))}
           </Grid>
         </Grid>
+
+        <Divider />
+        {/* recipe main body */}
+        <Container className={classes.recipeMainBody}>
+          <Container>
+            <Typography
+              variant="h4"
+              component="h2"
+              gutterBottom
+              style={{ fontFamily: "Renner, serif" }}
+            >
+              <strong>Preparation</strong>
+            </Typography>
+          </Container>
+
+          {recipe.steps.map((step) => (
+            <Grid
+              container
+              item
+              xs={12}
+              key={step}
+              style={{ width: "fit-screen" }}
+            >
+              <Typography
+                variant="h6"
+                component="h2"
+                gutterBottom
+                style={{
+                  fontFamily: "Renner, serif",
+                  marginLeft: "2%",
+                  marginRight: "2%",
+                }}
+              >
+                <em>
+                  <strong>
+                    {recipe.steps.indexOf(step) === 0
+                      ? `Prep Work: `
+                      : `Step ${recipe.steps.indexOf(step)}: `}
+                  </strong>
+                </em>
+                {/* <ol>
+                        <li> */}
+                {step}
+                {/* </li>
+                      </ol> */}
+              </Typography>
+            </Grid>
+          ))}
+        </Container>
       </Container>
+
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">Serv'd</Typography>
