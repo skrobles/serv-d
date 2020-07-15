@@ -15,7 +15,7 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
-import { oauthKey } from "../secrets";
+const oauthKey = process.env.REACT_APP_OAUTHKEY;
 
 const useStyles = makeStyles((theme) => ({
   paper: {
