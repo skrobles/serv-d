@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-    fontFamily: "Fira Sans, serif",
+    fontFamily: "Lato, sans serif",
     backgroundImage: `url(${arrowWood})`,
   },
   main: {
@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     borderRadius: "10px",
     opacity: "94%",
+    fontFamily: "Lato, sans serif",
   },
   header: {
     display: "flex",
@@ -112,17 +113,6 @@ const useStyles = makeStyles((theme) => ({
     // marginLeft: "50%"
     marginTop: "2%",
   },
-  Typography: {
-    fontFamily: "Fira Sans, Times, serif",
-    paddingLeft: 0,
-    // display: "flex",
-    // flexDirection: "row",
-  },
-  Content: {
-    fontFamily: "Fira Sans, Times, serif",
-    marginLeft: "2%",
-    marginRight: "2%",
-  },
 }));
 
 export function SingleRecipe(props) {
@@ -151,7 +141,7 @@ export function SingleRecipe(props) {
               style={{
                 marginLeft: "2%",
                 marginTop: "1.5%",
-                fontFamily: "Fira Sans, Times, serif",
+                fontFamily: "Lato, Times, serif",
               }}
             >
               <strong>{recipe.title}</strong>
@@ -159,9 +149,9 @@ export function SingleRecipe(props) {
                 variant="h6"
                 component="h3"
                 gutterBottom
-                className={classes.typography}
                 style={{
                   marginTop: "20px",
+                  fontFamily: "Lato",
                 }}
               >
                 <span>Servings: {recipe.servings} </span>
@@ -170,12 +160,7 @@ export function SingleRecipe(props) {
                 variant="h6"
                 component="h3"
                 gutterBottom
-                className={classes.typography}
-                // style={{
-                //   fontFamily: "Fira Sans, Times, serif",
-                //   display: "flex",
-                //   flexDirection: "row",
-                // }}
+                style={{ fontFamily: "Lato" }}
               >
                 <span>Cook Time: {recipe.time} min. </span>
               </Typography>
@@ -207,8 +192,6 @@ export function SingleRecipe(props) {
           </Container>
         </Grid>
 
-        {/* <Divider style={{ marginTop: "2.5%" }} /> */}
-
         <Grid className={classes.recipeIngredientsContainer}>
           <Grid className={classes.recipeIngredients} container item xs={6}>
             <Container style={{ paddingLeft: "0px" }}>
@@ -216,8 +199,7 @@ export function SingleRecipe(props) {
                 variant="h5"
                 component="h2"
                 gutterBottom
-                className={classes.typography}
-                // style={{ fontFamily: "Fira Sans, serif" }}
+                style={{ fontFamily: "Lato" }}
               >
                 <strong>Ingredients</strong>
               </Typography>
@@ -230,14 +212,13 @@ export function SingleRecipe(props) {
                 sm={6}
                 key={ingredient}
                 style={{ width: "fit-screen" }}
-                className={classes.typography}
                 spacing={0}
               >
                 <Typography
                   variant="h6"
                   component="h2"
                   gutterBottom
-                  className={classes.content}
+                  style={{ fontFamily: "Lato" }}
                 >
                   {ingredient}
                 </Typography>
@@ -246,7 +227,6 @@ export function SingleRecipe(props) {
           </Grid>
         </Grid>
 
-        {/* <Divider /> */}
         {/* recipe main body */}
         <Container className={classes.recipeMainBody}>
           <Container style={{ paddingLeft: "0px" }}>
@@ -254,7 +234,7 @@ export function SingleRecipe(props) {
               variant="h5"
               component="h2"
               gutterBottom
-              className={classes.typography}
+              style={{ fontFamily: "Lato" }}
             >
               <strong>Preparation</strong>
             </Typography>
@@ -272,21 +252,12 @@ export function SingleRecipe(props) {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                className={classes.content}
-                // style={{
-                //   fontFamily: "Fira Sans, serif",
-                //   marginLeft: "2%",
-                //   marginRight: "2%",
-                // }}
+                style={{ fontFamily: "Lato" }}
               >
                 <span>
                   <strong>{`Step ${recipe.steps.indexOf(step) + 1}: `}</strong>
                 </span>
-                {/* <ol>
-                        <li> */}
                 {step}
-                {/* </li>
-                      </ol> */}
               </Typography>
             </Grid>
           ))}
