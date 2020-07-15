@@ -2,14 +2,16 @@ import React from 'react';
 import { Box, Button, Typography } from '@material-ui/core';
 import Search from './search';
 import plate from '../foodplate.jpg';
+import arrowWood from '../arrowwoodback.jpg';
 import { Redirect, withRouter } from 'react-router-dom';
 
 const styles = {
   paperContainer: {
-    height: 756,
-    backgroundImage: `url(${plate})`,
+    height: 'fill-screen',
+    backgroundImage: `url(${arrowWood})`,
     backgroundSize: 'cover',
     backgroundPosition: 'right',
+    backgroundRepeat: 'repeat',
     zIndex: -1,
   },
 
@@ -18,7 +20,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 378,
+    height: 400,
     flexDirection: 'column',
   },
   title: {
@@ -37,8 +39,8 @@ const styles = {
 };
 
 export class Home extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       ingredient: '',
       isSubmitted: false,

@@ -7,6 +7,7 @@ import Routes from './routes';
 import BottomAppBar from './components/bottom';
 import MenuAppBar from './components/appBar';
 import plate from './foodplate.jpg';
+import arrowWood from './arrowwoodback.jpg';
 
 const serverUrl = 'https://servdapi.herokuapp.com/api';
 // const serverUrl = "http://localhost:8080/api";
@@ -15,10 +16,11 @@ axios.defaults.withCredentials = true;
 
 const styles = {
   paperContainer: {
-    height: 756,
-    backgroundImage: `url(${plate})`,
+    height: 950,
+    backgroundImage: `url(${arrowWood})`,
     backgroundSize: 'cover',
     backgroundPosition: 'right',
+    backgroundRepeat: 'repeat',
     zIndex: -1,
   },
 
@@ -27,7 +29,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 378,
+    height: 450,
   },
 };
 
@@ -38,6 +40,7 @@ export class App extends React.Component {
       user: {},
       savedRecipes: [],
       search: [],
+      singleRecipe: {},
     };
     this.setUser = this.setUser.bind(this);
     this.logout = this.logout.bind(this);
@@ -45,19 +48,16 @@ export class App extends React.Component {
     this.removeRecipe = this.removeRecipe.bind(this);
     this.getRecipes = this.getRecipes.bind(this);
     this.setSearchResults = this.setSearchResults.bind(this);
+    this.setSingleRecipe = this.setSingleRecipe.bind(this);
   }
 
   async componentDidMount() {
-    //getUser if logged in
     try {
       const { data } = await axios.get(`${serverUrl}/auth`);
       //{
       // headers: { "Access-Control{-Allow-Credentials": true }
       this.setUser(data);
-      //getSavedRecipes
       if (this.state.user.id) {
-        // const response = await axios.get(`${serverUrl}/recipes/saved`);
-        // this.setState({ savedRecipes: response.data });
         this.getRecipes();
       }
     } catch (err) {
@@ -95,6 +95,10 @@ export class App extends React.Component {
     }
   }
 
+  setSingleRecipe(singleRecipe) {
+    this.setState({ singleRecipe });
+  }
+
   async setUser(user) {
     this.setState({ user });
     if (user.id) {
@@ -129,6 +133,7 @@ export class App extends React.Component {
             saveRecipe={this.saveRecipe}
             removeRecipe={this.removeRecipe}
             setSearchResults={this.setSearchResults}
+            setSingleRecipe={this.setSingleRecipe}
             appState={this.state}
           />
           <Hidden mdUp>

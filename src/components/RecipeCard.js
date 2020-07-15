@@ -18,12 +18,15 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    borderRadius: '5px',
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
+    margin: '4%',
   },
   cardContent: {
     flexGrow: 1,
+    paddingTop: '20px',
   },
   button: {
     justifyContent: 'space-between',
@@ -54,7 +57,7 @@ export function RecipeCard(props) {
               gutterBottom
               variant="h5"
               component="h2"
-              style={{ fontFamily: 'Renner, serif', textAlign: 'center' }}
+              style={{ fontFamily: 'Lato, serif', textAlign: 'center' }}
             >
               {card.title}
             </Typography>
@@ -64,12 +67,13 @@ export function RecipeCard(props) {
               size="small"
               color="primary"
               className={classes.view}
-              onClick={() =>
+              onClick={() => {
+                props.setSingleRecipe(card);
                 props.history.push({
                   pathname: '/single-recipe',
                   state: card,
-                })
-              }
+                });
+              }}
             >
               View
             </Button>
