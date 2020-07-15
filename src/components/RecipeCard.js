@@ -54,7 +54,7 @@ export function RecipeCard(props) {
               gutterBottom
               variant="h5"
               component="h2"
-              style={{ fontFamily: "Renner, serif", textAlign: "center" }}
+              style={{ fontFamily: "Fira Sans, serif", textAlign: "center" }}
             >
               {card.title}
             </Typography>
