@@ -21,7 +21,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: 400,
-//     flexDirection: "column",
+    flexDirection: "column",
   },
   title: {
     color: "white",
