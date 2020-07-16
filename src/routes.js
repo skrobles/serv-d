@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import Login from './components/Login';
-import Home from './components/home';
-import AllRecipesView from './components/allRecipesView';
-import SingleRecipe from './components/singleRecipe';
-import SignUp from './components/SignUp';
-import Account from './components/Account';
-import SavedRecipes from './components/SavedRecipes';
+import React, { Component } from "react";
+import { withRouter, Route, Switch } from "react-router-dom";
+import Login from "./components/Login";
+import Home from "./components/home";
+import AllRecipesView from "./components/allRecipesView";
+import SingleRecipe from "./components/singleRecipe";
+import SignUp from "./components/SignUp";
+import Account from "./components/Account";
+import SavedRecipes from "./components/SavedRecipes";
 
 // const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
 // const serverUrl = "http://localhost:8080/api/auth";
