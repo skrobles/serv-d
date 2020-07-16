@@ -57,8 +57,6 @@ function BottomAppBar(props) {
   const classes = useStyles();
   const { user, logout } = props;
 
-  console.log(props);
-
   return (
     <React.Fragment>
       <CssBaseline />
