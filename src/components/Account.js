@@ -3,7 +3,7 @@ import React from "react";
 import ViewAccountForm from "./ViewAccountForm";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import { Button, Box } from "@material-ui/core";
+import { Button, Box, Hidden } from "@material-ui/core";
 
 const serverUrl = "/api/auth";
 
@@ -64,14 +64,16 @@ export class Account extends React.Component {
           onSubmit={this.handleSubmit}
           state={this.state}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          style={styles.button}
-          onClick={() => this.props.logout()}
-        >
-          Logout
-        </Button>
+        <Hidden mdUp>
+          <Button
+            variant="contained"
+            color="primary"
+            style={styles.button}
+            onClick={() => this.props.logout()}
+          >
+            Logout
+          </Button>
+        </Hidden>
       </Box>
     );
   }
