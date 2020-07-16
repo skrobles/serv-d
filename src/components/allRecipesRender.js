@@ -41,7 +41,6 @@ export function AllRecipesRender(props) {
     saveRecipe,
     removeRecipe,
     setSingleRecipe,
-    ingredient,
     isLoading,
   } = props;
   const user = props.user || {};
