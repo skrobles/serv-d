@@ -1,20 +1,17 @@
-import React from "react";
-import ViewAccountForm from "./ViewAccountForm";
-import axios from "axios";
-import { withRouter } from "react-router-dom";
+import React from 'react';
+import ViewAccountForm from './ViewAccountForm';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-// const serverUrl =
-//   "https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth";
-const serverUrl = "https://servdapi.herokuapp.com/api/auth";
-// const serverUrl = 'http://localhost:8080/api/auth';
+const serverUrl = '/api/auth';
 
 export class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      password: "",
-      email: "",
+      name: '',
+      password: '',
+      email: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,7 +43,6 @@ export class Account extends React.Component {
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
         state={this.state}
-        // user={}
       />
     );
   }
