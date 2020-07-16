@@ -22,6 +22,8 @@ export class Routes extends Component {
     } = this.props;
     const isLoggedIn = !!this.props.appState.user.id;
 
+    console.log(this.props.appState.user);
+
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
