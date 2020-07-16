@@ -1,7 +1,7 @@
-import React from "react";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
-import StarIcon from "@material-ui/icons/Star";
-import arrowWood from "../arrowwoodback.jpg";
+import React from 'react';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarIcon from '@material-ui/icons/Star';
+import arrowWood from '../arrowwoodback.jpg';
 import {
   CssBaseline,
   Typography,
@@ -9,101 +9,101 @@ import {
   Link,
   Container,
   Box,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary">
-      {"Copyright © "}
+      {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{" "}
+      </Link>{' '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    minHeight: "100vh",
-    fontFamily: "Lato, sans serif",
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+    fontFamily: 'Lato, sans serif',
     backgroundImage: `url(${arrowWood})`,
   },
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
-    backgroundColor: "white",
-    borderRadius: "10px",
-    opacity: "94%",
-    fontFamily: "Lato, sans serif",
+    backgroundColor: 'white',
+    borderRadius: '10px',
+    opacity: '94%',
+    fontFamily: 'Lato, sans serif',
   },
   header: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
+    justifyContent: 'space-between',
     flexGrow: 1,
   },
   footer: {
-    padding: "0",
-    marginTop: "0px",
+    padding: '0',
+    marginTop: '0px',
     backgroundColor:
-      theme.palette.type === "light"
+      theme.palette.type === 'light'
         ? theme.palette.grey[200]
         : theme.palette.grey[800],
   },
   title: {
-    margin: "1.5%",
-    display: "flex",
-    flexDirection: "row",
-    width: "fit-screen",
+    margin: '1.5%',
+    display: 'flex',
+    flexDirection: 'row',
+    width: 'fit-screen',
     flexGrow: 1,
   },
   recipeImg: {
-    objectFit: "cover",
-    width: "100%",
-    height: "auto",
-    marginBottom: "15px",
+    objectFit: 'cover',
+    width: '100%',
+    height: 'auto',
+    marginBottom: '15px',
   },
   recipeImgContainer: {
-    marginTop: "0",
-    display: "flex",
-    width: "100%",
-    height: "auto",
+    marginTop: '0',
+    display: 'flex',
+    width: '100%',
+    height: 'auto',
   },
   hightlights: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignContent: "flex-start",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignContent: 'flex-start',
   },
   recipeIngredientsContainer: {
-    display: "flex",
-    flexDirection: "row",
-    width: "fit-screen",
-    height: "auto",
-    marginLeft: "3%",
-    paddingBottom: "20px",
+    display: 'flex',
+    flexDirection: 'row',
+    width: 'fit-screen',
+    height: 'auto',
+    marginLeft: '3%',
+    paddingBottom: '20px',
   },
   recipeIngredients: {
-    marginTop: "1%",
-    paddingTop: "1%",
-    paddingBottom: "1%",
-    direction: "column",
+    marginTop: '1%',
+    paddingTop: '1%',
+    paddingBottom: '1%',
+    direction: 'column',
     // marginLeft: "3%"
   },
   recipeMainBody: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
   },
   favoriteStar: {
-    float: "right",
-    alignContent: "right",
+    float: 'right',
+    alignContent: 'right',
     // marginLeft: "50%"
-    marginTop: "2%",
+    marginTop: '2%',
   },
 }));
 
@@ -131,9 +131,9 @@ export function SingleRecipe(props) {
               component="h1"
               gutterBottom
               style={{
-                marginLeft: "2%",
-                marginTop: "1.5%",
-                fontFamily: "Lato, Times, serif",
+                marginLeft: '2%',
+                marginTop: '1.5%',
+                fontFamily: 'Lato, Times, serif',
               }}
             >
               <strong>{recipe.title}</strong>
@@ -142,8 +142,8 @@ export function SingleRecipe(props) {
                 component="h3"
                 gutterBottom
                 style={{
-                  marginTop: "20px",
-                  fontFamily: "Lato",
+                  marginTop: '20px',
+                  fontFamily: 'Lato',
                 }}
               >
                 <span>Servings: {recipe.servings} </span>
@@ -152,7 +152,7 @@ export function SingleRecipe(props) {
                 variant="h6"
                 component="h3"
                 gutterBottom
-                style={{ fontFamily: "Lato" }}
+                style={{ fontFamily: 'Lato' }}
               >
                 <span>Cook Time: {recipe.time} min. </span>
               </Typography>
@@ -164,7 +164,7 @@ export function SingleRecipe(props) {
                   variant="contained"
                   onClick={() => props.saveRecipe(recipe)}
                   style={{
-                    alignContent: "right",
+                    alignContent: 'right',
                   }}
                 />
               ) : null}
@@ -190,12 +190,12 @@ export function SingleRecipe(props) {
 
         <Grid className={classes.recipeIngredientsContainer}>
           <Grid className={classes.recipeIngredients} container>
-            <Container style={{ paddingLeft: "0px" }}>
+            <Container style={{ paddingLeft: '0px' }}>
               <Typography
                 variant="h5"
                 component="h2"
                 gutterBottom
-                style={{ fontFamily: "Lato" }}
+                style={{ fontFamily: 'Lato' }}
               >
                 <strong>Ingredients</strong>
               </Typography>
@@ -203,7 +203,7 @@ export function SingleRecipe(props) {
             <Grid
               container
               spacing={3}
-              style={{ marginLeft: "1%", paddingTop: "2%" }}
+              style={{ marginLeft: '1%', paddingTop: '2%' }}
             >
               {recipe.ingredients.map((ingredient) => (
                 <Grid container xs={6} sm={6} key={ingredient} spacing={0}>
@@ -211,7 +211,7 @@ export function SingleRecipe(props) {
                     variant="h6"
                     component="h2"
                     gutterBottom
-                    style={{ fontFamily: "Lato" }}
+                    style={{ fontFamily: 'Lato' }}
                   >
                     {ingredient}
                   </Typography>
@@ -223,12 +223,12 @@ export function SingleRecipe(props) {
 
         {/* recipe main body */}
         <Container className={classes.recipeMainBody}>
-          <Container style={{ paddingLeft: "0px" }}>
+          <Container style={{ paddingLeft: '0px' }}>
             <Typography
               variant="h5"
               component="h2"
               gutterBottom
-              style={{ fontFamily: "Lato" }}
+              style={{ fontFamily: 'Lato' }}
             >
               <strong>Preparation</strong>
             </Typography>
@@ -240,13 +240,13 @@ export function SingleRecipe(props) {
               item
               xs={12}
               key={step}
-              style={{ width: "fit-screen", marginBottom: "5px" }}
+              style={{ width: 'fit-screen', marginBottom: '5px' }}
             >
               <Typography
                 variant="h6"
                 component="h2"
                 gutterBottom
-                style={{ fontFamily: "Lato" }}
+                style={{ fontFamily: 'Lato' }}
               >
                 <span>
                   <strong>{`Step ${recipe.steps.indexOf(step) + 1}: `}</strong>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   AppBar,
   Box,
@@ -6,10 +6,10 @@ import {
   Grid,
   Typography,
   Container,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
-import RecipeCard from "./RecipeCard";
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
+import RecipeCard from './RecipeCard';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -17,19 +17,19 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   results: {
-    alignContent: "center",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    alignContent: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
-    textAlign: "center",
-    noWrap: "true",
-    color: "white",
-    fontWeight: "70px",
-    fontFamily: "Oswald, sans-serif",
-    marginBottom: "30px",
-    marginTop: "10px",
+    textAlign: 'center',
+    noWrap: 'true',
+    color: 'white',
+    fontWeight: '70px',
+    fontFamily: 'Oswald, sans-serif',
+    marginBottom: '30px',
+    marginTop: '10px',
   },
 }));
 
