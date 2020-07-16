@@ -17,7 +17,6 @@ const styles = {
     backgroundRepeat: "repeat",
     zIndex: -1,
   },
-
   formContainer: {
     alignContent: "center",
     display: "flex",

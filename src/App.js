@@ -139,6 +139,7 @@ export class App extends React.Component {
             setSearchResults={this.setSearchResults}
             setSingleRecipe={this.setSingleRecipe}
             appState={this.state}
+            logout={this.logout}
           />
           <Hidden mdUp>
             <BottomAppBar user={this.state.user} logout={this.logout} />

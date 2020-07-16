@@ -1,9 +1,27 @@
+/* eslint-disable no-alert */
 import React from "react";
 import ViewAccountForm from "./ViewAccountForm";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import { Button, Box } from "@material-ui/core";
 
 const serverUrl = "/api/auth";
+
+const styles = {
+  button: {
+    marginTop: "30px",
+    backgroundColor: "#ec2d01",
+    borderRadius: "5px",
+  },
+  formContainer: {
+    alignContent: "center",
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flexDirection: "column",
+    minHeight: "100vh",
+  },
+};
 
 export class Account extends React.Component {
   constructor(props) {
@@ -31,7 +49,7 @@ export class Account extends React.Component {
       if (this.state.id !== null) {
         const { data } = await axios.put(`${serverUrl}`, this.state);
         this.props.setUser(data);
-        alert('Update Successful');
+        alert("Update Successful");
       }
     } catch (err) {
       console.log(err);
@@ -40,11 +58,21 @@ export class Account extends React.Component {
 
   render() {
     return (
-      <ViewAccountForm
-        onChange={this.handleChange}
-        onSubmit={this.handleSubmit}
-        state={this.state}
-      />
+      <Box mx="auto" style={styles.formContainer}>
+        <ViewAccountForm
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+          state={this.state}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          style={styles.button}
+          onClick={() => this.props.logout()}
+        >
+          Logout
+        </Button>
+      </Box>
     );
   }
 }
