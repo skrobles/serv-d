@@ -15,6 +15,7 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
+import { withRouter } from "react-router-dom";
 const oauthKey = process.env.REACT_APP_OAUTHKEY;
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn(props) {
+export function SignIn(props) {
   const classes = useStyles();
   const { onChange, onSubmit } = props;
   const { email, password, error } = props.state;
@@ -115,7 +116,10 @@ export default function SignIn(props) {
               />
             </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
+              <Link
+                variant="body2"
+                onClick={() => props.history.push("/signup")}
+              >
                 Don't have an account? Sign Up
               </Link>
             </Grid>
@@ -125,3 +129,5 @@ export default function SignIn(props) {
     </Container>
   );
 }
+
+export default withRouter(SignIn);
