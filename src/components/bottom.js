@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 
 function BottomAppBar(props) {
   const classes = useStyles();
-  const { user, logout } = props;
+  const { user } = props;
 
   return (
     <React.Fragment>
@@ -69,15 +69,6 @@ function BottomAppBar(props) {
           >
             <ArrowBackIcon />
           </IconButton>
-          {user.id && (
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={() => props.history.push("/saved")}
-            >
-              <FavoriteBorderIcon />
-            </IconButton>
-          )}
           <Fab className={classes.fabButton}>
             <Typography
               variant="h6"
@@ -92,14 +83,18 @@ function BottomAppBar(props) {
             <div>
               <IconButton
                 edge="end"
+                color="inherit"
+                onClick={() => props.history.push("/saved")}
+              >
+                <FavoriteBorderIcon />
+              </IconButton>
+              <IconButton
+                edge="end"
                 aria-label="account of current user"
                 color="inherit"
-                //onClick -> profile
+                onClick={() => props.history.push("/myAccount")}
               >
                 <AccountCircle />
-              </IconButton>
-              <IconButton onClick={() => logout()} color="inherit">
-                <ExitToAppIcon />
               </IconButton>
             </div>
           ) : (
