@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
+import { Box, Button, Typography } from "@material-ui/core";
 import Search from "./search";
 import plate from "../foodplate.jpg";
 import arrowWood from "../arrowwoodback.jpg";
@@ -7,26 +7,45 @@ import { Redirect, withRouter } from "react-router-dom";
 
 const styles = {
   paperContainer: {
-    height: "fill-screen",
-    backgroundImage: `url(${arrowWood})`,
+    minHeight: "100vh",
+    margin: "0px",
+    flexDirection: "column",
+    backgroundImage: `url(${plate})`,
     backgroundSize: "cover",
     backgroundPosition: "right",
-    backgroundRepeat: "repeat",
+    backgroundAttachment: "fixed",
     zIndex: -1,
   },
 
   formContainer: {
+    minHeight: "100vh",
     alignContent: "center",
     display: "flex",
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
-    height: 400,
+    justifyContent: "flex-start",
+    // height: "fill-screen",
+    flexDirection: "column",
+    // paddingBottom: "700px"
+  },
+  title: {
+    color: "white",
+    fontWeight: "70px",
+    fontFamily: "Oswald, sans-serif",
+    fontSize: "50px",
+    paddingBottom: "40px",
+    marginTop: "100px",
+  },
+  button: {
+    marginTop: "30px",
+    backgroundColor: "#ec2d01",
+    borderRadius: "5px",
   },
 };
 
 export class Home extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       ingredient: "",
       isSubmitted: false,
@@ -34,13 +53,20 @@ export class Home extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+  componentDidMount() {
+    this.props.setSearchResults([]);
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
   handleSubmit(event) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     this.setState({ isSubmitted: true });
   }
   render() {
@@ -56,11 +82,29 @@ export class Home extends React.Component {
     } else
       return (
         <Box mx="auto" style={styles.formContainer}>
+          <Typography
+            color="inherit"
+            align="center"
+            variant="h2"
+            marked="center"
+            style={styles.title}
+          >
+            SEARCH FOR RECIPES
+          </Typography>
           <Search
             ingredient={this.state.ingredient}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit}
           />
+          <Button
+            variant="contained"
+            color="primary"
+            style={styles.button}
+            onClick={this.handleSubmit}
+            disabled={!this.state.ingredient}
+          >
+            Serve!
+          </Button>
         </Box>
       );
   }

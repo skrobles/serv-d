@@ -18,6 +18,7 @@ export class Routes extends Component {
       saveRecipe,
       removeRecipe,
       setSearchResults,
+      setSingleRecipe,
     } = this.props;
     const isLoggedIn = !!this.props.appState.user.id;
 
@@ -34,6 +35,7 @@ export class Routes extends Component {
               saveRecipe={saveRecipe}
               removeRecipe={removeRecipe}
               setSearchResults={setSearchResults}
+              setSingleRecipe={setSingleRecipe}
             />
           )}
         />
@@ -47,21 +49,37 @@ export class Routes extends Component {
             />
           )}
         />
-        <Route path="/login" render={() => <Login setUser={setUser} />} />
-        <Route path="/signup" render={() => <SignUp setUser={setUser} />} />
+        <Route
+          path="/login"
+          render={() => <Login user={appState.user} setUser={setUser} />}
+        />
+        <Route
+          path="/signup"
+          render={() => <SignUp user={appState.user} setUser={setUser} />}
+        />
+        <Route
+          exact
+          path="/"
+          render={() => <Home setSearchResults={setSearchResults} />}
+        />
 
-        <Route exact path="/" component={Home} />
+        {/* <Route exact path="/" component={Home} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route
               path="/saved"
-              render={() => <SavedRecipes recipes={appState.savedRecipes} />}
+              render={() => (
+                <SavedRecipes
+                  recipes={appState.savedRecipes}
+                  setSingleRecipe={setSingleRecipe}
+                />
+              )}
             />
           </Switch>
         )}
         {/* Displays our Home component as a fallback */}
-        <Route component={Home} />
+        <Route render={() => <Home setSearchResults={setSearchResults} />} />
       </Switch>
     );
   }

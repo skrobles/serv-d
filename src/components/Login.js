@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "./LoginForm";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 // const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
 const serverUrl = "https://servdapi.herokuapp.com/api/auth";
@@ -30,7 +30,7 @@ export class Login extends React.Component {
       const { data } = await axios.post(`${serverUrl}/signin`, this.state);
       if (data.id) {
         this.props.setUser(data);
-        this.props.history.push("/");
+        this.props.history.push(this.props.history.location.state);
       } else {
         this.setState({ error: "Invalid username and/or password" });
       }
@@ -54,7 +54,9 @@ export class Login extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.user.id ? (
+      <Redirect to="/" />
+    ) : (
       <LoginForm
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}

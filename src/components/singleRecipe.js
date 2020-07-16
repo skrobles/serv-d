@@ -1,15 +1,26 @@
 import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import { withRouter } from "react-router-dom";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
-import Divider from "@material-ui/core/Divider";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import PrintIcon from "@material-ui/icons/Print";
+import RateReviewIcon from "@material-ui/icons/RateReview";
+import CheckIcon from "@material-ui/icons/Check";
 import arrowWood from "../arrowwoodback.jpg";
+import {
+  CssBaseline,
+  Typography,
+  Button,
+  Grid,
+  Link,
+  Container,
+  Card,
+  CardActions,
+  CardContent,
+  Divider,
+  Box,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -29,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-    fontFamily: "Renner, serif",
+    fontFamily: "Lato, sans serif",
     backgroundImage: `url(${arrowWood})`,
   },
   main: {
@@ -37,8 +48,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     backgroundColor: "white",
     borderRadius: "10px",
-    opacity: "90%",
+    opacity: "94%",
+    fontFamily: "Lato, sans serif",
   },
+  // header: {
+  //   display: "flex",
+  //   justifyContent: "space-between",
+  //   flexGrow: 1,
+  // },
   footer: {
     padding: "0",
     marginTop: "0px",
@@ -54,12 +71,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     margin: "1.5%",
     display: "flex",
-    fontFamily: "Plantin, serif",
+    flexGrow: 1,
   },
   recipeImg: {
     objectFit: "cover",
     width: "100%",
     height: "auto",
+    marginBottom: "15px",
   },
   recipeImgContainer: {
     marginTop: "0",
@@ -102,9 +120,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     width: "fit-screen",
     height: "auto",
-    marginLeft: "16%",
-    alignContent: "center",
-    textAlign: "center",
+    marginLeft: "3%",
+    paddingBottom: "20px",
   },
   recipeIngredients: {
     marginTop: "1%",
@@ -125,132 +142,131 @@ const useStyles = makeStyles((theme) => ({
   favoriteStar: {
     float: "right",
     alignContent: "right",
-    // marginTop: "4%",
+    // marginLeft: "50%"
+    marginTop: "2%",
   },
 }));
 
 export function SingleRecipe(props) {
   const classes = useStyles();
-  const recipe = props.location.state;
+  const recipe = props.location.state || props.appState.singleRecipe;
+
+  //check if user is logged in and if recipe is already saved
   const isLoggedIn = !!props.appState.user.id;
   const isSaved =
     props.appState.savedRecipes.filter((saved) => saved.title === recipe.title)
       .length > 0;
 
   recipe.steps = recipe.steps || [];
-  console.log(recipe);
-
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Container component="main" className={classes.main} maxWidth="md">
-        {/* RECIPE TITLE */}
-        <Grid spacing={1}>
-          <Typography
-            className={classes.header}
-            variant="h4"
-            component="h1"
-            gutterBottom
-          >
-            <strong>{recipe.title}</strong>
-          </Typography>
+        {/* Title */}
+
+        <Grid className={classes.title} spacing={2}>
+          <Box className={classes.header}>
+            <Typography
+              variant="h4"
+              component="h1"
+              gutterBottom
+              style={{
+                marginLeft: "2%",
+                marginTop: "1.5%",
+                fontFamily: "Lato, Times, serif",
+              }}
+            >
+              <strong>{recipe.title}</strong>
+              <Typography
+                variant="h6"
+                component="h3"
+                gutterBottom
+                style={{
+                  marginTop: "20px",
+                  fontFamily: "Lato",
+                }}
+              >
+                <span>Servings: {recipe.servings} </span>
+              </Typography>
+              <Typography
+                variant="h6"
+                component="h3"
+                gutterBottom
+                style={{ fontFamily: "Lato" }}
+              >
+                <span>Cook Time: {recipe.time} min. </span>
+              </Typography>
+            </Typography>
+
+            <div className={classes.favoriteStar}>
+              {isLoggedIn && !isSaved ? (
+                <StarBorderIcon
+                  variant="contained"
+                  onClick={() => props.saveRecipe(recipe)}
+                  style={{
+                    alignContent: "right",
+                  }}
+                />
+              ) : null}
+              {isLoggedIn && isSaved ? (
+                <StarIcon
+                  variant="contained"
+                  onClick={() => props.removeRecipe(recipe)}
+                />
+              ) : null}
+            </div>
+          </Box>
         </Grid>
 
-        {/* RECIPE IMAGE */}
-        <Grid>
+        <Grid className={classes.recipeImg}>
           <Container className={classes.recipeImgContainer}>
             <img className={classes.recipeImg} src={recipe.imgUrl} />
           </Container>
         </Grid>
 
-        {/* RECIPE HEADER INFO */}
-        <Grid
-          className={classes.recipeInfoBelowImgContainer}
-          container
-          xs={12}
-          // sm={6}
-        >
-          {/* <Container className={classes.blahblahblah}>
-          <Typography className={classes.recipeInfoBelowImg} variant="h6" component="h1" gutterBottom>
-            <em>Servings: {recipe.servings}</em>
-          </Typography>
-          <Typography className={classes.recipeInfoBelowImg} variant="h6" component="h1" gutterBottom>
-            <em>Cook Time: {recipe.time}</em>
-          </Typography>
-          </Container> */}
-          <Grid item xs={3} />
-          <Grid className={classes.recipeInfoBelowImg} item xs={3}>
-            <em>Servings: {recipe.servings}</em>
-            <br />
-            <em>Cook Time: {recipe.time}</em>
-          </Grid>
-
-          <Grid className={classes.recipeInfoBelowImg} item xs={3}>
-            <em>Save Recipe</em>
-            <br />
-            {isLoggedIn && !isSaved ? (
-              <StarBorderIcon
-                variant="contained"
-                onClick={() => props.saveRecipe(recipe)}
-                style={{
-                  alignContent: "right",
-                }}
-              />
-            ) : null}
-            {isLoggedIn && isSaved ? (
-              <StarIcon
-                variant="contained"
-                onClick={() => props.removeRecipe(recipe)}
-              />
-            ) : null}
-          </Grid>
-          <Grid item xs={3} />
-        </Grid>
-
-        <Divider />
-
-        {/* RECIPE INGREDIENTS */}
-        <Grid container item xs={12}>
-          <Container>
-            <Typography
-              variant="h4"
-              component="h2"
-              gutterBottom
-              className={classes.directionsHeader}
-            >
-              <strong>Ingredients</strong>
-            </Typography>
-          </Container>
-          {recipe.ingredients.map((ingredient) => (
-            <Grid
-              className={classes.recipeIngredientsContainer}
-              container
-              item
-              xs={6}
-              sm={4}
-              key={ingredient}
-              spacing={0}
-            >
+        <Grid className={classes.recipeIngredientsContainer}>
+          <Grid className={classes.recipeIngredients} container item xs={6}>
+            <Container style={{ paddingLeft: "0px" }}>
               <Typography
-                className={classes.recipeIngredients}
-                variant="h6"
+                variant="h5"
                 component="h2"
                 gutterBottom
+                style={{ fontFamily: "Lato" }}
               >
-                <em> {ingredient}</em>
+                <em> {recipe.ingredient}</em>
               </Typography>
-            </Grid>
-          ))}
+            </Container>
+            {recipe.ingredients.map((ingredient) => (
+              <Grid
+                container
+                item
+                xs={6}
+                sm={6}
+                key={ingredient}
+                style={{ width: "fit-screen" }}
+                spacing={0}
+              >
+                <Typography
+                  variant="h6"
+                  component="h2"
+                  gutterBottom
+                  style={{ fontFamily: "Lato" }}
+                >
+                  {ingredient}
+                </Typography>
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
 
-        {/* RECIPE DIRECTIONS */}
+        {/* recipe main body */}
         <Container className={classes.recipeMainBody}>
-          <Container>
+          <Container style={{ paddingLeft: "0px" }}>
             <Typography
-              className={classes.directionsHeader}
-              variant="h4"
+              variant="h5"
               component="h2"
               gutterBottom
+              style={{ fontFamily: "Lato" }}
             >
               <strong>Preparation</strong>
             </Typography>
@@ -262,30 +278,18 @@ export function SingleRecipe(props) {
               item
               xs={12}
               key={step}
-              style={{ width: "fit-screen" }}
+              style={{ width: "fit-screen", marginBottom: "5px" }}
             >
               <Typography
                 variant="h6"
                 component="h2"
                 gutterBottom
-                style={{
-                  fontFamily: "Garamond, serif",
-                  marginLeft: "2%",
-                  marginRight: "2%",
-                }}
+                style={{ fontFamily: "Lato" }}
               >
-                <em>
-                  <strong>
-                    {recipe.steps.indexOf(step) === 0
-                      ? `Prep Work: `
-                      : `Step ${recipe.steps.indexOf(step)}: `}
-                  </strong>
-                </em>
-                {/* <ol>
-                        <li> */}
+                <span>
+                  <strong>{`Step ${recipe.steps.indexOf(step) + 1}: `}</strong>
+                </span>
                 {step}
-                {/* </li>
-                      </ol> */}
               </Typography>
             </Grid>
           ))}
