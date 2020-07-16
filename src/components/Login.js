@@ -1,19 +1,19 @@
-import React from 'react';
-import LoginForm from './LoginForm';
-import axios from 'axios';
-import { withRouter, Redirect } from 'react-router-dom';
+import React from "react";
+import LoginForm from "./LoginForm";
+import axios from "axios";
+import { withRouter, Redirect } from "react-router-dom";
 
 // const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
 // const serverUrl = "https://servdapi.herokuapp.com/api/auth";
-const serverUrl = '/api/auth';
+const serverUrl = "/api/auth";
 // const serverUrl = 'http://localhost:8080/api/auth'
 
 export class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       error: null,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -33,10 +33,10 @@ export class Login extends React.Component {
         this.props.setUser(data);
         this.props.history.push(this.props.history.location.state);
       } else {
-        this.setState({ error: 'Invalid username and/or password' });
+        this.setState({ error: "Invalid username and/or password" });
       }
     } catch (err) {
-      this.setState({ error: 'Invalid username and/or password' });
+      this.setState({ error: "Invalid username and/or password" });
       console.log(err);
     }
   }
@@ -48,7 +48,7 @@ export class Login extends React.Component {
         token: idToken,
       });
       this.props.setUser(data);
-      this.props.history.push('/');
+      this.props.history.push("/");
     } catch (err) {
       console.error(err);
     }
@@ -56,8 +56,9 @@ export class Login extends React.Component {
 
   render() {
     return this.props.user.id ? (
-      <Redirect to="/" />
+      <Redirect to={this.props.history.location.state} />
     ) : (
+      //  return (
       <LoginForm
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}

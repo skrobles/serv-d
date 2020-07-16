@@ -30,7 +30,6 @@ export class AllRecipesView extends React.Component {
   }
 
   render() {
-    const { ingredient } = this.props.location.state;
     return (
       <AllRecipesRender
         recipes={this.props.search}
@@ -39,7 +38,6 @@ export class AllRecipesView extends React.Component {
         saveRecipe={this.props.saveRecipe}
         removeRecipe={this.props.removeRecipe}
         setSingleRecipe={this.props.setSingleRecipe}
-        ingredient={ingredient}
         isLoading={this.state.isLoading}
       />
     );
