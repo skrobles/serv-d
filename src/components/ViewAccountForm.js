@@ -36,8 +36,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ViewAccountForm(props) {
   const classes = useStyles();
-  console.log('account form props', props);
-  // const { className, ...rest } = props;
   const { onChange, onSubmit } = props;
   const { name, email, password } = props.state;
 

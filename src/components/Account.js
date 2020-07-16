@@ -3,10 +3,7 @@ import ViewAccountForm from './ViewAccountForm';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-// const serverUrl =
-//   "https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth";
-const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
-// const serverUrl = 'http://localhost:8080/api/auth';
+const serverUrl = '/api/auth';
 
 export class Account extends React.Component {
   constructor(props) {
@@ -21,20 +18,16 @@ export class Account extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('COMP DID ACCOUNT', this.props.appState.user)
     this.setState(this.props.appState.user);
   }
 
   handleChange(evt) {
-    // console.log('handle change Account');
-    // console.log('HANDLE CHANGEprops', this.props);
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
   async handleSubmit(evt) {
     evt.preventDefault();
-    console.log('>>>>>', this.state);
-    // const updatedInfo = {}
+    console.log('>>>>> handle submit', this.state);
     try {
       if (this.state.id !== null) {
         const { data } = await axios.put(`${serverUrl}`, this.state);
@@ -47,14 +40,11 @@ export class Account extends React.Component {
   }
 
   render() {
-    // console.log('this props is render Account', this.props);
-    // console.log('this state is render account', this.state);
     return (
       <ViewAccountForm
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
         state={this.state}
-        // user={}
       />
     );
   }

@@ -89,8 +89,10 @@ router.put('/', async (ctx, next) => {
     const user = await admin
       .auth()
       .updateUser(ctx.session.user.uid, updatedInfo);
+    console.log('this is PUT/ user', user);
     ctx.session.user = user;
     ctx.body = getUserData(user);
+    console.log('this is PUT getUserData', getUserData(user));
   } catch (err) {
     console.log(err);
     ctx.throw(err.status, err.message);
