@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   AppBar,
   Box,
@@ -6,10 +6,10 @@ import {
   Grid,
   Typography,
   Container,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
-import RecipeCard from './RecipeCard';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
+import RecipeCard from "./RecipeCard";
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -17,19 +17,19 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   results: {
-    alignContent: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignContent: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
-    textAlign: 'center',
-    noWrap: 'true',
-    color: 'white',
-    fontWeight: '70px',
-    fontFamily: 'Oswald, sans-serif',
-    marginBottom: '30px',
-    marginTop: '10px',
+    textAlign: "center",
+    noWrap: "true",
+    color: "white",
+    fontWeight: "70px",
+    fontFamily: "Oswald, sans-serif",
+    marginBottom: "30px",
+    marginTop: "10px",
   },
 }));
 
@@ -42,6 +42,7 @@ export function AllRecipesRender(props) {
     removeRecipe,
     setSingleRecipe,
     ingredient,
+    isLoading,
   } = props;
   const user = props.user || {};
 
@@ -51,19 +52,29 @@ export function AllRecipesRender(props) {
       <AppBar position="relative" />
       <main>
         <Container className={classes.cardGrid} maxWidth="md">
-          {recipes.length ? (
-            <Box className={classes.results}>
-              <Typography variant="h3" color="inherit" className={classes.text}>
-                RECIPES
-              </Typography>
-            </Box>
-          ) : (
-            <Box className={classes.results}>
-              <Typography variant="h3" color="inherit" className={classes.text}>
-                NO RECIPES MATCH YOUR SEARCH
-              </Typography>
-            </Box>
-          )}
+          {!isLoading &&
+            (recipes.length ? (
+              <Box className={classes.results}>
+                <Typography
+                  variant="h3"
+                  color="inherit"
+                  className={classes.text}
+                >
+                  RECIPES
+                </Typography>
+              </Box>
+            ) : (
+              <Box className={classes.results}>
+                <Typography
+                  variant="h3"
+                  color="inherit"
+                  className={classes.text}
+                >
+                  NO RECIPES MATCH YOUR SEARCH
+                </Typography>
+              </Box>
+            ))}
+
           <Grid container spacing={4}>
             {recipes.map((card) => {
               const isSaved =

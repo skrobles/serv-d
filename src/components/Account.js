@@ -1,17 +1,17 @@
-import React from 'react';
-import ViewAccountForm from './ViewAccountForm';
-import axios from 'axios';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import ViewAccountForm from "./ViewAccountForm";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 
-const serverUrl = '/api/auth';
+const serverUrl = "/api/auth";
 
 export class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      password: '',
-      email: '',
+      name: "",
+      password: "",
+      email: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
