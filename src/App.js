@@ -9,8 +9,9 @@ import MenuAppBar from "./components/appBar";
 import plate from "./foodplate.jpg";
 import arrowWood from "./arrowwoodback.jpg";
 
-const serverUrl = "https://servdapi.herokuapp.com/api";
+// const serverUrl = "https://servdapi.herokuapp.com/api";
 // const serverUrl = "http://localhost:8080/api";
+const serverUrl = "/api";
 axios.defaults.withCredentials = true;
 // axios.defaults.crossDomain = true;
 
