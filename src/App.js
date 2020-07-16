@@ -1,17 +1,17 @@
-import React from 'react';
-import axios from 'axios';
-import { withRouter } from 'react-router-dom';
-import './App.css';
-import { Box, Hidden } from '@material-ui/core';
-import Routes from './routes';
-import BottomAppBar from './components/bottom';
-import MenuAppBar from './components/appBar';
-import plate from './foodplate.jpg';
-import arrowWood from './arrowwoodback.jpg';
+import React from "react";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
+import "./App.css";
+import { Box, Hidden } from "@material-ui/core";
+import Routes from "./routes";
+import BottomAppBar from "./components/bottom";
+import MenuAppBar from "./components/appBar";
+import plate from "./foodplate.jpg";
+import arrowWood from "./arrowwoodback.jpg";
 
 // const serverUrl = "https://servdapi.herokuapp.com/api";
 // const serverUrl = "http://localhost:8080/api";
-const serverUrl = '/api';
+const serverUrl = "/api";
 axios.defaults.withCredentials = true;
 // axios.defaults.crossDomain = true;
 
@@ -19,17 +19,17 @@ const styles = {
   paperContainer: {
     height: 950,
     backgroundImage: `url(${arrowWood})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'right',
-    backgroundRepeat: 'repeat',
+    backgroundSize: "cover",
+    backgroundPosition: "right",
+    backgroundRepeat: "repeat",
     zIndex: -1,
   },
 
   formContainer: {
-    alignContent: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignContent: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     height: 450,
   },
 };
@@ -112,7 +112,7 @@ export class App extends React.Component {
       await axios.post(`${serverUrl}/auth/signout`);
       this.setUser({});
       this.setState({ savedRecipes: [] });
-      this.props.history.push('/');
+      this.props.history.push("/");
     } catch (err) {
       console.error(err);
     }
