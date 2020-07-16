@@ -1,6 +1,6 @@
-import React from 'react';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { withStyles } from '@material-ui/core/styles';
+import React from "react";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { withStyles } from "@material-ui/core/styles";
 import {
   Container,
   Avatar,
@@ -9,24 +9,24 @@ import {
   Button,
   TextField,
   makeStyles,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: '30px',
-    borderRadius: '10px',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "white",
+    padding: "30px",
+    borderRadius: "10px",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -36,8 +36,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ViewAccountForm(props) {
   const classes = useStyles();
-  console.log('account form props', props);
-  // const { className, ...rest } = props;
   const { onChange, onSubmit } = props;
   const { name, email, password } = props.state;
 
