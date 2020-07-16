@@ -31,6 +31,7 @@ export class Account extends React.Component {
       if (this.state.id !== null) {
         const { data } = await axios.put(`${serverUrl}`, this.state);
         this.props.setUser(data);
+        alert('Update Successful');
       }
     } catch (err) {
       console.log(err);
