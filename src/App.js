@@ -17,7 +17,10 @@ axios.defaults.withCredentials = true;
 
 const styles = {
   paperContainer: {
-    height: 950,
+    minHeight: "100vh",
+    margin: "0px",
+    flexDirection: "column",
+    height: "fill-screen",
     backgroundImage: `url(${arrowWood})`,
     backgroundSize: "cover",
     backgroundPosition: "right",
