@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
-import { withRouter, Route, Switch } from 'react-router-dom';
-import Login from './components/Login';
-import Home from './components/home';
-import AllRecipesView from './components/allRecipesView';
-import SingleRecipe from './components/singleRecipe';
-import SignUp from './components/SignUp';
-import Account from './components/Account';
-import SavedRecipes from './components/SavedRecipes';
-
-// const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
-// const serverUrl = "http://localhost:8080/api/auth";
-// axios.defaults.withCredentials = true;
-// axios.defaults.crossDomain = true;
+import React, { Component } from "react";
+import { withRouter, Route, Switch } from "react-router-dom";
+import Login from "./components/Login";
+import Home from "./components/home";
+import AllRecipesView from "./components/allRecipesView";
+import SingleRecipe from "./components/singleRecipe";
+import SignUp from "./components/SignUp";
+import Account from "./components/Account";
+import SavedRecipes from "./components/SavedRecipes";
 
 /**
  * COMPONENT
@@ -76,10 +71,6 @@ export class Routes extends Component {
               path="/myAccount"
               render={() => <Account appState={appState} setUser={setUser} />}
             />
-            {/* <Route
-              path="/saved"
-              render={() => <Login recipes={this.props.appState.savedRecipes} />}
-            /> */}
             {/* Routes placed here are only available after logging in */}
             <Route
               path="/saved"
