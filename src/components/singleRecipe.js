@@ -1,22 +1,13 @@
 import React from 'react';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import PrintIcon from '@material-ui/icons/Print';
-import RateReviewIcon from '@material-ui/icons/RateReview';
-import CheckIcon from '@material-ui/icons/Check';
 import arrowWood from '../arrowwoodback.jpg';
 import {
   CssBaseline,
   Typography,
-  Button,
   Grid,
   Link,
   Container,
-  Card,
-  CardActions,
-  CardContent,
-  Divider,
   Box,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -80,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   recipeImgContainer: {
     marginTop: '0',
     display: 'flex',
-    width: '65%',
+    width: '100%',
     height: 'auto',
   },
   hightlights: {
@@ -102,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '1%',
     paddingBottom: '1%',
     direction: 'column',
+    // marginLeft: "3%"
   },
   recipeMainBody: {
     display: 'flex',
@@ -188,12 +180,16 @@ export function SingleRecipe(props) {
 
         <Grid className={classes.recipeImg}>
           <Container className={classes.recipeImgContainer}>
-            <img className={classes.recipeImg} src={recipe.imgUrl} />
+            <img
+              className={classes.recipeImg}
+              src={recipe.imgUrl}
+              alt={recipe.title}
+            />
           </Container>
         </Grid>
 
         <Grid className={classes.recipeIngredientsContainer}>
-          <Grid className={classes.recipeIngredients} container item xs={6}>
+          <Grid className={classes.recipeIngredients} container>
             <Container style={{ paddingLeft: '0px' }}>
               <Typography
                 variant="h5"
@@ -204,26 +200,24 @@ export function SingleRecipe(props) {
                 <strong>Ingredients</strong>
               </Typography>
             </Container>
-            {recipe.ingredients.map((ingredient) => (
-              <Grid
-                container
-                item
-                xs={6}
-                sm={6}
-                key={ingredient}
-                style={{ width: 'fit-screen' }}
-                spacing={0}
-              >
-                <Typography
-                  variant="h6"
-                  component="h2"
-                  gutterBottom
-                  style={{ fontFamily: 'Lato' }}
-                >
-                  {ingredient}
-                </Typography>
-              </Grid>
-            ))}
+            <Grid
+              container
+              spacing={3}
+              style={{ marginLeft: '1%', paddingTop: '2%' }}
+            >
+              {recipe.ingredients.map((ingredient) => (
+                <Grid container xs={6} sm={6} key={ingredient} spacing={0}>
+                  <Typography
+                    variant="h6"
+                    component="h2"
+                    gutterBottom
+                    style={{ fontFamily: 'Lato' }}
+                  >
+                    {ingredient}
+                  </Typography>
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
         </Grid>
 

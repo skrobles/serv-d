@@ -29,18 +29,21 @@
     "react-google-login": "^5.1.21",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "@koa/cors": "^3.1.0"
   },
   "scripts": {
     "start-sw": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "http-server ./build",
+    "start-s": "http-server ./build",
     "start-server": "nodemon server",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "lint": "eslint ./ --ignore-path .gitignore",
-    "lint-fix": "npm run lint -- --fix"
+    "lint-fix": "npm run lint -- --fix",
+    "start": "nodemon server",
+    "deploy": "scripts/deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
