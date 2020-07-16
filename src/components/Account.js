@@ -27,12 +27,10 @@ export class Account extends React.Component {
 
   async handleSubmit(evt) {
     evt.preventDefault();
-    console.log('>>>>> handle submit', this.state);
     try {
       if (this.state.id !== null) {
         const { data } = await axios.put(`${serverUrl}`, this.state);
         this.props.setUser(data);
-        console.log('this is handle submit data', data);
       }
     } catch (err) {
       console.log(err);

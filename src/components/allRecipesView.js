@@ -9,7 +9,7 @@ const serverUrl = '/api/recipes';
 
 export class AllRecipesView extends React.Component {
   async componentDidMount() {
-    if (this.props.location.state) {
+    if (this.props.location.state && !this.props.search.length) {
       const ingredient = this.props.location.state.ingredient;
       const { data } = await axios.get(serverUrl, {
         params: {
