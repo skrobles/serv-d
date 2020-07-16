@@ -3,10 +3,6 @@ import ViewAccountForm from "./ViewAccountForm";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
-// const serverUrl =
-// "https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth";
-// const serverUrl = 'https://servdapi.herokuapp.com/api/auth';
-// const serverUrl = 'http://localhost:8080/api/auth';
 const serverUrl = "/api/auth";
 
 export class Account extends React.Component {
@@ -47,7 +43,6 @@ export class Account extends React.Component {
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
         state={this.state}
-        // user={}
       />
     );
   }

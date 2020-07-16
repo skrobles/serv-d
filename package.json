@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@koa/cors": "^3.1.0",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
@@ -12,6 +13,7 @@
     "axios": "^0.19.2",
     "firebase": "^7.15.5",
     "firebase-admin": "^8.13.0",
+    "fs": "0.0.1-security",
     "history": "^5.0.0",
     "http-server": "^0.12.3",
     "koa": "^2.13.0",
@@ -29,8 +31,7 @@
     "react-google-login": "^5.1.21",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "@koa/cors": "^3.1.0"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start-sw": "react-scripts start",
@@ -43,7 +44,9 @@
     "lint": "eslint ./ --ignore-path .gitignore",
     "lint-fix": "npm run lint -- --fix",
     "start": "nodemon server",
-    "deploy": "scripts/deploy"
+    "deploy": "scripts/deploy",
+    "watch": "npm-watch",
+    "start-dev": "nodemon server && npm run watch"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -64,6 +67,14 @@
       "git add"
     ]
   },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,jsx"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -82,6 +93,7 @@
     "eslint-plugin-react": "^7.20.3",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
+    "npm-watch": "^0.6.0",
     "prettier": "^2.0.5",
     "yaml": "^1.10.0"
   }
