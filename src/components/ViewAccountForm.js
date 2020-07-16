@@ -1,18 +1,15 @@
 import React from 'react';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { withStyles } from '@material-ui/core/styles';
 import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  Link,
-  Grid,
-  Typography,
   Container,
+  Avatar,
+  CssBaseline,
+  Typography,
+  Button,
+  TextField,
+  makeStyles,
 } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
-import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     backgroundColor: 'white',
     padding: '30px',
+    borderRadius: '10px',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -36,27 +34,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function SignUpForm(props) {
+export default function ViewAccountForm(props) {
   const classes = useStyles();
+  console.log('account form props', props);
+  // const { className, ...rest } = props;
   const { onChange, onSubmit } = props;
-  const { email, password, error } = props.state;
+  const { name, email, password } = props.state;
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <AccountCircleIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign Up
+          Edit Account Information
         </Typography>
         <form
           className={classes.form}
           noValidate
           onSubmit={(evt) => onSubmit(evt)}
         >
-          {error ? <Alert severity="error">{error}</Alert> : null}
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="name"
+            label="name"
+            type="name"
+            id="name"
+            onChange={(evt) => onChange(evt)}
+            value={name}
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -92,26 +103,10 @@ export function SignUpForm(props) {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Update Account
           </Button>
-          <Grid container>
-            <Grid item xs />
-            <Grid item>
-              <Link
-                variant="body2"
-                onClick={() => props.history.push('/login')}
-              >
-                Already have an account? Log in
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
-      {/* <Box mt={8}>
-        <Copyright />
-      </Box> */}
     </Container>
   );
 }
-
-export default withRouter(SignUpForm);

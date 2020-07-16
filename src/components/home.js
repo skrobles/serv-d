@@ -1,40 +1,40 @@
-import React from "react";
-import { Box, Button, Typography } from "@material-ui/core";
-import Search from "./search";
-import plate from "../foodplate.jpg";
-import arrowWood from "../arrowwoodback.jpg";
-import { Redirect, withRouter } from "react-router-dom";
+import React from 'react';
+import { Box, Button, Typography } from '@material-ui/core';
+import Search from './search';
+import plate from '../foodplate.jpg';
+import arrowWood from '../arrowwoodback.jpg';
+import { Redirect, withRouter } from 'react-router-dom';
 
 const styles = {
   paperContainer: {
-    height: "fill-screen",
+    height: 'fill-screen',
     backgroundImage: `url(${arrowWood})`,
-    backgroundSize: "cover",
-    backgroundPosition: "right",
-    backgroundRepeat: "repeat",
+    backgroundSize: 'cover',
+    backgroundPosition: 'right',
+    backgroundRepeat: 'repeat',
     zIndex: -1,
   },
 
   formContainer: {
-    alignContent: "center",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    alignContent: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     height: 400,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   title: {
-    color: "white",
-    fontWeight: "70px",
-    fontFamily: "Oswald, sans-serif",
-    fontSize: "50px",
-    paddingBottom: "40px",
-    marginTop: "100px",
+    color: 'white',
+    fontWeight: '70px',
+    fontFamily: 'Oswald, sans-serif',
+    fontSize: '50px',
+    paddingBottom: '40px',
+    marginTop: '100px',
   },
   button: {
-    marginTop: "30px",
-    backgroundColor: "#ec2d01",
-    borderRadius: "5px",
+    marginTop: '30px',
+    backgroundColor: '#ec2d01',
+    borderRadius: '5px',
   },
 };
 
@@ -42,7 +42,7 @@ export class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ingredient: "",
+      ingredient: '',
       isSubmitted: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);

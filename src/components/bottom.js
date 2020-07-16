@@ -1,8 +1,8 @@
-import React from "react";
-import { AccountCircle } from "@material-ui/icons";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import React from 'react';
+import { AccountCircle } from '@material-ui/icons';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {
   Typography,
   IconButton,
@@ -10,9 +10,9 @@ import {
   CssBaseline,
   AppBar,
   Fab,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -28,28 +28,28 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   appBar: {
-    top: "auto",
+    top: 'auto',
     bottom: 0,
-    background: "#ec2d01",
+    background: '#ec2d01',
   },
   grow: {
     flexGrow: 1,
   },
   fabButton: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 1,
     top: -10,
     left: 0,
     right: 0,
-    margin: "0 auto",
-    background: "#42603c",
+    margin: '0 auto',
+    background: '#42603c',
   },
   title: {
     flexGrow: 1,
-    cursor: "pointer",
-    fontFamily: "Miriam Libre, sans-serif",
-    fontSize: "30px",
-    color: "white",
+    cursor: 'pointer',
+    fontFamily: 'Miriam Libre, sans-serif',
+    fontSize: '30px',
+    color: 'white',
   },
 }));
 
@@ -73,7 +73,7 @@ function BottomAppBar(props) {
             <IconButton
               edge="start"
               color="inherit"
-              onClick={() => props.history.push("/saved")}
+              onClick={() => props.history.push('/saved')}
             >
               <FavoriteBorderIcon />
             </IconButton>
@@ -82,7 +82,7 @@ function BottomAppBar(props) {
             <Typography
               variant="h6"
               className={classes.title}
-              onClick={() => props.history.push("/")}
+              onClick={() => props.history.push('/')}
             >
               SERV'D
             </Typography>
@@ -106,7 +106,7 @@ function BottomAppBar(props) {
             <IconButton
               edge="end"
               color="inherit"
-              onClick={() => props.history.push("/login")}
+              onClick={() => props.history.push('/login')}
             >
               <AccountCircle />
             </IconButton>
