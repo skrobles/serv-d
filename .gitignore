@@ -12,6 +12,9 @@ secrets.js
 firestoreCred.json
 scripts/secrets.js
 src/secrets.js
+firebaseAConfig.json
+server/secrets.js
+server/firestoreCred.json
 
 # production
 /build

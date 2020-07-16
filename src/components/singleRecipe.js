@@ -206,15 +206,7 @@ export function SingleRecipe(props) {
               style={{ marginLeft: "1%", paddingTop: "2%" }}
             >
               {recipe.ingredients.map((ingredient) => (
-                <Grid
-                  container
-                  // item
-                  xs={6}
-                  sm={6}
-                  key={ingredient}
-                  // style={{ width: "fit-screen" }}
-                  spacing={0}
-                >
+                <Grid container xs={6} sm={6} key={ingredient} spacing={0}>
                   <Typography
                     variant="h6"
                     component="h2"
