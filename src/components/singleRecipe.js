@@ -14,19 +14,6 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -37,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(8),
     backgroundColor: "white",
     borderRadius: "10px",
     opacity: "94%",
@@ -262,13 +249,9 @@ export function SingleRecipe(props) {
           ))}
         </Container>
       </Container>
-
+      {/*
       <footer className={classes.footer}>
-        <Container maxWidth="sm">
-          <Typography variant="body1">Serv'd</Typography>
-          <Copyright />
-        </Container>
-      </footer>
+      </footer> */}
     </div>
   );
 }
