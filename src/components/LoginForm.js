@@ -118,7 +118,7 @@ export function SignIn(props) {
                 variant="body2"
                 onClick={() => props.history.push("/signup")}
               >
-                No account? Sign Up!
+                New to Serv'd? Sign Up
               </Link>
             </Grid>
           </Grid>
