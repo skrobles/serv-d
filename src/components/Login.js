@@ -48,7 +48,7 @@ export class Login extends React.Component {
         token: idToken,
       });
       this.props.setUser(data);
-      this.props.history.push("/");
+      this.props.history.push(this.props.history.location.state);
     } catch (err) {
       console.error(err);
     }
