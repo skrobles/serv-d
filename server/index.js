@@ -17,9 +17,7 @@ firebase.initializeApp(firebaseConfig);
 
 module.exports = { app, firebase };
 
-//Middleware
-
-// setup the logger
+// set up logger
 app.use(morgan("dev"));
 
 //set up body parser
