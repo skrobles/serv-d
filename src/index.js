@@ -7,10 +7,30 @@ import { BrowserRouter as Router } from "react-router-dom";
 import history from "./history";
 import { SnackbarProvider } from "notistack";
 
+const styles = {
+  error: { backgroundColor: "#ec2d01" },
+};
+
+const snackbarStyle = {
+  mdUp: {
+    vertical: "bottom",
+    horizontal: "left",
+  },
+  mdDown: {
+    vertical: "top",
+    horizontal: "left",
+  },
+};
+
 ReactDOM.render(
   <React.StrictMode>
     <Router history={history}>
-      <SnackbarProvider maxSnack={3}>
+      <SnackbarProvider
+        maxSnack={1}
+        classes={{
+          variantError: styles.error,
+        }}
+      >
         <App />
       </SnackbarProvider>
     </Router>
