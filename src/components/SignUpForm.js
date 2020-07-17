@@ -102,7 +102,7 @@ export function SignUpForm(props) {
                 variant="body2"
                 onClick={() => props.history.push("/login")}
               >
-                Already have an account? Log in here
+                Already have an account? Log In
               </Link>
             </Grid>
           </Grid>
