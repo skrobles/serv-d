@@ -20,6 +20,7 @@ export class Routes extends Component {
       removeRecipe,
       setSearchResults,
       setSingleRecipe,
+      logout,
     } = this.props;
     const isLoggedIn = !!this.props.appState.user.id;
 
@@ -69,7 +70,13 @@ export class Routes extends Component {
           <Switch>
             <Route
               path="/myAccount"
-              render={() => <Account appState={appState} setUser={setUser} />}
+              render={() => (
+                <Account
+                  appState={appState}
+                  setUser={setUser}
+                  logout={logout}
+                />
+              )}
             />
             {/* Routes placed here are only available after logging in */}
             <Route

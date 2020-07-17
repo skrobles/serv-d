@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
@@ -139,6 +140,7 @@ export class App extends React.Component {
             setSearchResults={this.setSearchResults}
             setSingleRecipe={this.setSingleRecipe}
             appState={this.state}
+            logout={this.logout}
           />
           <Hidden mdUp>
             <BottomAppBar user={this.state.user} logout={this.logout} />
