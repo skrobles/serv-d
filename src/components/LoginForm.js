@@ -108,10 +108,7 @@ export function SignIn(props) {
               <GoogleLogin
                 clientId={oauthKey}
                 buttonText="Login"
-                // uxMode="redirect"
-                // redirectUri='http://localhost:3000/'
                 onSuccess={props.loginWithGoogle}
-                // onFailure={props.loginWithGoogle}
                 cookiePolicy="single_host_origin"
                 SameSite="None"
               />
@@ -121,7 +118,7 @@ export function SignIn(props) {
                 variant="body2"
                 onClick={() => props.history.push("/signup")}
               >
-                Don't have an account? Sign Up
+                No account? Sign Up!
               </Link>
             </Grid>
           </Grid>

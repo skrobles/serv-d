@@ -4,10 +4,7 @@ import axios from "axios";
 import { withRouter, Redirect } from "react-router-dom";
 import { Box } from "@material-ui/core";
 
-// const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
-// const serverUrl = "https://servdapi.herokuapp.com/api/auth";
 const serverUrl = "/api/auth";
-// const serverUrl = 'http://localhost:8080/api/auth'
 
 const styles = {
   formContainer: {
@@ -70,7 +67,6 @@ export class Login extends React.Component {
     return this.props.user.id ? (
       <Redirect to={this.props.history.location.state} />
     ) : (
-      //  return (
       <Box mx="auto" style={styles.formContainer}>
         <LoginForm
           onChange={this.handleChange}

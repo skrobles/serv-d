@@ -1,25 +1,25 @@
-const { spoonApiKey } = require('../../secrets');
-const axios = require('axios');
-const testData = require('../../scripts/example.json');
+const { spoonApiKey } = require("../../secrets");
+const axios = require("axios");
+//const testData = require('../../scripts/example.json');
 
 const getRecipes = async (ingredientQuery) => {
   const offset = Math.floor(Math.random() * 50);
-  const ingredientList = ingredientQuery.ingredients.split(', ');
-  const escapedIngredients = ingredientList.join('%2C ');
+  const ingredientList = ingredientQuery.ingredients.split(", ");
+  const escapedIngredients = ingredientList.join("%2C ");
   const { data } = await axios({
-    method: 'GET',
+    method: "GET",
     url:
-      'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
+      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch",
     headers: {
-      'content-type': 'application/octet-stream',
-      'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-      'x-rapidapi-key': spoonApiKey,
+      "content-type": "application/octet-stream",
+      "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      "x-rapidapi-key": spoonApiKey,
       useQueryString: true,
     },
     params: {
-      number: '6',
+      number: "6",
       includeIngredients: escapedIngredients,
-      ranking: '1',
+      ranking: "1",
       addRecipeInformation: true,
       instructionsRequired: true,
       offset: offset,

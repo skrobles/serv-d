@@ -1,3 +1,4 @@
+/* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/no-unused-state */
 import React from "react";
 import axios from "axios";
@@ -7,11 +8,9 @@ import { Box, Hidden } from "@material-ui/core";
 import Routes from "./routes";
 import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
-import plate from "./foodplate.jpg";
+//import plate from "./foodplate.jpg";
 import arrowWood from "./arrowwoodback.jpg";
 
-// const serverUrl = "https://servdapi.herokuapp.com/api";
-// const serverUrl = "http://localhost:8080/api";
 const serverUrl = "/api";
 axios.defaults.withCredentials = true;
 // axios.defaults.crossDomain = true;
@@ -59,8 +58,6 @@ export class App extends React.Component {
   async componentDidMount() {
     try {
       const { data } = await axios.get(`${serverUrl}/auth`);
-      //{
-      // headers: { "Access-Control{-Allow-Credentials": true }
       this.setUser(data);
       if (this.state.user.id) {
         this.getRecipes();
