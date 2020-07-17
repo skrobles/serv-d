@@ -3,7 +3,8 @@ import React from "react";
 import ViewAccountForm from "./ViewAccountForm";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import { Button, Box, Hidden } from "@material-ui/core";
+import { Button, Box, Hidden, withWidth } from "@material-ui/core";
+import { withSnackbar } from "notistack";
 
 const serverUrl = "/api/auth";
 
@@ -20,6 +21,14 @@ const styles = {
     alignItems: "center",
     flexDirection: "column",
     minHeight: "100vh",
+  },
+  mdUp: {
+    vertical: "bottom",
+    horizontal: "left",
+  },
+  mdDown: {
+    vertical: "top",
+    horizontal: "left",
   },
 };
 
@@ -49,10 +58,19 @@ export class Account extends React.Component {
       if (this.state.id !== null) {
         const { data } = await axios.put(`${serverUrl}`, this.state);
         this.props.setUser(data);
-        alert("Update Successful");
+
+        this.props.enqueueSnackbar("Account Successfully Updated", {
+          variant: "success",
+          anchorOrigin: window.screen.width < 960 ? styles.mdDown : styles.mdUp,
+        });
       }
     } catch (err) {
       console.log(err);
+
+      this.props.enqueueSnackbar(err.response.data, {
+        variant: "error",
+        anchorOrigin: window.screen.width < 960 ? styles.mdDown : styles.mdUp,
+      });
     }
   }
 
@@ -79,4 +97,4 @@ export class Account extends React.Component {
   }
 }
 
-export default withRouter(Account);
+export default withRouter(withSnackbar(Account));

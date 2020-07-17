@@ -9,6 +9,7 @@ import Routes from "./routes";
 import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
 import arrowWood from "./arrowwoodback.jpg";
+import { withSnackbar } from "notistack";
 
 const serverUrl = "/api";
 axios.defaults.withCredentials = true;
@@ -32,6 +33,14 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: 450,
+  },
+  mdUp: {
+    vertical: "bottom",
+    horizontal: "left",
+  },
+  mdDown: {
+    vertical: "top",
+    horizontal: "left",
   },
 };
 
@@ -69,8 +78,18 @@ export class App extends React.Component {
     try {
       await axios.post(`${serverUrl}/recipes`, recipe);
       this.setState({ savedRecipes: [...this.state.savedRecipes, recipe] });
+
+      this.props.enqueueSnackbar("Recipe Saved", {
+        variant: "success",
+        anchorOrigin: window.screen.width < 960 ? styles.mdDown : styles.mdUp,
+      });
     } catch (err) {
       console.error(err.response.data);
+
+      this.props.enqueueSnackbar(err.response.data, {
+        variant: "error",
+        anchorOrigin: window.screen.width < 960 ? styles.mdDown : styles.mdUp,
+      });
     }
   }
 
@@ -81,8 +100,18 @@ export class App extends React.Component {
         ({ title }) => title !== recipe.title
       );
       this.setState({ savedRecipes: updatedRecipes });
+
+      this.props.enqueueSnackbar("Recipe Removed", {
+        variant: "success",
+        anchorOrigin: window.screen.width < 960 ? styles.mdDown : styles.mdUp,
+      });
     } catch (err) {
       console.error(err.response.data);
+
+      this.props.enqueueSnackbar(err.response.data, {
+        variant: "error",
+        anchorOrigin: window.screen.width < 960 ? styles.mdDown : styles.mdUp,
+      });
     }
   }
 
@@ -146,4 +175,4 @@ export class App extends React.Component {
   }
 }
 
-export default withRouter(App);
+export default withRouter(withSnackbar(App));
