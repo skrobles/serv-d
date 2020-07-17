@@ -1,5 +1,5 @@
-import React from 'react';
-import GoogleLogin from 'react-google-login';
+import React from "react";
+import GoogleLogin from "react-google-login";
 import {
   Avatar,
   Button,
@@ -11,28 +11,29 @@ import {
   Grid,
   Typography,
   Container,
-} from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
-import { withRouter } from 'react-router-dom';
+} from "@material-ui/core";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { makeStyles } from "@material-ui/core/styles";
+import Alert from "@material-ui/lab/Alert";
+import { withRouter } from "react-router-dom";
 const oauthKey = process.env.REACT_APP_OAUTHKEY;
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: '30px',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "white",
+    padding: "30px",
+    borderRadius: "10px",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -118,7 +119,7 @@ export function SignIn(props) {
             <Grid item>
               <Link
                 variant="body2"
-                onClick={() => props.history.push('/signup')}
+                onClick={() => props.history.push("/signup")}
               >
                 Don't have an account? Sign Up
               </Link>

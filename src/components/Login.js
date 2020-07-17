@@ -2,11 +2,23 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import axios from "axios";
 import { withRouter, Redirect } from "react-router-dom";
+import { Box } from "@material-ui/core";
 
 // const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
 // const serverUrl = "https://servdapi.herokuapp.com/api/auth";
 const serverUrl = "/api/auth";
 // const serverUrl = 'http://localhost:8080/api/auth'
+
+const styles = {
+  formContainer: {
+    alignContent: "center",
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flexDirection: "column",
+    minHeight: "100vh",
+  },
+};
 
 export class Login extends React.Component {
   constructor(props) {
@@ -59,12 +71,14 @@ export class Login extends React.Component {
       <Redirect to={this.props.history.location.state} />
     ) : (
       //  return (
-      <LoginForm
-        onChange={this.handleChange}
-        onSubmit={this.handleSubmit}
-        state={this.state}
-        loginWithGoogle={this.loginWithGoogle}
-      />
+      <Box mx="auto" style={styles.formContainer}>
+        <LoginForm
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+          state={this.state}
+          loginWithGoogle={this.loginWithGoogle}
+        />
+      </Box>
     );
   }
 }

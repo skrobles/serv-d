@@ -12,7 +12,7 @@ import {
   Fab,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -69,15 +69,17 @@ function BottomAppBar(props) {
           >
             <ArrowBackIcon />
           </IconButton>
-          <Fab className={classes.fabButton}>
-            <Typography
-              variant="h6"
-              className={classes.title}
-              onClick={() => props.history.push("/")}
-            >
-              SERV'D
-            </Typography>
-          </Fab>
+          <Link to="/">
+            <Fab className={classes.fabButton} disableRipple>
+              <Typography
+                variant="h6"
+                className={classes.title}
+                // onClick={() => props.history.push("/")}
+              >
+                SERV'D
+              </Typography>
+            </Fab>
+          </Link>
           <div className={classes.grow} />
           {user.id ? (
             <div>
