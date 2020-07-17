@@ -54,7 +54,7 @@ export function SignIn(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in to your Serv'd account
+          Sign In
         </Typography>
         <form
           className={classes.form}
