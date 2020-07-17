@@ -17,7 +17,7 @@ const getRecipes = async (ingredientQuery) => {
       useQueryString: true,
     },
     params: {
-      number: '5',
+      number: '6',
       includeIngredients: escapedIngredients,
       ranking: '1',
       addRecipeInformation: true,
