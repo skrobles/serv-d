@@ -6,6 +6,7 @@ import {
   Grid,
   Typography,
   Container,
+  Button,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
@@ -31,6 +32,20 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "30px",
     marginTop: "10px",
   },
+  button: {
+    backgroundColor: "#ec2d01",
+    color: "white",
+    "&:hover": {
+      color: "#ec2d01",
+      backgroundColor: "white",
+    },
+  },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "5%",
+    marginBottom: "5%",
+  },
 }));
 
 export function AllRecipesRender(props) {
@@ -42,6 +57,7 @@ export function AllRecipesRender(props) {
     removeRecipe,
     setSingleRecipe,
     isLoading,
+    refresh,
   } = props;
   const user = props.user || {};
 
@@ -92,6 +108,24 @@ export function AllRecipesRender(props) {
               );
             })}
           </Grid>
+
+          {!isLoading &&
+            (recipes.length ? (
+              <Box className={classes.buttonContainer}>
+                <Button className={classes.button} onClick={refresh}>
+                  Serve Again
+                </Button>
+              </Box>
+            ) : (
+              <Box className={classes.buttonContainer}>
+                <Button
+                  className={classes.button}
+                  onClick={() => props.history.push("/")}
+                >
+                  New Search
+                </Button>
+              </Box>
+            ))}
         </Container>
       </main>
     </React.Fragment>

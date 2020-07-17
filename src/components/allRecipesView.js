@@ -13,7 +13,9 @@ export class AllRecipesView extends React.Component {
     this.state = {
       isLoading: true,
     };
+    this.refreshSearch = this.refreshSearch.bind(this);
   }
+
   async componentDidMount() {
     if (this.props.location.state && !this.props.search.length) {
       const ingredient = this.props.location.state.ingredient;
@@ -29,6 +31,18 @@ export class AllRecipesView extends React.Component {
     this.setState({ isLoading: false });
   }
 
+  async refreshSearch() {
+    const ingredient = this.props.location.state.ingredient;
+    const { data } = await axios.get(serverUrl, {
+      params: {
+        ingredients: ingredient,
+      },
+      withCredentials: false,
+    });
+    this.props.setSearchResults(data);
+    this.setState({ isLoading: false });
+  }
+
   render() {
     return (
       <AllRecipesRender
@@ -39,6 +53,7 @@ export class AllRecipesView extends React.Component {
         removeRecipe={this.props.removeRecipe}
         setSingleRecipe={this.props.setSingleRecipe}
         isLoading={this.state.isLoading}
+        refresh={this.refreshSearch}
       />
     );
   }
