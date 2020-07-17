@@ -32,6 +32,7 @@ export class AllRecipesView extends React.Component {
   }
 
   async refreshSearch() {
+    window.scrollTo(0, 0);
     const ingredient = this.props.location.state.ingredient;
     const { data } = await axios.get(serverUrl, {
       params: {
