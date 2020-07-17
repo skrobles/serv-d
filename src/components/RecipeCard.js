@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   Card,
@@ -7,33 +7,33 @@ import {
   CardMedia,
   Grid,
   Typography,
-} from '@material-ui/core';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import StarIcon from '@material-ui/icons/Star';
-import { makeStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+} from "@material-ui/core";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import StarIcon from "@material-ui/icons/Star";
+import { makeStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    borderRadius: '5px',
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    borderRadius: "5px",
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
-    margin: '4%',
+    paddingTop: "56.25%", // 16:9
+    margin: "4%",
   },
   cardContent: {
     flexGrow: 1,
-    paddingTop: '20px',
+    paddingTop: "20px",
   },
   button: {
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   save: {
-    alignSelf: 'flex-end',
-    justifySelf: 'flex-end',
+    alignSelf: "flex-end",
+    justifySelf: "flex-end",
   },
 }));
 
@@ -57,7 +57,7 @@ export function RecipeCard(props) {
               gutterBottom
               variant="h5"
               component="h2"
-              style={{ fontFamily: 'Lato, serif', textAlign: 'center' }}
+              style={{ fontFamily: "Lato, serif", textAlign: "center" }}
             >
               {card.title}
             </Typography>
@@ -70,7 +70,7 @@ export function RecipeCard(props) {
               onClick={() => {
                 props.setSingleRecipe(card);
                 props.history.push({
-                  pathname: '/single-recipe',
+                  pathname: "/single-recipe",
                   state: card,
                 });
               }}

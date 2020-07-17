@@ -1,6 +1,5 @@
 import React from "react";
 import { AccountCircle } from "@material-ui/icons";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import {

@@ -7,7 +7,6 @@ import {
   CssBaseline,
   Typography,
   Grid,
-  Link,
   Container,
   Box,
 } from "@material-ui/core";
@@ -81,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "1%",
     paddingBottom: "1%",
     direction: "column",
-    // marginLeft: "3%"
   },
   recipeMainBody: {
     display: "flex",
@@ -90,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
   favoriteStar: {
     float: "right",
     alignContent: "right",
-    // marginLeft: "50%"
     marginTop: "2%",
   },
 }));
@@ -98,14 +95,12 @@ const useStyles = makeStyles((theme) => ({
 export function SingleRecipe(props) {
   const classes = useStyles();
   const recipe = props.location.state || props.appState.singleRecipe;
-
-  //check if user is logged in and if recipe is already saved
   const isLoggedIn = !!props.appState.user.id;
   const isSaved =
     props.appState.savedRecipes.filter((saved) => saved.title === recipe.title)
       .length > 0;
-
   recipe.steps = recipe.steps || [];
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -115,7 +110,6 @@ export function SingleRecipe(props) {
       <CssBaseline />
       <Container component="main" className={classes.main} maxWidth="md">
         {/* Title */}
-
         <Grid className={classes.title} spacing={2}>
           <Box className={classes.header}>
             <Typography
@@ -249,9 +243,6 @@ export function SingleRecipe(props) {
           ))}
         </Container>
       </Container>
-      {/*
-      <footer className={classes.footer}>
-      </footer> */}
     </div>
   );
 }

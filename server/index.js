@@ -10,7 +10,6 @@ const session = require("koa-session");
 const cors = require("@koa/cors");
 const fs = require("fs");
 const PORT = process.env.PORT || 8080;
-const { getRecipes } = require("./spoonAPI");
 const firebase = require("firebase/app");
 require("firebase/auth");
 const { firebaseConfig, keys } = require("../secrets");

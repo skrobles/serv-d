@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Typography } from "@material-ui/core";
 import Search from "./search";
-import plate from "../foodplate.jpg";
+//import plate from "../foodplate.jpg";
 import arrowWood from "../arrowwoodback.jpg";
 import { Redirect, withRouter } from "react-router-dom";
 

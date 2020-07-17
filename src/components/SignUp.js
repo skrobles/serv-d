@@ -4,10 +4,7 @@ import axios from "axios";
 import { Redirect, withRouter } from "react-router-dom";
 import { Box } from "@material-ui/core";
 
-// const serverUrl = 'https://cors-anywhere.herokuapp.com/https://servdapi.herokuapp.com/api/auth/signin'
-// const serverUrl = "https://servdapi.herokuapp.com/api/auth/signup";
 const serverUrl = "/api/auth/signup";
-// const serverUrl = "http://localhost:8080/api/auth/signup";
 
 const styles = {
   formContainer: {
