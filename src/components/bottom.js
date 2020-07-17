@@ -1,7 +1,7 @@
 import React from "react";
 import { AccountCircle } from "@material-ui/icons";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import StarIcon from "@material-ui/icons/Star";
 import {
   Typography,
   IconButton,
@@ -86,11 +86,10 @@ function BottomAppBar(props) {
                 color="inherit"
                 onClick={() => props.history.push("/saved")}
               >
-                <FavoriteBorderIcon />
+                <StarIcon />
               </IconButton>
               <IconButton
                 edge="end"
-                aria-label="account of current user"
                 color="inherit"
                 onClick={() => props.history.push("/myAccount")}
               >
