@@ -4,6 +4,7 @@ import ViewAccountForm from "./ViewAccountForm";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { Button, Box, Hidden } from "@material-ui/core";
+import { withSnackbar } from "notistack";
 
 const serverUrl = "/api/auth";
 
@@ -49,10 +50,13 @@ export class Account extends React.Component {
       if (this.state.id !== null) {
         const { data } = await axios.put(`${serverUrl}`, this.state);
         this.props.setUser(data);
-        alert("Update Successful");
+        this.props.enqueueSnackbar("Account Successfully Updated", {
+          variant: "success",
+        });
       }
     } catch (err) {
       console.log(err);
+      this.props.enqueueSnackbar(err.response.data, { variant: "error" });
     }
   }
 
@@ -79,4 +83,4 @@ export class Account extends React.Component {
   }
 }
 
-export default withRouter(Account);
+export default withRouter(withSnackbar(Account));
