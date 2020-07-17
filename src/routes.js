@@ -8,9 +8,6 @@ import SignUp from "./components/SignUp";
 import Account from "./components/Account";
 import SavedRecipes from "./components/SavedRecipes";
 
-/**
- * COMPONENT
- */
 export class Routes extends Component {
   render() {
     const {
@@ -65,7 +62,6 @@ export class Routes extends Component {
           render={() => <Home setSearchResults={setSearchResults} />}
         />
 
-        {/* <Route exact path="/" component={Home} /> */}
         {isLoggedIn && (
           <Switch>
             <Route
@@ -90,7 +86,7 @@ export class Routes extends Component {
             />
           </Switch>
         )}
-        {/* Displays our Home component as a fallback */}
+        {/* Displays Home component as a fallback */}
         <Route render={() => <Home setSearchResults={setSearchResults} />} />
       </Switch>
     );

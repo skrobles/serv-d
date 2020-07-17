@@ -8,12 +8,10 @@ import { Box, Hidden } from "@material-ui/core";
 import Routes from "./routes";
 import BottomAppBar from "./components/bottom";
 import MenuAppBar from "./components/appBar";
-//import plate from "./foodplate.jpg";
 import arrowWood from "./arrowwoodback.jpg";
 
 const serverUrl = "/api";
 axios.defaults.withCredentials = true;
-// axios.defaults.crossDomain = true;
 
 const styles = {
   paperContainer: {

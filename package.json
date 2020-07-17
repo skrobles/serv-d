@@ -39,7 +39,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-s": "http-server ./build",
-    "start-server": "nodemon server",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "lint": "eslint ./ --ignore-path .gitignore",
     "lint-fix": "npm run lint -- --fix",

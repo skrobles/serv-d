@@ -61,13 +61,6 @@ const getRecipes = async (ingredientQuery) => {
   return recipes;
 };
 
-//other params that might be useful
-//type: main course
-//query: burger
-//cuisine: american
-//intolerances
-//excludeIngredients
-
 module.exports = {
   getRecipes,
 };
