@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     margin: "0 auto",
     background: "#42603c",
+    "&:hover": {
+      background: "#42603c",
+    },
   },
   title: {
     flexGrow: 1,
@@ -70,12 +73,8 @@ function BottomAppBar(props) {
             <ArrowBackIcon />
           </IconButton>
           <Link to="/">
-            <Fab className={classes.fabButton} disableRipple>
-              <Typography
-                variant="h6"
-                className={classes.title}
-                // onClick={() => props.history.push("/")}
-              >
+            <Fab className={classes.fabButton}>
+              <Typography variant="h6" className={classes.title}>
                 SERV'D
               </Typography>
             </Fab>
