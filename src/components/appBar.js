@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   AppBar,
   Toolbar,
@@ -7,31 +7,52 @@ import {
   MenuItem,
   Menu,
   Button,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { AccountCircle } from '@material-ui/icons';
-import { withRouter } from 'react-router-dom';
+  Box,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { AccountCircle } from "@material-ui/icons";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    opacity: '100%',
+    opacity: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    marginLeft: '45%',
-    align: 'center',
-    flexGrow: 1,
-    cursor: 'pointer',
-    fontFamily: 'Oswald, sans-serif',
-    fontSize: '60px',
-    color: 'white',
+    // marginLeft: '45%',
+    align: "center",
+    // flexGrow: 1,
+    cursor: "pointer",
+    fontFamily: "Oswald, sans-serif",
+    fontSize: "60px",
+    color: "white",
   },
   button: {
-    backgroundColor: 'white',
-    color: '#ec2d01',
+    backgroundColor: "white",
+    color: "#ec2d01",
+  },
+  toolbar: {
+    display: "flex",
+    justifyContent: "space-evenly",
+  },
+  headerBox: {
+    flexBasis: 0,
+    flexGrow: 1,
+    display: "flex",
+    justifyContent: "center",
+  },
+  emptyBox: {
+    flexBasis: 0,
+    flexGrow: 1,
+  },
+  buttonBox: {
+    flexBasis: 0,
+    flexGrow: 1,
+    display: "flex",
+    justifyContent: "flex-end",
   },
 }));
 
@@ -54,19 +75,22 @@ function MenuAppBar(props) {
       <AppBar
         position="static"
         style={{
-          background: '#ec2d01',
+          background: "#ec2d01",
         }}
       >
-        <Toolbar>
-          <Typography
-            variant="h4"
-            className={classes.title}
-            onClick={() => props.history.push('/')}
-          >
-            SERV'D
-          </Typography>
+        <Toolbar classesName={classes.toolbar}>
+          <Box className={classes.emptyBox} />
+          <Box className={classes.headerBox}>
+            <Typography
+              variant="h4"
+              className={classes.title}
+              onClick={() => props.history.push("/")}
+            >
+              SERV'D
+            </Typography>
+          </Box>
           {user.id ? (
-            <div>
+            <div className={classes.buttonBox}>
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -80,13 +104,13 @@ function MenuAppBar(props) {
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 open={open}
                 onClose={handleClose}
@@ -94,7 +118,7 @@ function MenuAppBar(props) {
                 <MenuItem
                   onClick={() => {
                     handleClose();
-                    props.history.push('/myAccount');
+                    props.history.push("/myAccount");
                   }}
                 >
                   Profile
@@ -102,7 +126,7 @@ function MenuAppBar(props) {
                 <MenuItem
                   onClick={() => {
                     handleClose();
-                    props.history.push('/saved');
+                    props.history.push("/saved");
                   }}
                 >
                   Saved Recipes
@@ -118,16 +142,18 @@ function MenuAppBar(props) {
               </Menu>
             </div>
           ) : (
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={() =>
-                props.history.push('/login', props.history.location.pathname)
-              }
-              className={classes.button}
-            >
-              Sign In
-            </Button>
+            <Box className={classes.buttonBox}>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() =>
+                  props.history.push("/login", props.history.location.pathname)
+                }
+                className={classes.button}
+              >
+                Sign In
+              </Button>
+            </Box>
           )}
         </Toolbar>
       </AppBar>
