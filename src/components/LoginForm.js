@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import GoogleLogin from "react-google-login";
 import {
   Avatar,
@@ -43,8 +43,13 @@ const useStyles = makeStyles((theme) => ({
 
 export function SignIn(props) {
   const classes = useStyles();
+
+  const [email, setEmail] = useState("");
+  const [password, setPw] = useState("");
+  const [error, setError] = useState(null);
+
   const { onChange, onSubmit } = props;
-  const { email, password, error } = props.state;
+  // const { email, password, error } = props.state;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -72,7 +77,11 @@ export function SignIn(props) {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={(evt) => onChange(evt)}
+            // onChange={(evt) => onChange(evt)}
+            onChange={(evt) => {
+              setError(null);
+              setEmail(evt.target.value);
+            }}
             value={email}
             type="email"
             pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
@@ -87,7 +96,11 @@ export function SignIn(props) {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={(evt) => onChange(evt)}
+            // onChange={(evt) => onChange(evt)}
+            onChange={(evt) => {
+              setError(null);
+              setPw(evt.target.value);
+            }}
             value={password}
           />
           <FormControlLabel
