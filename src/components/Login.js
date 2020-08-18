@@ -1,7 +1,5 @@
-import LoginForm from "./LoginForm";
 import axios from "axios";
 import { withRouter, Redirect } from "react-router-dom";
-// import { Box } from "@material-ui/core";
 import React, { useState } from "react";
 import GoogleLogin from "react-google-login";
 import {
