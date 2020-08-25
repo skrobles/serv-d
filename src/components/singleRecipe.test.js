@@ -101,56 +101,5 @@ describe("Single Recipe for Logged in User", () => {
     fireEvent.click(removeButton);
 
     expect(remove).toHaveBeenCalledTimes(1);
-
-    // let removeButton = container.querySelector(".")
   });
 });
-
-// describe("Recipe Card", () => {
-//   it("Renders without crashing", () => {
-//     shallow(<RecipeCard recipe={recipe} />);
-//   });
-
-//   it("renders the recipe title", () => {
-//     const { getByText } = render(<RecipeCard recipe={recipe} />);
-//     const title = getByText("Spaghetti");
-//     expect(title).toBeInTheDocument();
-//   });
-
-//   it("renders the recipe image", () => {
-//     const { getByTitle } = render(<RecipeCard recipe={recipe} />);
-//     const title = getByTitle("Spaghetti");
-//     expect(title).toBeInTheDocument();
-//   });
-
-//   it("does not render save recipe button when user is logged out", () => {
-//     const { getAllByRole } = render(<RecipeCard recipe={recipe} />);
-//     const buttonCount = getAllByRole("button").length;
-
-//     expect(buttonCount).toEqual(1);
-//   });
-// });
-
-// describe("Recipe Card for logged in users", () => {
-//   it("renders save recipe button when user is logged in", () => {
-//     const { getAllByRole } = render(<RecipeCard recipe={recipe} user={user} />);
-//     const buttonCount = getAllByRole("button").length;
-
-//     expect(buttonCount).toEqual(2);
-//   });
-
-//   it("allows users to save recipes", () => {
-//     const save = jest.fn();
-
-//     const { getAllByRole } = render(
-//       <RecipeCard recipe={recipe} user={user} saveRecipe={save} />
-//     );
-//     const saveButton = getAllByRole("button")[1];
-
-//     fireEvent.click(saveButton);
-//     expect(save).toHaveBeenCalledTimes(1);
-
-//     // const { debug } = render(<RecipeCard recipe={recipe} user={user} saveRecipe={save}/>);
-//     // debug()
-//   });
-// });
