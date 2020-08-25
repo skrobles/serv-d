@@ -17,10 +17,6 @@ const user = {
   id: 123,
 };
 
-test("Renders without crashing", () => {
-  shallow(<RecipeCard recipe={recipe} />);
-});
-
 describe("Recipe Card", () => {
   it("Renders without crashing", () => {
     shallow(<RecipeCard recipe={recipe} />);
