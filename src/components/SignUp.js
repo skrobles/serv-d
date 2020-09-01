@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SignUpForm from "./SignUpForm";
 import axios from "axios";
 import { Redirect, withRouter } from "react-router-dom";
@@ -17,51 +17,40 @@ const styles = {
   },
 };
 
-export class SignUp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      error: null,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+export function SignUp(props) {
+  const [user, updateUser] = useState({ email: "", password: "" });
+  const [error, setError] = useState(null);
 
-  handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value, error: null });
-  }
-
-  async handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      const { data } = await axios.post(serverUrl, this.state);
+      const { data } = await axios.post(serverUrl, user);
       if (data.id) {
-        this.props.setUser(data);
-        this.props.history.push("/");
+        props.setUser(data);
+        props.history.push("/");
       } else {
-        this.setState({ error: "Invalid username and/or password" });
+        setError("Invalid username and/or password");
       }
     } catch (err) {
-      this.setState({ error: err.response.data });
-      console.log(err);
+      setError(err.response.data);
     }
   }
 
-  render() {
-    return this.props.user.id ? (
-      <Redirect to="/" />
-    ) : (
-      <Box mx="auto" style={styles.formContainer}>
-        <SignUpForm
-          onChange={this.handleChange}
-          onSubmit={this.handleSubmit}
-          state={this.state}
-        />
-      </Box>
-    );
-  }
+  return props.user.id ? (
+    <Redirect to="/" />
+  ) : (
+    <Box mx="auto" style={styles.formContainer}>
+      <SignUpForm
+        onChange={(evt) => {
+          updateUser({ ...user, [evt.target.name]: evt.target.value });
+          setError(null);
+        }}
+        onSubmit={handleSubmit}
+        user={user}
+        error={error}
+      />
+    </Box>
+  );
 }
 
 export default withRouter(SignUp);

@@ -40,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
 export function SignUpForm(props) {
   const classes = useStyles();
   const { onChange, onSubmit } = props;
-  const { email, password, error } = props.state;
+  const { email, password } = props.user;
+  const { error } = props.error;
 
   return (
     <Container component="main" maxWidth="xs">
