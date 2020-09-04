@@ -1,6 +1,6 @@
 import React from "react";
 import enzyme, { shallow } from "enzyme";
-import { RecipeCard } from "./RecipeCard";
+import { RecipeCard } from "../components/RecipeCard";
 import Adapter from "enzyme-adapter-react-16";
 import { render, fireEvent } from "@testing-library/react";
 
