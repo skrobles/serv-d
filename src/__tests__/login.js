@@ -2,10 +2,6 @@
  * @jest-environment node
  */
 
-const request = require("supertest");
-const express = require("express");
-const cookieParser = require("cookie-parser");
-
 async function createSession(agent, user) {
   const res = await agent.post("/api/auth/signin").send(user);
   expect(res.statusCode).toBe(200);
