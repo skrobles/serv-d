@@ -88,6 +88,7 @@
     ]
   },
   "devDependencies": {
+    "cookie-parser": "^1.4.5",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
     "eslint-config-fullstack": "^6.0.0",
@@ -97,6 +98,7 @@
     "lint-staged": "^10.2.11",
     "npm-watch": "^0.6.0",
     "prettier": "^2.0.5",
+    "superagent": "^6.1.0",
     "supertest": "^4.0.2",
     "yaml": "^1.10.0"
   }

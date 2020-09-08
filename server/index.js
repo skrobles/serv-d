@@ -15,6 +15,8 @@ require("firebase/auth");
 const { firebaseConfig, keys } = require("../secrets");
 firebase.initializeApp(firebaseConfig);
 
+module.exports = { app, firebase };
+
 // set up logger
 app.use(morgan("dev"));
 
@@ -59,4 +61,4 @@ const server = app.listen(PORT, () =>
   console.log(`Mixing it up on port ${PORT}`)
 );
 
-module.exports = { app, firebase, server };
+module.exports.server = server;
