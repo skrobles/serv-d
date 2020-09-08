@@ -57,4 +57,8 @@ app.use((ctx) => {
 });
 
 //start listening to requests
-app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`));
+const server = app.listen(PORT, () =>
+  console.log(`Mixing it up on port ${PORT}`)
+);
+
+module.exports.server = server;
