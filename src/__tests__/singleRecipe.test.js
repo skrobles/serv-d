@@ -3,7 +3,6 @@ import enzyme, { shallow } from "enzyme";
 import { SingleRecipe } from "../components/singleRecipe";
 import Adapter from "enzyme-adapter-react-16";
 import { render, fireEvent } from "@testing-library/react";
-import { ExpansionPanelActions } from "@material-ui/core";
 
 const adapter = new Adapter();
 enzyme.configure({ adapter });
