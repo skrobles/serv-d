@@ -38,5 +38,10 @@ describe("sign in", () => {
       const email = wrapper.container.querySelector('input[name="email"]');
       expect(email).toBeInTheDocument();
     });
+
+    it("renders a password field", () => {
+      const password = wrapper.container.querySelector('input[name="password');
+      expect(password).toBeInTheDocument();
+    });
   });
 });
