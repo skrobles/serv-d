@@ -24,11 +24,11 @@ describe("sign in", () => {
     );
   });
 
-  describe("input fields", () => {
-    it("Renders without crashing", () => {
-      shallow(<SignIn setUser={setUser} history={history} user={user} />);
-    });
+  it("Renders without crashing", () => {
+    shallow(<SignIn setUser={setUser} history={history} user={user} />);
+  });
 
+  describe("input fields", () => {
     it("renders three input fields", () => {
       const inputs = wrapper.container.querySelectorAll("input");
       expect(inputs.length).toEqual(3);
@@ -43,5 +43,13 @@ describe("sign in", () => {
       const password = wrapper.container.querySelector('input[name="password');
       expect(password).toBeInTheDocument();
     });
+  });
+
+  it("includes a link to sign up", () => {
+    const link = wrapper.container.querySelector("a");
+    expect(link).toBeInTheDocument();
+    expect(link.text).toEqual(
+      expect.stringContaining("New to Serv'd? Sign Up")
+    );
   });
 });
