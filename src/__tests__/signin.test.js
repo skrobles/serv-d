@@ -3,22 +3,21 @@ import enzyme, { shallow } from "enzyme";
 import { SignIn } from "../components/login";
 import Adapter from "enzyme-adapter-react-16";
 import { render, fireEvent } from "@testing-library/react";
-import { ExpansionPanelActions } from "@material-ui/core";
 
 const adapter = new Adapter();
 enzyme.configure({ adapter });
 
 describe("sign in", () => {
-  let wrapper, setUser, history, user;
+  let wrapper;
+  const setUser = jest.fn();
+  const history = {
+    location: {
+      state: "/",
+    },
+  };
+  const user = {};
 
   beforeEach(() => {
-    setUser = jest.fn();
-    history = {
-      location: {
-        state: "/",
-      },
-    };
-    user = {};
     wrapper = render(
       <SignIn setUser={setUser} history={history} user={user} />
     );
@@ -26,6 +25,10 @@ describe("sign in", () => {
 
   it("Renders without crashing", () => {
     shallow(<SignIn setUser={setUser} history={history} user={user} />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   describe("input fields", () => {
@@ -51,5 +54,19 @@ describe("sign in", () => {
     expect(link.text).toEqual(
       expect.stringContaining("New to Serv'd? Sign Up")
     );
+  });
+
+  it("uses a controlled email input", () => {
+    const useStateSpy = jest.spyOn(React, "useState");
+    // useStateSpy.mockImplementation((init) => [init, setState]);
+
+    wrapper = enzyme.mount(
+      <SignIn setUser={setUser} history={history} user={user} />
+    );
+    const email = wrapper.find('input[name="email"]');
+    // email.props().onChange()
+
+    email.simulate("change");
+    expect(useStateSpy).toHaveBeenCalled();
   });
 });
