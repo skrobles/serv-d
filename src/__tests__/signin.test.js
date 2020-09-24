@@ -57,12 +57,11 @@ describe("sign in", () => {
   });
 
   it("uses a controlled email input", () => {
-    const useStateSpy = jest.spyOn(React, "useState");
     wrapper = enzyme.mount(
       <SignIn setUser={setUser} history={history} user={user} />
     );
     const email = wrapper.find('input[name="email"]');
-    email.simulate("change");
-    expect(useStateSpy).toHaveBeenCalled();
+    email.simulate("change", { target: { name: "email", value: "test" } });
+    expect(email.html()).toContain("test");
   });
 });
