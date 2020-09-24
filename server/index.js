@@ -8,6 +8,7 @@ const path = require("path");
 const koaBody = require("koa-body");
 const session = require("koa-session");
 const cors = require("@koa/cors");
+const compress = require("koa-compress");
 const fs = require("fs");
 const PORT = process.env.PORT || 8080;
 const firebase = require("firebase/app");
@@ -25,6 +26,9 @@ app.use(koaBody());
 
 //enable CORS
 app.use(cors({ credentials: true }));
+
+//enable compression
+app.use(compress());
 
 //session middleware
 app.keys = keys;
