@@ -22,17 +22,12 @@ let firebase_auth_wrap = async (promise) => {
 };
 
 router.post("/signup", async (ctx, next) => {
-  try {
-    const { email, password } = ctx.request.body;
-    const user = await firebase_auth_wrap(
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-    );
-    ctx.session.user = user.user;
-    ctx.body = getUserData(user.user);
-  } catch (err) {
-    console.log(err.code, err.message);
-    ctx.throw(err.code, err.message);
-  }
+  const { email, password } = ctx.request.body;
+  const user = await firebase_auth_wrap(
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+  );
+  ctx.session.user = user.user;
+  ctx.body = getUserData(user.user);
 });
 
 router.post("/signin", async (ctx, next) => {
