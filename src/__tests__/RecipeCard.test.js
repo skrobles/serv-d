@@ -60,8 +60,5 @@ describe("Recipe Card for logged in users", () => {
 
     fireEvent.click(saveButton);
     expect(save).toHaveBeenCalledTimes(1);
-
-    // const { debug } = render(<RecipeCard recipe={recipe} user={user} saveRecipe={save}/>);
-    // debug()
   });
 });
