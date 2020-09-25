@@ -31,7 +31,7 @@ describe("sign in", () => {
     jest.clearAllMocks();
   });
 
-  describe("input fields", () => {
+  describe("renders input fields", () => {
     it("renders three input fields", () => {
       const inputs = wrapper.container.querySelectorAll("input");
       expect(inputs.length).toEqual(3);
@@ -56,12 +56,14 @@ describe("sign in", () => {
     );
   });
 
-  it("uses a controlled email input", () => {
-    wrapper = enzyme.mount(
-      <SignIn setUser={setUser} history={history} user={user} />
-    );
-    const email = wrapper.find('input[name="email"]');
-    email.simulate("change", { target: { name: "email", value: "test" } });
-    expect(email.html()).toContain("test");
+  describe("uses controlled inputs", () => {
+    it("uses a controlled email input", () => {
+      wrapper = enzyme.mount(
+        <SignIn setUser={setUser} history={history} user={user} />
+      );
+      const email = wrapper.find('input[name="email"]');
+      email.simulate("change", { target: { name: "email", value: "test" } });
+      expect(email.html()).toContain("test");
+    });
   });
 });
