@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import AllRecipesRender from "./allRecipesRender";
-import PropTypes, { array } from "prop-types";
+import PropTypes from "prop-types";
 
 const serverUrl = "/api/recipes";
 
