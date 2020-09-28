@@ -64,7 +64,7 @@ const SavedRecipes = (props) => {
 
 SavedRecipes.propTypes = {
   setSingleRecipe: PropTypes.func,
-  recipes: PropTypes.array,
+  recipes: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default SavedRecipes;
