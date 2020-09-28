@@ -12,6 +12,7 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -98,5 +99,11 @@ export function RecipeCard(props) {
     </React.Fragment>
   );
 }
+
+RecipeCard.propTypes = {
+  isSaved: PropTypes.bool,
+  user: PropTypes.object,
+  recipe: PropTypes.object,
+};
 
 export default withRouter(RecipeCard);
