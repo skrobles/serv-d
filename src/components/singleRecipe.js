@@ -34,60 +34,27 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     flexGrow: 1,
   },
-  footer: {
-    padding: "0",
-    marginTop: "0px",
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[200]
-        : theme.palette.grey[800],
-  },
   title: {
     margin: "1.5%",
-    display: "flex",
-    flexDirection: "row",
-    width: "fit-screen",
-    flexGrow: 1,
   },
   recipeImg: {
-    objectFit: "cover",
     width: "100%",
-    height: "auto",
     marginBottom: "15px",
   },
   recipeImgContainer: {
-    marginTop: "0",
     display: "flex",
-    width: "100%",
-    height: "auto",
-  },
-  hightlights: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignContent: "flex-start",
   },
   recipeIngredientsContainer: {
     display: "flex",
-    flexDirection: "row",
-    width: "fit-screen",
-    height: "auto",
     marginLeft: "3%",
-    paddingBottom: "20px",
+    paddingBottom: "3%",
   },
   recipeIngredients: {
     marginTop: "1%",
     paddingTop: "1%",
     paddingBottom: "1%",
-    direction: "column",
-  },
-  recipeMainBody: {
-    display: "flex",
-    flexDirection: "column",
   },
   favoriteStar: {
-    float: "right",
-    alignContent: "right",
     marginTop: "2%",
   },
 }));
@@ -128,8 +95,8 @@ export function SingleRecipe(props) {
                 component="h3"
                 gutterBottom
                 style={{
-                  marginTop: "20px",
-                  fontFamily: "Lato",
+                  marginTop: "4%",
+                  fontFamily: "Lato, Times, serif",
                 }}
               >
                 <span>Servings: {recipe.servings} </span>
@@ -138,7 +105,7 @@ export function SingleRecipe(props) {
                 variant="h6"
                 component="h3"
                 gutterBottom
-                style={{ fontFamily: "Lato" }}
+                style={{ fontFamily: "Lato, Times, serif" }}
               >
                 <span>Cook Time: {recipe.time} min. </span>
               </Typography>
