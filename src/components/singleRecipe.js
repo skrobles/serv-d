@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     flexGrow: 1,
+    marginLeft: "2%",
+    marginTop: "3%",
   },
   title: {
     margin: "1.5%",
@@ -56,6 +58,12 @@ const useStyles = makeStyles((theme) => ({
   },
   favoriteStar: {
     marginTop: "2%",
+  },
+  typography: {
+    fontFamily: "Lato, Times, serif",
+  },
+  servings: {
+    marginTop: "4%",
   },
 }));
 
@@ -83,21 +91,14 @@ export function SingleRecipe(props) {
               variant="h4"
               component="h1"
               gutterBottom
-              style={{
-                marginLeft: "2%",
-                marginTop: "1.5%",
-                fontFamily: "Lato, Times, serif",
-              }}
+              className={classes.typography}
             >
               <strong>{recipe.title}</strong>
               <Typography
                 variant="h6"
                 component="h3"
                 gutterBottom
-                style={{
-                  marginTop: "4%",
-                  fontFamily: "Lato, Times, serif",
-                }}
+                className={`${classes.typography} ${classes.servings}`}
               >
                 <span>Servings: {recipe.servings} </span>
               </Typography>
@@ -105,7 +106,7 @@ export function SingleRecipe(props) {
                 variant="h6"
                 component="h3"
                 gutterBottom
-                style={{ fontFamily: "Lato, Times, serif" }}
+                className={classes.typography}
               >
                 <span>Cook Time: {recipe.time} min. </span>
               </Typography>
@@ -116,9 +117,6 @@ export function SingleRecipe(props) {
                 <StarBorderIcon
                   variant="contained"
                   onClick={() => props.saveRecipe(recipe)}
-                  style={{
-                    alignContent: "right",
-                  }}
                 />
               ) : null}
               {isLoggedIn && isSaved ? (
@@ -148,7 +146,7 @@ export function SingleRecipe(props) {
                 variant="h5"
                 component="h2"
                 gutterBottom
-                style={{ fontFamily: "Lato" }}
+                className={classes.typography}
               >
                 <strong>Ingredients</strong>
               </Typography>
@@ -164,7 +162,7 @@ export function SingleRecipe(props) {
                     variant="h6"
                     component="h2"
                     gutterBottom
-                    style={{ fontFamily: "Lato" }}
+                    className={classes.typography}
                   >
                     {ingredient}
                   </Typography>
@@ -175,13 +173,13 @@ export function SingleRecipe(props) {
         </Grid>
 
         {/* recipe main body */}
-        <Container className={classes.recipeMainBody}>
+        <Container>
           <Container style={{ paddingLeft: "0px" }}>
             <Typography
               variant="h5"
               component="h2"
               gutterBottom
-              style={{ fontFamily: "Lato" }}
+              className={classes.typography}
             >
               <strong>Preparation</strong>
             </Typography>
@@ -199,7 +197,7 @@ export function SingleRecipe(props) {
                 variant="h6"
                 component="h2"
                 gutterBottom
-                style={{ fontFamily: "Lato" }}
+                className={classes.typography}
               >
                 <span>
                   <strong>{`Step ${recipe.steps.indexOf(step) + 1}: `}</strong>
