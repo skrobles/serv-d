@@ -67,7 +67,7 @@ export class App extends React.Component {
       const { data } = await axios.get(`${serverUrl}/auth`);
       this.setUser(data);
       if (this.state.user.id) {
-        this.getRecipes();
+        await this.getRecipes();
       }
     } catch (err) {
       console.error(err.response.data);
