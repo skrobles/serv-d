@@ -36,6 +36,10 @@ const useStyles = makeStyles(() => ({
     alignSelf: "flex-end",
     justifySelf: "flex-end",
   },
+  cardTitle: {
+    fontFamily: "Lato, serif",
+    textAlign: "center",
+  },
 }));
 
 export function RecipeCard(props) {
@@ -56,7 +60,7 @@ export function RecipeCard(props) {
               gutterBottom
               variant="h5"
               component="h2"
-              style={{ fontFamily: "Lato, serif", textAlign: "center" }}
+              className={classes.cardTitle}
             >
               {recipe.title}
             </Typography>
