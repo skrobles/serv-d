@@ -2,10 +2,8 @@ const { spoonApiKey } = require("../../secrets");
 const axios = require("axios");
 //const testData = require('../../scripts/example.json');
 
-const getRecipes = async (ingredientQuery) => {
+const getSpoonacular = async (ingredients) => {
   const offset = Math.floor(Math.random() * 50);
-  const ingredientList = ingredientQuery.ingredients.split(", ");
-  const escapedIngredients = ingredientList.join("%2C ");
   const { data } = await axios({
     method: "GET",
     url:
@@ -18,14 +16,23 @@ const getRecipes = async (ingredientQuery) => {
     },
     params: {
       number: "6",
-      includeIngredients: escapedIngredients,
+      includeIngredients: ingredients,
       ranking: "1",
       addRecipeInformation: true,
       instructionsRequired: true,
       offset: offset,
     },
   });
+
+  return data;
+};
+
+const getRecipes = async (ingredientQuery) => {
+  const ingredientList = ingredientQuery.ingredients.split(", ");
+  const escapedIngredients = ingredientList.join("%2C ");
+  const data = await getSpoonacular(escapedIngredients);
   // const data = testData
+
   let ingredients;
   let steps;
   const recipes = data.results.map((result) => {
