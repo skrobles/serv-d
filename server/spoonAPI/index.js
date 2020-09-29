@@ -27,6 +27,20 @@ const getSpoonacular = async (ingredients) => {
   return data;
 };
 
+const parseIngredients = (analyzedInstructions) => {
+  let ingredients = new Set();
+  analyzedInstructions[0].steps.map((step) =>
+    step.ingredients.forEach((ingredient) => {
+      ingredients.add(ingredient.name);
+    })
+  );
+  return Array.from(ingredients);
+};
+
+const parseSteps = (analyzedInstructions) => {
+  return analyzedInstructions[0].steps.map((step) => step.step);
+};
+
 const getRecipes = async (ingredientQuery) => {
   const ingredientList = ingredientQuery.ingredients.split(", ");
   const escapedIngredients = ingredientList.join("%2C ");
@@ -36,22 +50,13 @@ const getRecipes = async (ingredientQuery) => {
   let ingredients;
   let steps;
   const recipes = data.results.map((result) => {
-    //get list of ingredients without duplicates
-    ingredients = [];
     if (result.analyzedInstructions.length > 0) {
-      result.analyzedInstructions[0].steps.map((step) =>
-        step.ingredients.forEach((ingredient) => {
-          if (!ingredients.includes(ingredient.name)) {
-            ingredients.push(ingredient.name);
-          }
-        })
-      );
-
+      //get list of ingredients without duplicates
+      ingredients = parseIngredients(result.analyzedInstructions);
       //get steps for recipe
-      steps = result.analyzedInstructions[0].steps.map((step) => step.step);
+      steps = parseSteps(result.analyzedInstructions);
     }
-
-    //formulate our recipe object
+    //construct our recipe object
     let recipe = {
       title: result.title,
       imgUrl: result.image,
@@ -64,7 +69,6 @@ const getRecipes = async (ingredientQuery) => {
     return recipe;
   });
 
-  // return recipes
   return recipes;
 };
 
