@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
 import arrowWood from "../arrowwoodback.jpg";
@@ -12,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -211,5 +211,9 @@ export function SingleRecipe(props) {
     </div>
   );
 }
+
+SingleRecipe.propTypes = {
+  appState: PropTypes.object,
+};
 
 export default withRouter(SingleRecipe);
